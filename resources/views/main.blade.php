@@ -61,30 +61,151 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="{{route('/')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-tachometer-alt"></i>
                             </div>
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Interface</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gClients"
+                            aria-expanded="false" aria-controls="gClients">
                             <div class="sb-nav-link-icon">
-                                <i class="fas fa-columns"></i>
+                                <i class="far fa-address-card"></i>
                             </div>
-                            Layouts
+                            Gestions Clients
                             <div class="sb-sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
                             </div>
                         </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                        <div class="collapse" id="gClients" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
+                                <a class="nav-link" href="#">Consulter</a>
+
                             </nav>
                         </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gUser"
+                            aria-expanded="false" aria-controls="gUser">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            Gestions Utilisateurs
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="gUser" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="#">Consulter</a>
+
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gDevis"
+                            aria-expanded="false" aria-controls="gDevis">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            Gestions des Devis
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="gDevis" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="#">Consulter</a>
+
+                            </nav>
+                        </div>
+                        {{-- mission --}}
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gMission"
+                            aria-expanded="false" aria-controls="gMission">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            Gestions des Missions
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="gMission" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="#">Consulter</a>
+
+                            </nav>
+                        </div>
+                        {{-- tache --}}
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gTache"
+                            aria-expanded="false" aria-controls="gTache">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            Gestions des Tâches
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="gTache" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="#">Consulter</a>
+
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gfacture"
+                            aria-expanded="false" aria-controls="gfacture">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-file-invoice"></i>
+                            </div>
+                            Gestions des Factures
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="gfacture" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="#">Consulter</a>
+
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gPaiement"
+                            aria-expanded="false" aria-controls="gPaiement">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                            </div>
+                            Gestions des Paiements
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="gPaiement" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="#">Consulter</a>
+
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gKpi"
+                            aria-expanded="false" aria-controls="gKpi">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            Performance global du cabinet
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="gKpi" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="#">Consulter</a>
+
+                            </nav>
+                        </div>
+                        {{-- --}}
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                             aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon">
