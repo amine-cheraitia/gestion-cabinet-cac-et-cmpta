@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Gestion du Cabinet Meddahi</title>
+    <meta name="author" content="amine cheraitia" />
+    <title>@yield('title','Gestion du Cabinet Meddahi')</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="{{asset('/css/styles.css')}}" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous">
@@ -253,7 +253,7 @@
                                 </div>
                             </nav>
                         </div>
-                        <div class="sb-sidenav-menu-heading">Addons</div>
+                        {{-- <div class="sb-sidenav-menu-heading">Addons</div>
                         <a class="nav-link" href="charts.html">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-chart-area"></i>
@@ -263,7 +263,7 @@
                         <a class="nav-link" href="tables.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Tables
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -278,9 +278,9 @@
                     <div {{-- class="col-lg-8 col-md-10 mx-auto" --}}>
 
                         @yield('content')
+                        <p class="mt-4">random text</p>
 
 
-                        <p>random text</p>
 
 
 
