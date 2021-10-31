@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EntrepriseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,5 @@ Route::get('/', function () {
     return view('main');
 })->name('/');
 
-Route::get('/clients', function () {
-    return view('clients.clientsList');
-});
+//clients
+Route::get('/clients', [EntrepriseController::class, 'index']);
