@@ -492,4 +492,5 @@ Liste des clients
         </table>
     </div>
 </div>
+
 @endsection
