@@ -5,6 +5,15 @@ Création de client
 @section('content')
 <h2 class="mt-5 text-center">Création d'une fiche entreprise</h2>
 <div class="card-body">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <form class="row g-3 needs-validation" novalidate method="POST" action="{{route('client.store')}}">
         @csrf
         <div class="col-md-12">
@@ -32,7 +41,7 @@ Création de client
         </div>
         <div class="col-md-4">
             <label for="validationCustom02" class="form-label">N° d'Identification fiscal</label>
-            <input type="text" class="form-control" id="validationCustom02" value="" required name="num_id_fiscales">
+            <input type="text" class="form-control" id="validationCustom02" value="" required name="num_id_fiscale">
             <div class="valid-feedback">
                 Looks good!
             </div>

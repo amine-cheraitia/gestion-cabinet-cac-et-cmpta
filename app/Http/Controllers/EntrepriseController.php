@@ -29,8 +29,21 @@ class EntrepriseController extends Controller
     }
     public function store(Request $request)
     {
-        dd($request);
 
+        $request->validate([
+            'raison_social' => 'required',
+            'num_registre_commerce' => 'required',
+            'num_art_imposition' => 'required',
+            'num_id_fiscale' => 'required',
+            'adresse' => 'required',
+            'num_tel' => 'required',
+            'email' => 'required|email|',
+            'fiscal_id' => 'required',
+            'activite_id' => 'required',
+            'categorie_id' => 'required',
+        ]);
+        Entreprise::create(request()->all());
+        return redirect()->route('client.index');
         return "ok";
         $entreprises = Entreprise::with('RegimeFiscal')->get();
         //$entreprises->with('RegimeFiscal')->get();

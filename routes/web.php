@@ -20,6 +20,6 @@ Route::get('/', function () {
 
 //clients
 Route::get('/clients', [EntrepriseController::class, 'index']);
-Route::get('/clients/create', [EntrepriseController::class, 'create']);
+Route::get('/clients/create', [EntrepriseController::class, 'create'])->name('client.index');
 Route::post('/clients/store', [EntrepriseController::class, 'store'])->name('client.store');
 /* Route::resource('/clients', EntrepriseController::class); */
