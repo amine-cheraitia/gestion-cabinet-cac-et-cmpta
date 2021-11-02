@@ -5,15 +5,8 @@ Création de client
 @section('content')
 <h2 class="mt-5 text-center">Création d'une fiche entreprise</h2>
 <div class="card-body">
-    {{-- @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif --}}
+
+
     <form class="row g-3 needs-validation" novalidate method="POST" action="{{route('client.store')}}">
         @csrf
         <div class="col-md-12">
@@ -87,7 +80,7 @@ Création de client
             <label for="validationCustom04" class="form-label">Régime fiscal</label>
             <select class="form-select @error('fiscal_id')is-invalid
             @enderror" id="validationCustom04" required name="fiscal_id">
-                <option selected disabled value="">Choose...</option>
+                <option selected disabled value="">...</option>
                 @foreach ($regimeFiscal as $fiscal)
                 <option value="{{$fiscal->id}}">{{$fiscal->designation}}</option>
                 @endforeach
@@ -101,7 +94,7 @@ Création de client
             <label for="validationCustom04" class="form-label">Type d'activité</label>
             <select class="form-select @error('activite_id')is-invalid
             @enderror" id="validationCustom04" required name="activite_id">
-                <option selected disabled value="">Choose...</option>
+                <option selected disabled value="">...</option>
                 @foreach ($typeActivite as $activité)
                 <option value="{{$activité->id}}">{{$activité->designation}}</option>
                 @endforeach
@@ -115,7 +108,7 @@ Création de client
             <label for="validationCustom04" class="form-label">Categorie d'entreprise</label>
             <select class="form-select @error('categorie_id')is-invalid
             @enderror" id="validationCustom04" required name="categorie_id">
-                <option selected disabled value="">Choose...</option>
+                <option selected disabled value="">...</option>
                 @foreach ($categorie as $cat)
                 <option value="{{$cat->id}}">{{$cat->designation}}</option>
                 @endforeach
