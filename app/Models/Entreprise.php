@@ -19,4 +19,12 @@ class Entreprise extends Model
     {
         return $this->belongsTo(RegimeFiscal::class, 'fiscal_id');
     }
+    public function activiteType()
+    {
+        return $this->belongsTo(TypeActivite::class, 'activite_id');
+    }
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class, 'categorie_id');
+    }
 }

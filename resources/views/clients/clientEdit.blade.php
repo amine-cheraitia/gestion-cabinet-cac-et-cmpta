@@ -1,26 +1,18 @@
 @extends('main')
 @section('title')
-Création de client
+Modification de la fiche client N°{{$entreprise->id}}
 @endsection
 @section('content')
-<h2 class="mt-5 text-center">Création d'une fiche entreprise</h2>
+<h2 class="mt-5 text-center">Modification de la fiche client N°{{$entreprise->id}}</h2>
 <div class="card-body">
-    {{-- @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif --}}
+
     <form class="row g-3 needs-validation" novalidate method="POST" action="{{route('client.store')}}">
         @csrf
         <div class="col-md-12">
             <label for="validationCustom01" class="form-label">Raison Social</label>
             <input type="text" class="form-control @error('raison_social')is-invalid
             @enderror" id="validationCustom01" placeholder="Veuillez saisir la raison social"
-                value="{{old('raison_social')}}" required name="raison_social">
+                value="{{old('raison_social') ?? $entreprise->raison_social}}" required name="raison_social">
             @error('raison_social')
             <div class="invalid-feedback">{{$errors->first('raison_social')}}</div>
             @enderror
@@ -28,7 +20,8 @@ Création de client
         <div class="col-md-4">
             <label for="validationCustom02" class="form-label">N° de Registre de Commerce</label>
             <input type="text" class="form-control @error('num_registre_commerce')is-invalid
-            @enderror" id="validationCustom02" value="{{old('num_registre_commerce')}}" required
+            @enderror" id="validationCustom02"
+                value="{{old('num_registre_commerce') ?? $entreprise->num_registre_commerce}}" required
                 name="num_registre_commerce">
             @error('num_registre_commerce')
             <div class="invalid-feedback">{{$errors->first('num_registre_commerce')}}</div>
@@ -37,8 +30,8 @@ Création de client
         <div class="col-md-4">
             <label for="validationCustom02" class="form-label">N° d'Article d'Imposition</label>
             <input type="text" class="form-control @error('num_art_imposition')is-invalid
-            @enderror" id="validationCustom02" value="{{old('num_art_imposition')}}" required
-                name="num_art_imposition">
+            @enderror" id="validationCustom02" value="{{old('num_art_imposition') ?? $entreprise->num_art_imposition}}"
+                required name="num_art_imposition">
             @error('num_art_imposition')
             <div class="invalid-feedback">{{$errors->first('num_art_imposition')}}</div>
             @enderror
@@ -46,7 +39,8 @@ Création de client
         <div class="col-md-4">
             <label for="validationCustom02" class="form-label">N° d'Identification fiscal</label>
             <input type="text" class="form-control @error('num_id_fiscale')is-invalid
-            @enderror" id="validationCustom02" value="{{old('num_id_fiscale')}}" required name="num_id_fiscale">
+            @enderror" id="validationCustom02" value="{{old('num_id_fiscale') ?? $entreprise->num_id_fiscale}}"
+                required name="num_id_fiscale">
             @error('num_id_fiscale')
             <div class="invalid-feedback">{{$errors->first('num_id_fiscale')}}</div>
             @enderror
@@ -54,7 +48,8 @@ Création de client
         <div class="col-md-12">
             <label for="validationCustom01" class="form-label">Adresse</label>
             <input type="text" class="form-control @error('adresse')is-invalid
-            @enderror" id="validationCustom01" value="{{old('adresse')}}" required name="adresse">
+            @enderror" id="validationCustom01" value="{{old('adresse') ?? $entreprise->adresse}}" required
+                name="adresse">
             @error('adresse')
             <div class="invalid-feedback">{{$errors->first('adresse')}}</div>
             @enderror
@@ -65,9 +60,9 @@ Création de client
                 <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-at"></i></span>
                 <input type="text" class="form-control @error('email')is-invalid
                 @enderror" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required name="email"
-                    value="{{old('email')}}">
+                    value="{{old('adresse') ?? $entreprise->email}}">
                 @error('email')
-                <div class="invalid-feedback">{{$errors->first('email')}}</div>
+                <div class="invalid-feedback">{{$errors->first('email') }}</div>
                 @enderror
             </div>
         </div>
@@ -76,8 +71,8 @@ Création de client
             <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-phone-square-alt"></i></span>
                 <input type="text" class="form-control @error('num_tel')is-invalid
-                @enderror" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required name="num_tel"
-                    value="{{old('num_tel')}}">
+                @enderror" id="validationCustomUsername" aria-describedby="inputGroupPrepend"
+                    value="{{old('num_tel') ?? $entreprise->num_tel}}" required name="num_tel">
                 @error('num_tel')
                 <div class="invalid-feedback">{{$errors->first('num_tel')}}</div>
                 @enderror
@@ -87,7 +82,7 @@ Création de client
             <label for="validationCustom04" class="form-label">Régime fiscal</label>
             <select class="form-select @error('fiscal_id')is-invalid
             @enderror" id="validationCustom04" required name="fiscal_id">
-                <option selected disabled value="">Choose...</option>
+                <option selected disabled value="">...</option>
                 @foreach ($regimeFiscal as $fiscal)
                 <option value="{{$fiscal->id}}">{{$fiscal->designation}}</option>
                 @endforeach
@@ -101,7 +96,7 @@ Création de client
             <label for="validationCustom04" class="form-label">Type d'activité</label>
             <select class="form-select @error('activite_id')is-invalid
             @enderror" id="validationCustom04" required name="activite_id">
-                <option selected disabled value="">Choose...</option>
+                <option selected disabled value="">...</option>
                 @foreach ($typeActivite as $activité)
                 <option value="{{$activité->id}}">{{$activité->designation}}</option>
                 @endforeach
@@ -115,7 +110,7 @@ Création de client
             <label for="validationCustom04" class="form-label">Categorie d'entreprise</label>
             <select class="form-select @error('categorie_id')is-invalid
             @enderror" id="validationCustom04" required name="categorie_id">
-                <option selected disabled value="">Choose...</option>
+                <option selected disabled value="">...</option>
                 @foreach ($categorie as $cat)
                 <option value="{{$cat->id}}">{{$cat->designation}}</option>
                 @endforeach

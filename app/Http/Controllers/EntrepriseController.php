@@ -50,4 +50,28 @@ class EntrepriseController extends Controller
         ($entreprises);
         return view('clients.clientCreate', compact('entreprises'));
     }
+
+    public function show($id)
+    {
+        $entreprise = Entreprise::whereId($id)->with(['activiteType', 'categorie', 'RegimeFiscal'])->get();
+
+        /*return view('client.create');
+        return "ok";
+        $entreprises = Entreprise::with('RegimeFiscal')->get();
+        //$entreprises->with('RegimeFiscal')->get();
+        ($entreprises);*/
+        return view('clients.clientCreate', compact('entreprises'));
+    }
+
+    public function edit($id)
+    {
+
+        $entreprise = Entreprise::whereId($id)->first();
+        $typeActivite = TypeActivite::all();
+        $regimeFiscal = RegimeFiscal::all();
+        $categorie = Categorie::all();
+
+
+        return view('clients.clientEdit', compact('entreprise', 'categorie', 'regimeFiscal', 'typeActivite'));
+    }
 }
