@@ -15,10 +15,12 @@ Liste des clients
                 <tr>
                     <th>Raison social</th>
                     <th>Adresse</th>
+                    <th>N° de télephone</th>
                     <th>Email</th>
                     <th>N° Registre de Commerce</th>
                     <th>N° Identifiant fiscal</th>
                     <th>N° Article d'imposition</th>
+                    <th>Régime fiscal</th>
                 </tr>
             </thead>
             <tfoot>
