@@ -6,8 +6,9 @@ Modification de la fiche client N°{{$entreprise->id}}
 <h2 class="mt-5 text-center">Modification de la fiche client N°{{$entreprise->id}}</h2>
 <div class="card-body">
 
-    <form class="row g-3 needs-validation" novalidate method="POST" action="{{route('client.store')}}">
+    <form class="row g-3 needs-validation" novalidate method="POST" action="{{route('client.update',$entreprise->id)}}">
         @csrf
+        @method('PATCH')
         <div class="col-md-12">
             <label for="validationCustom01" class="form-label">Raison Social</label>
             <input type="text" class="form-control @error('raison_social')is-invalid
@@ -84,7 +85,8 @@ Modification de la fiche client N°{{$entreprise->id}}
             @enderror" id="validationCustom04" required name="fiscal_id">
                 <option selected disabled value="">...</option>
                 @foreach ($regimeFiscal as $fiscal)
-                <option value="{{$fiscal->id}}">{{$fiscal->designation}}</option>
+                <option value="{{$fiscal->id}}" {{$fiscal->id == $entreprise->fiscal_id ? "selected" : ""
+                    }}>{{$fiscal->designation}}</option>
                 @endforeach
 
             </select>
@@ -98,7 +100,8 @@ Modification de la fiche client N°{{$entreprise->id}}
             @enderror" id="validationCustom04" required name="activite_id">
                 <option selected disabled value="">...</option>
                 @foreach ($typeActivite as $activité)
-                <option value="{{$activité->id}}">{{$activité->designation}}</option>
+                <option value="{{$activité->id}}" {{$activité->id == $entreprise->activite_id ? "selected" : ""
+                    }}>{{$activité->designation}}</option>
                 @endforeach
 
             </select>
@@ -112,9 +115,9 @@ Modification de la fiche client N°{{$entreprise->id}}
             @enderror" id="validationCustom04" required name="categorie_id">
                 <option selected disabled value="">...</option>
                 @foreach ($categorie as $cat)
-                <option value="{{$cat->id}}">{{$cat->designation}}</option>
+                <option value="{{$cat->id}}" {{ $cat->id == $entreprise->categorie_id ? "selected" : "" }}>
+                    {{$cat->designation}} </option>
                 @endforeach
-
 
             </select>
             @error('categorie_id')
@@ -123,7 +126,7 @@ Modification de la fiche client N°{{$entreprise->id}}
         </div>
 
         <div class="col-12">
-            <button class="btn btn-dark" type="submit">Enregistré</button>
+            <button class="btn btn-dark" type="submit">Mettre à Jour</button>
         </div>
     </form>
 </div>

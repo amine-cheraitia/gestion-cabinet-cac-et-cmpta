@@ -19,8 +19,9 @@ Route::get('/', function () {
 })->name('/');
 
 //clients
-Route::get('/clients', [EntrepriseController::class, 'index']);
+Route::get('/clients', [EntrepriseController::class, 'index'])->name('client.list');
 Route::get('/clients/create', [EntrepriseController::class, 'create'])->name('client.index');
 Route::post('/clients/store', [EntrepriseController::class, 'store'])->name('client.store');
 Route::get('/clients/{id}', [EntrepriseController::class, 'edit'])->name('client.edit');
+Route::patch('/clients/{id}', [EntrepriseController::class, 'update'])->name('client.update');
 /* Route::resource('/clients', EntrepriseController::class); */

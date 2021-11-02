@@ -23,8 +23,6 @@ class EntrepriseController extends Controller
         $typeActivite = TypeActivite::all();
         $regimeFiscal = RegimeFiscal::all();
         $categorie = Categorie::all();
-        //$entreprises->with('RegimeFiscal')->get();
-
         return view('clients.clientCreate', compact('categorie', 'regimeFiscal', 'typeActivite'));
     }
     public function store(Request $request)
@@ -73,5 +71,25 @@ class EntrepriseController extends Controller
 
 
         return view('clients.clientEdit', compact('entreprise', 'categorie', 'regimeFiscal', 'typeActivite'));
+    }
+
+    public function update($id)
+    {
+
+        $data = request()->validate([
+            'raison_social' => 'required',
+            'num_registre_commerce' => 'required',
+            'num_art_imposition' => 'required',
+            'num_id_fiscale' => 'required',
+            'adresse' => 'required',
+            'num_tel' => 'required',
+            'email' => 'required|email|',
+            'fiscal_id' => 'required',
+            'activite_id' => 'required',
+            'categorie_id' => 'required',
+        ]);
+
+        Entreprise::whereId($id)->update($data);
+        return redirect()->route('client.list');
     }
 }

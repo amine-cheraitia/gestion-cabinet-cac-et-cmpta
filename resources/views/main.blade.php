@@ -82,7 +82,7 @@
                         <div class="collapse" id="gClients" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="#">Consulter</a>
+                                <a class="nav-link" href="{{route('client.list')}}">Consulter</a>
 
                             </nav>
                         </div>
