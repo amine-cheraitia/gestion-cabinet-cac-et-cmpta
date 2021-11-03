@@ -15,12 +15,13 @@ Liste des clients
                 <tr>
                     <th>Raison social</th>
                     <th>Adresse</th>
-                    <th>N° de télephone</th>
+                    <th>N° Tel</th>
                     <th>Email</th>
-                    <th>N° Registre de Commerce</th>
+                    {{-- <th>N° Registre de Commerce</th>
                     <th>N° Identifiant fiscal</th>
-                    <th>N° Article d'imposition</th>
+                    <th>N° Article d'imposition</th> --}}
                     <th>Régime fiscal</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tfoot>
@@ -29,10 +30,11 @@ Liste des clients
                     <th>Adresse</th>
                     <th>N° de télephone</th>
                     <th>Email</th>
-                    <th>N° Registre de Commerce</th>
+                    {{-- <th>N° Registre de Commerce</th>
                     <th>N° Identifiant fiscal</th>
-                    <th>N° Article d'imposition</th>
+                    <th>N° Article d'imposition</th> --}}
                     <th>Régime fiscal</th>
+                    <th>Action</th>
                 </tr>
             </tfoot>
             <tbody>
@@ -43,10 +45,15 @@ Liste des clients
                     <td>{{$entreprise->num_tel}}</td>
                     <td>{{$entreprise->email}}</td>
 
-                    <td>{{$entreprise->num_registre_commerce}}</td>
+                    {{-- <td>{{$entreprise->num_registre_commerce}}</td>
                     <td>{{$entreprise->num_id_fiscale}}</td>
-                    <td>{{$entreprise->num_art_imposition}}</td>
+                    <td>{{$entreprise->num_art_imposition}}</td> --}}
                     <td>{{$entreprise->RegimeFiscal->designation}}</td>
+                    <td class="d-flex"><a href="{{route('client.edit',$entreprise->id)}}"
+                            class="btn btn-outline-secondary"> <i class="fas fa-minus"></i></a> &nbsp;
+                        <a href="{{route('client.destroy',$entreprise->id)}}" class="btn btn-outline-secondary"><i
+                                style="font-size: 20px" class="fas fa-times"></i></a>
+                    </td>
                 </tr>
                 @endforeach
 

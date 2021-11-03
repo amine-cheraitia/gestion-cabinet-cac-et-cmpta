@@ -92,4 +92,10 @@ class EntrepriseController extends Controller
         Entreprise::whereId($id)->update($data);
         return redirect()->route('client.list');
     }
+    public function destroy($id)
+    {
+
+        Entreprise::whereId($id)->delete();
+        return redirect()->route('client.list');
+    }
 }

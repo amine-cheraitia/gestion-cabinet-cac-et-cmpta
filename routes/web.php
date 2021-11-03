@@ -24,4 +24,5 @@ Route::get('/clients/create', [EntrepriseController::class, 'create'])->name('cl
 Route::post('/clients/store', [EntrepriseController::class, 'store'])->name('client.store');
 Route::get('/clients/{id}', [EntrepriseController::class, 'edit'])->name('client.edit');
 Route::patch('/clients/{id}', [EntrepriseController::class, 'update'])->name('client.update');
+Route::get('/clients/{id}/delete', [EntrepriseController::class, 'destroy'])->name('client.destroy');
 /* Route::resource('/clients', EntrepriseController::class); */
