@@ -8,6 +8,7 @@ Liste des clients
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
         Liste des Entreprises
+        {{-- //todo: boutton d'ajout --}}
     </div>
     <div class="card-body">
         <table id="datatablesSimple">
