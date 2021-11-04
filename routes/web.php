@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DevisController;
 use App\Http\Controllers\EntrepriseController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,8 @@ Route::get('/clients/{id}', [EntrepriseController::class, 'edit'])->name('client
 Route::patch('/clients/{id}', [EntrepriseController::class, 'update'])->name('client.update');
 Route::get('/clients/{id}/delete', [EntrepriseController::class, 'destroy'])->name('client.destroy');
 /* Route::resource('/clients', EntrepriseController::class); */
+Route::get('/devis/create', [DevisController::class, 'create'])->name('devis.create');
+
+Route::get('/devis', function () {
+    return view('devis.devisList');
+});
