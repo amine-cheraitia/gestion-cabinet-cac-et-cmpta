@@ -8,9 +8,15 @@ Création de Devis
     integrity="sha512-oc9+XSs1H243/FRN9Rw62Fn8EtxjEYWHXRvjS43YtueEewbS6ObfXcJNyohjHqVKFPoXXUxwc+q1K7Dee6vv9g=="
     crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+</script>
+</script>
+
 @endsection
 @section('content')
-<h2 class="my-5 text-center">Création de DEvis</h2>
+<h2 class="my-5 text-center">Création de Devis</h2>
 
 
 
@@ -27,7 +33,7 @@ Création de Devis
                     <div class="row">
 
                         <div class="col-md-12 my-2">
-                            <label for="entreprise_id" class="form-label">Raison Social</label>
+                            <label for="entreprise_id" class="form-label">Raison Social de l'Entreprise</label>
                             <select class="form-select shadow @error('entreprise_id')is-invalid
                                 @enderror" id="entreprise_id" required name="entreprise_id">
                                 <option selected disabled value="">...</option>
@@ -126,8 +132,8 @@ Création de Devis
 
                                 <tr>
                                     <td colspan="3"></td>
-                                    <td colspan="2"><strong>Total a payé</strong></td>
-                                    <td><input type="text" name="sub_total" id="sub_total"
+                                    <td colspan="2" class="text-end"><strong>Total a payé</strong></td>
+                                    <td><input type="text" name="sub_total" id="total"
                                             class="sub_total form-control shadow" readonly="readonly"></td>
                                 </tr>
 
@@ -142,14 +148,38 @@ Création de Devis
         </div>
     </div>
 </div>
-{{ csrf_field() }}
-<script>
-    $(document).ready(function(){
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Erreur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Veuillez choisir une entreprise !
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+            </div>
+        </div>
+    </div>
+
+
+    {{ csrf_field() }}
+    <script>
+        $(document).ready(function(){
         $('#prestation_id').val(null).change();
         $('#entreprise_id').val(null).change();
         if(($("#entreprise_id").val()==null ) || ($("#prestation_id").val()==null)){
             $('#row_sub_total').val("");
-            $('#sub_total').val("");
+            $('#total').val("");
         }
 /*     console.log($('#entreprise_id').val()); */
     $('#entreprise_id').click(function (e) {
@@ -165,7 +195,7 @@ Création de Devis
             success:function(result)
                 {
                 console.log(result);
-                $('#sub_total').val(result+' DZD');
+                $('#total').val(result+' DZD');
                 $('#row_sub_total').val(result+' DZD');
                 }
 
@@ -176,7 +206,11 @@ Création de Devis
     $('#prestation_id').click(function (e) {
 
         if( ($("#entreprise_id").val()=="" ) || ($("#entreprise_id").val()==null) ){
-            alert('Veuillez choisir une entreprise');
+            /* alert('Veuillez choisir une entreprise'); */
+            //$('#myModal').modal(show);
+            $("#exampleModal").modal('show');
+
+
              $('#prestation_id').val(null).change();
         }else{
             var entreprise_id = $("#entreprise_id").val();
@@ -190,7 +224,7 @@ Création de Devis
             success:function(result)
             {
                 console.log(result);
-            $('#sub_total').val(result+' DZD');
+            $('#total').val(result+' DZD');
             $('#row_sub_total').val(result+' DZD');
             }
 
@@ -206,6 +240,6 @@ Création de Devis
 
     });
 });
-</script>
+    </script>
 
-@endsection
+    @endsection
