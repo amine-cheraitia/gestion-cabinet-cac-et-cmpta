@@ -2,6 +2,20 @@
 @section('title')
 Liste des clients
 @endsection
+@section('style')
+
+<style>
+    .dataTable-pagination li.active a {
+        background-color: #212529 !important;
+        border-color: #212529 !important;
+        color: #fff !important;
+    }
+
+    li a {
+        color: #212529 !important
+    }
+</style>
+@endsection
 @section('content')
 <h2 class="mt-4 text-center">Liste des Entreprises</h2>
 <div class="card mb-4">
@@ -14,6 +28,7 @@ Liste des clients
         <table id="datatablesSimple">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Raison social</th>
                     <th>Adresse</th>
                     <th>N° Tel</th>
@@ -27,6 +42,7 @@ Liste des clients
             </thead>
             <tfoot>
                 <tr>
+                    <th>#</th>
                     <th>Raison social</th>
                     <th>Adresse</th>
                     <th>N° de télephone</th>
@@ -41,7 +57,9 @@ Liste des clients
             <tbody>
                 @foreach ($entreprises as $entreprise)
                 <tr>
-                    <td>{{$entreprise->raison_social}}</td>
+                    <td class="text-center"><strong>{{$loop->iteration}}</strong></td>
+                    <td><strong><a href="{{route('client.edit',$entreprise->id)}}" class="link-dark"
+                                style="text-underline-position: none">{{$entreprise->raison_social}}</a></strong></td>
                     <td>{{$entreprise->adresse}}</td>
                     <td>{{$entreprise->num_tel}}</td>
                     <td>{{$entreprise->email}}</td>

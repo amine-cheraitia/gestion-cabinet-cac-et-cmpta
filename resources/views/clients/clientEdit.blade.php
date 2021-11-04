@@ -6,12 +6,13 @@ Modification de la fiche client N°{{$entreprise->id}}
 <h2 class="mt-5 text-center">Modification de la fiche client N°{{$entreprise->id}}</h2>
 <div class="card-body">
 
-    <form class="row g-3 needs-validation" novalidate method="POST" action="{{route('client.update',$entreprise->id)}}">
+    <form class="row g-3 needs-validation shadow" novalidate method="POST"
+        action="{{route('client.update',$entreprise->id)}}">
         @csrf
         @method('PATCH')
         <div class="col-md-12">
             <label for="validationCustom01" class="form-label">Raison Social</label>
-            <input type="text" class="form-control @error('raison_social')is-invalid
+            <input type="text" class="form-control shadow @error('raison_social')is-invalid
             @enderror" id="validationCustom01" placeholder="Veuillez saisir la raison social"
                 value="{{old('raison_social') ?? $entreprise->raison_social}}" required name="raison_social">
             @error('raison_social')
@@ -20,7 +21,7 @@ Modification de la fiche client N°{{$entreprise->id}}
         </div>
         <div class="col-md-4">
             <label for="validationCustom02" class="form-label">N° de Registre de Commerce</label>
-            <input type="text" class="form-control @error('num_registre_commerce')is-invalid
+            <input type="text" class="form-control shadow @error('num_registre_commerce')is-invalid
             @enderror" id="validationCustom02"
                 value="{{old('num_registre_commerce') ?? $entreprise->num_registre_commerce}}" required
                 name="num_registre_commerce">
@@ -30,7 +31,7 @@ Modification de la fiche client N°{{$entreprise->id}}
         </div>
         <div class="col-md-4">
             <label for="validationCustom02" class="form-label">N° d'Article d'Imposition</label>
-            <input type="text" class="form-control @error('num_art_imposition')is-invalid
+            <input type="text" class="form-control shadow @error('num_art_imposition')is-invalid
             @enderror" id="validationCustom02" value="{{old('num_art_imposition') ?? $entreprise->num_art_imposition}}"
                 required name="num_art_imposition">
             @error('num_art_imposition')
@@ -39,7 +40,7 @@ Modification de la fiche client N°{{$entreprise->id}}
         </div>
         <div class="col-md-4">
             <label for="validationCustom02" class="form-label">N° d'Identification fiscal</label>
-            <input type="text" class="form-control @error('num_id_fiscale')is-invalid
+            <input type="text" class="form-control shadow @error('num_id_fiscale')is-invalid
             @enderror" id="validationCustom02" value="{{old('num_id_fiscale') ?? $entreprise->num_id_fiscale}}"
                 required name="num_id_fiscale">
             @error('num_id_fiscale')
@@ -48,7 +49,7 @@ Modification de la fiche client N°{{$entreprise->id}}
         </div>
         <div class="col-md-12">
             <label for="validationCustom01" class="form-label">Adresse</label>
-            <input type="text" class="form-control @error('adresse')is-invalid
+            <input type="text" class="form-control shadow @error('adresse')is-invalid
             @enderror" id="validationCustom01" value="{{old('adresse') ?? $entreprise->adresse}}" required
                 name="adresse">
             @error('adresse')
@@ -59,7 +60,7 @@ Modification de la fiche client N°{{$entreprise->id}}
             <label for="validationCustomUsername" class="form-label">Adresse Email</label>
             <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-at"></i></span>
-                <input type="text" class="form-control @error('email')is-invalid
+                <input type="text" class="form-control shadow @error('email')is-invalid
                 @enderror" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required name="email"
                     value="{{old('adresse') ?? $entreprise->email}}">
                 @error('email')
@@ -71,7 +72,7 @@ Modification de la fiche client N°{{$entreprise->id}}
             <label for="validationCustomUsername" class="form-label">Numéro Tel</label>
             <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-phone-square-alt"></i></span>
-                <input type="text" class="form-control @error('num_tel')is-invalid
+                <input type="text" class="form-control shadow @error('num_tel')is-invalid
                 @enderror" id="validationCustomUsername" aria-describedby="inputGroupPrepend"
                     value="{{old('num_tel') ?? $entreprise->num_tel}}" required name="num_tel">
                 @error('num_tel')
@@ -81,7 +82,7 @@ Modification de la fiche client N°{{$entreprise->id}}
         </div>
         <div class="col-md-4">
             <label for="validationCustom04" class="form-label">Régime fiscal</label>
-            <select class="form-select @error('fiscal_id')is-invalid
+            <select class="form-select shadow @error('fiscal_id')is-invalid
             @enderror" id="validationCustom04" required name="fiscal_id">
                 <option selected disabled value="">...</option>
                 @foreach ($regimeFiscal as $fiscal)
@@ -96,7 +97,7 @@ Modification de la fiche client N°{{$entreprise->id}}
         </div>
         <div class="col-md-4">
             <label for="validationCustom04" class="form-label">Type d'activité</label>
-            <select class="form-select @error('activite_id')is-invalid
+            <select class="form-select shadow @error('activite_id')is-invalid
             @enderror" id="validationCustom04" required name="activite_id">
                 <option selected disabled value="">...</option>
                 @foreach ($typeActivite as $activité)
@@ -111,7 +112,7 @@ Modification de la fiche client N°{{$entreprise->id}}
         </div>
         <div class="col-md-4">
             <label for="validationCustom04" class="form-label">Categorie d'entreprise</label>
-            <select class="form-select @error('categorie_id')is-invalid
+            <select class="form-select shadow @error('categorie_id')is-invalid
             @enderror" id="validationCustom04" required name="categorie_id">
                 <option selected disabled value="">...</option>
                 @foreach ($categorie as $cat)
@@ -125,8 +126,8 @@ Modification de la fiche client N°{{$entreprise->id}}
             @enderror
         </div>
 
-        <div class="col-12">
-            <button class="btn btn-dark" type="submit">Mettre à Jour</button>
+        <div class="col-12  text-center mt-5">
+            <button class="btn btn-dark shadow mb-5" type="submit">Mettre à Jour</button>
         </div>
     </form>
 </div>

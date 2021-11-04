@@ -28,6 +28,7 @@ Route::patch('/clients/{id}', [EntrepriseController::class, 'update'])->name('cl
 Route::get('/clients/{id}/delete', [EntrepriseController::class, 'destroy'])->name('client.destroy');
 /* Route::resource('/clients', EntrepriseController::class); */
 Route::get('/devis/create', [DevisController::class, 'create'])->name('devis.create');
+Route::post('/devis/fetch', [DevisController::class, 'calculPrix'])->name('devis.calculPrix');
 
 Route::get('/devis', function () {
     return view('devis.devisList');
