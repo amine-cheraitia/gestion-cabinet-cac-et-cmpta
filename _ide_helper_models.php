@@ -90,6 +90,9 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string $total
+ * @property-read \App\Models\Entreprise $entreprise
+ * @property-read \App\Models\Exercice $exercice
+ * @property-read \App\Models\Prestation $prestation
  * @method static \Illuminate\Database\Eloquent\Builder|Devis newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Devis newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Devis query()

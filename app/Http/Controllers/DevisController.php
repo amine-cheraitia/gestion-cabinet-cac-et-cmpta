@@ -13,7 +13,8 @@ class DevisController extends Controller
 {
     public function index()
     {
-        return view('devis.devisList');
+        $devis = Devis::with('entreprise')->get();
+        return view('devis.devisList', compact('devis'));
     }
 
     public function create()
@@ -35,8 +36,9 @@ class DevisController extends Controller
         $indiceFiscal = Entreprise::whereId($entreprise_id)->with('RegimeFiscal')->first()->RegimeFiscal->indice_tarif;
         $indiceCategorie = Entreprise::whereId($entreprise_id)->with('categorie')->first()->categorie->indice_tarif;
         $montant = $indiceFiscal * $indiceCategorie * $tarifInitial->tarif_initial;
-        $total = number_format($montant, 2, ',', ' ');
-        echo $montant;
+        //$total = number_format($montant, 2, ',', ' ');
+        $total = number_format($montant, 2, '.', ''); //12345.67
+        echo $total;
         //echo json_encode(DB::table('sub_categories')->where('category_id', $id)->get());
 
     }
@@ -52,9 +54,15 @@ class DevisController extends Controller
             'total' => 'required',
         ]);
         $num_devis = IdGenerator::generate(['table' => 'devis', 'field' => 'num_devis', 'length' => 8, 'prefix' => 'DV' . date('y') . '-', 'reset_on_prefix_change' => true]);
+        $total = number_format($request->total, 2, '.', '');
 
-        Devis::create(request()->all() + [
-            'num_devis' => $num_devis
+        Devis::create(/* request()->all() + */[
+            "exercice_id" => $request->exercice_id,
+            "entreprise_id" => $request->entreprise_id,
+            "prestation_id" => $request->prestation_id,
+            "total" => $total,
+            "date_devis" => $request->date_devis,
+            'num_devis' => $num_devis,
         ]);
         return redirect()->route('devis.list');
     }

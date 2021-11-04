@@ -1,67 +1,76 @@
 @extends('main')
+@section('title')
+Liste des clients
+@endsection
 @section('style')
-{{--
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/css/bootstrap.min.css"
-    integrity="sha512-oc9+XSs1H243/FRN9Rw62Fn8EtxjEYWHXRvjS43YtueEewbS6ObfXcJNyohjHqVKFPoXXUxwc+q1K7Dee6vv9g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+
+<style>
+    .dataTable-pagination li.active a {
+        background-color: #212529 !important;
+        border-color: #212529 !important;
+        color: #fff !important;
+    }
+
+    li a {
+        color: #212529 !important
+    }
+</style>
 @endsection
 @section('content')
-<div class="row justify-content-center">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header d-flex">
-                <h2>{{ __('Frontend/frontend.invoices') }}</h2>
-                <a href="" class="btn btn-primary ml-auto"><i class="fa fa-plus"></i> {{
-                    __('Frontend/frontend.create_invoice') }}</a>
-            </div>
+<h2 class="mt-4 text-center">Liste des Devis</h2>
+<div class="card mb-4 shadow">
+    <div class="card-header">
+        <i class="fas fa-file-alt"></i>
+        Liste des Devis
+        {{-- //todo: boutton d'ajout --}}
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>N° de Devis</th>
+                    <th>Raison social</th>
+                    <th>Date de Devis</th>
+                    <th>Montal total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>#</th>
+                    <th>N° de Devis</th>
+                    <th>Raison social</th>
+                    <th>Date de Devis</th>
+                    <th>Montal total</th>
+                    <th>action</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach ($devis as $d)
+                <tr>
+                    <td class="text-center"><strong>{{$loop->iteration}}</strong></td>
+                    <td><strong><a href="{{route('client.edit',$d->id)}}" class="link-dark"
+                                style="text-underline-position: none">{{$d->num_devis}}</a></strong></td>
+                    <td>{{$d->entreprise->raison_social}}</td>
+                    <td>{{$d->date_devis}}</td>
+                    <td>{{$d->total}} DA</td>
 
+                    {{-- <td>{{$entreprise->num_registre_commerce}}</td>
+                    <td>{{$entreprise->num_id_fiscale}}</td>
+                    <td>{{$entreprise->num_art_imposition}}</td> --}}
 
-            <div class="table-responsive">
-                <table class="table card-table">
-                    <thead>
-                        <tr>
-                            <th>{{ __('Frontend/frontend.customer_name') }}</th>
-                            <th>{{ __('Frontend/frontend.invoice_date') }}</th>
-                            <th>{{ __('Frontend/frontend.total_due') }}</th>
-                            <th>{{ __('Frontend/frontend.actions') }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{-- @foreach($invoices as $invoice) --}}
-                        <tr>
-                            <td><a href="">aze</a>
-                            </td>
-                            <td>2014-03-12</td>
-                            <td>10 000 000.00</td>
-                            <td>
-                                <a href="" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                <a href="javascript:void(0)"
-                                    onclick="if (confirm('{{ __('Frontend/frontend.r_u_sure') }}')) { document.getElementById('delete-').submit(); } else { return false; }"
-                                    class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                                <form action="" method="post" id="delete-5" style="display: none;">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                            </td>
-                        </tr>
-                        {{-- @endforeach --}}
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="4">
-                                <div class="float-right">
-                                    {{-- {!! $invoices->links() !!} --}}
-                                </div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
+                    <td class="d-flex"><a href="{{route('devis.edit',$d->id)}}" class="btn btn-outline-secondary">
+                            <i class="fas fa-minus"></i></a> &nbsp;
+                        <a href="{{route('client.destroy',$d->id)}}" class="btn btn-outline-secondary"><i
+                                style="font-size: 20px" class="fas fa-times"></i></a>
+                    </td>
+                </tr>
+                @endforeach
 
-
-        </div>
+            </tbody>
+        </table>
     </div>
 </div>
-
 
 @endsection

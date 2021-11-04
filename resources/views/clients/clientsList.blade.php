@@ -18,7 +18,7 @@ Liste des clients
 @endsection
 @section('content')
 <h2 class="mt-4 text-center">Liste des Entreprises</h2>
-<div class="card mb-4">
+<div class="card mb-4 shadow">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
         Liste des Entreprises

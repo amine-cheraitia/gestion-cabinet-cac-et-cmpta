@@ -24,7 +24,7 @@ Création de Devis
     <div class="col-10">
         <div class="card shadow">
             <div class="card-header">
-                <i class="fas fa-file-invoice"></i> <strong>Creation de Devis</strong>
+                <i class="fas fa-file-alt"></i> <strong>Creation de Devis</strong>
             </div>
 
             <div class="card-body">
@@ -149,9 +149,9 @@ Création de Devis
     </div>
 </div>
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+{{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Launch demo modal
-</button>
+</button> --}}
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

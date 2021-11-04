@@ -30,5 +30,8 @@ Route::get('/clients/{id}/delete', [EntrepriseController::class, 'destroy'])->na
 Route::get('/devis', [DevisController::class, 'index'])->name('devis.list');
 Route::get('/devis/create', [DevisController::class, 'create'])->name('devis.create');
 Route::post('/devis/store', [DevisController::class, 'store'])->name('devis.store');
+Route::get('/devis/{id}', [DevisController::class, 'edit'])->name('devis.edit');
+Route::patch('/devis/{id}', [DevisController::class, 'update'])->name('devis.update');
+Route::get('/devis/{id}/delete', [DevisController::class, 'destroy'])->name('devis.destroy');
 
 Route::post('/devis/fetch', [DevisController::class, 'calculPrix'])->name('devis.calculPrix');
