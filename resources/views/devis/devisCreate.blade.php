@@ -28,7 +28,7 @@ Création de Devis
             </div>
 
             <div class="card-body">
-                <form action="" method="post" class="row g-3 needs-validation ">
+                <form action="{{route('devis.store')}}" method="post" class="row g-3 needs-validation ">
                     @csrf
                     <div class="row">
 
@@ -57,7 +57,7 @@ Création de Devis
                         <div class="col-md-6  my-2">
                             <label for="validationCustom099" class="form-label">Exercice</label>
                             <select class="form-select shadow @error('exercice')is-invalid
-                                @enderror" id="validationCustom099" required name="exercice">
+                                @enderror" id="validationCustom099" required name="exercice_id">
                                 <option selected disabled value="">...</option>
                                 @foreach ($exercices as $exercice)
                                 <option value="{{$exercice->id}}" {{($exercice->id == 2021) ?
@@ -123,7 +123,7 @@ Création de Devis
                                         @enderror
                                     </td>
                                     <td>
-                                        <input type="text" {{-- step="0.01" --}} name="sub_total" id="row_sub_total"
+                                        <input type="text" {{-- step="0.01" name="sub_total" --}} id="row_sub_total"
                                             class="row_sub_total form-control shadow" readonly>
                                         @error('row_sub_total')<span class="help-block text-danger">{{ $message
                                             }}</span>@enderror
@@ -133,8 +133,8 @@ Création de Devis
                                 <tr>
                                     <td colspan="3"></td>
                                     <td colspan="2" class="text-end"><strong>Total a payé</strong></td>
-                                    <td><input type="text" name="sub_total" id="total"
-                                            class="sub_total form-control shadow" readonly="readonly"></td>
+                                    <td><input type="text" name="total" id="total" class="sub_total form-control shadow"
+                                            readonly="readonly"></td>
                                 </tr>
 
                         </table>
@@ -195,8 +195,8 @@ Création de Devis
             success:function(result)
                 {
                 console.log(result);
-                $('#total').val(result+' DZD');
-                $('#row_sub_total').val(result+' DZD');
+                $('#total').val(result);
+                $('#row_sub_total').val(result);
                 }
 
             })
@@ -224,8 +224,8 @@ Création de Devis
             success:function(result)
             {
                 console.log(result);
-            $('#total').val(result+' DZD');
-            $('#row_sub_total').val(result+' DZD');
+            $('#total').val(result);
+            $('#row_sub_total').val(result);
             }
 
            } )

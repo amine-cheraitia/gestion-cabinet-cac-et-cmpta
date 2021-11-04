@@ -27,9 +27,8 @@ Route::get('/clients/{id}', [EntrepriseController::class, 'edit'])->name('client
 Route::patch('/clients/{id}', [EntrepriseController::class, 'update'])->name('client.update');
 Route::get('/clients/{id}/delete', [EntrepriseController::class, 'destroy'])->name('client.destroy');
 /* Route::resource('/clients', EntrepriseController::class); */
+Route::get('/devis', [DevisController::class, 'index'])->name('devis.list');
 Route::get('/devis/create', [DevisController::class, 'create'])->name('devis.create');
-Route::post('/devis/fetch', [DevisController::class, 'calculPrix'])->name('devis.calculPrix');
+Route::post('/devis/store', [DevisController::class, 'store'])->name('devis.store');
 
-Route::get('/devis', function () {
-    return view('devis.devisList');
-});
+Route::post('/devis/fetch', [DevisController::class, 'calculPrix'])->name('devis.calculPrix');

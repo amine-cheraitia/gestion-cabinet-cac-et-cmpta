@@ -41,7 +41,7 @@ class EntrepriseController extends Controller
             'categorie_id' => 'required',
         ]);
         Entreprise::create(request()->all());
-        return redirect()->route('client.index');
+        return redirect()->route('client.list');
         return "ok";
         $entreprises = Entreprise::with('RegimeFiscal')->get();
         //$entreprises->with('RegimeFiscal')->get();

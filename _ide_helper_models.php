@@ -89,6 +89,7 @@ namespace App\Models{
  * @property int $prestation_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $total
  * @method static \Illuminate\Database\Eloquent\Builder|Devis newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Devis newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Devis query()
@@ -99,6 +100,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Devis whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Devis whereNumDevis($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Devis wherePrestationId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Devis whereTotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Devis whereUpdatedAt($value)
  */
 	class Devis extends \Eloquent {}

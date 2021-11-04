@@ -14,7 +14,7 @@ class AddTotalToDevisTable extends Migration
     public function up()
     {
         Schema::table('devis', function (Blueprint $table) {
-            $table->decimal('total', 10, 2);
+            $table->decimal('total', 15, 2);
         });
     }
 
