@@ -15,9 +15,20 @@ Liste des clients
         color: #212529 !important
     }
 </style>
+
 @endsection
 @section('content')
 <h2 class="mt-4 text-center">Liste des Devis</h2>
+@if(session('errors'))
+<div class="col-lg-12">
+    <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
+</div>
+@endif
+@if(session('message'))
+<div class="col-lg-12">
+    <div class="alert alert-success" role="alert">{{ session('message') }}</div>
+</div>
+@endif
 <div class="card mb-4 shadow">
     <div class="card-header">
         <i class="fas fa-file-alt"></i>
@@ -62,7 +73,7 @@ Liste des clients
 
                     <td class="d-flex"><a href="{{route('devis.edit',$d->id)}}" class="btn btn-outline-secondary">
                             <i class="fas fa-minus"></i></a> &nbsp;
-                        <a href="{{route('devis.destroy',$d->id)}}" class="btn btn-outline-secondary"><i
+                        <a href="{{route('devis.destroy',$d->id)}}" class="btn btn-outline-danger"><i
                                 style="font-size: 20px" class="fas fa-times"></i></a>
                     </td>
                 </tr>

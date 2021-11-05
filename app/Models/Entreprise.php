@@ -27,4 +27,9 @@ class Entreprise extends Model
     {
         return $this->belongsTo(Categorie::class, 'categorie_id');
     }
+
+    public function devis()
+    {
+        return $this->hasMany(Devis::class, 'entreprise_id');
+    }
 }

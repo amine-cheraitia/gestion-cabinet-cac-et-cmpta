@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Devis;
 use App\Models\Exercice;
 use App\Models\Entreprise;
+use App\Models\Mission;
 use App\Models\Prestation;
 use Illuminate\Http\Request;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
@@ -94,8 +95,16 @@ class DevisController extends Controller
 
     public function destroy($id)
     {
-
+        if (Mission::whereDevisId($id)->count()) {
+            return redirect()->route('devis.list')->with('errors', "le Devis ne peut pas être supprimé");
+        }
         Devis::whereId($id)->delete();
-        return redirect()->route('devis.list');
+        return redirect()->route('devis.list')->withMessage('le Devis a été supprimé');;
+    }
+
+    public function pdf($id)
+    {
+        $devis = Devis::findOrFail($id);
+        return view('devis.pdf', compact('devis'));
     }
 }

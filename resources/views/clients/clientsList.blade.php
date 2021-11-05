@@ -18,6 +18,16 @@ Liste des clients
 @endsection
 @section('content')
 <h2 class="mt-4 text-center">Liste des Entreprises</h2>
+@if(session('errors'))
+<div class="col-lg-12">
+    <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
+</div>
+@endif
+@if(session('message'))
+<div class="col-lg-12">
+    <div class="alert alert-success" role="alert">{{ session('message') }}</div>
+</div>
+@endif
 <div class="card mb-4 shadow">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>

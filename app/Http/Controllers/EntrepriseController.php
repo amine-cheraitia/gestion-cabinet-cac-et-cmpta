@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Devis;
 use App\Models\Categorie;
 use App\Models\Entreprise;
 use App\Models\RegimeFiscal;
@@ -95,7 +96,11 @@ class EntrepriseController extends Controller
     public function destroy($id)
     {
 
+        if (Devis::where('entreprise_id', $id)->count()) {
+            return redirect()->route('client.list')->with('errors', "l'Entreprise ne peut pas étre supprimé");
+        }
+
         Entreprise::whereId($id)->delete();
-        return redirect()->route('client.list');
+        return redirect()->route('client.list')->withMessage('l\'Entreprise a été supprimé');
     }
 }

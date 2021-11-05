@@ -29,4 +29,9 @@ class Devis extends Model
     {
         return $this->belongsTo(Prestation::class, 'prestation_id');
     }
+
+    public function missions()
+    {
+        return $this->hasMany(Mission::class, 'devis_id');
+    }
 }

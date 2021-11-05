@@ -92,6 +92,8 @@ namespace App\Models{
  * @property string $total
  * @property-read \App\Models\Entreprise $entreprise
  * @property-read \App\Models\Exercice $exercice
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Mission[] $missions
+ * @property-read int|null $missions_count
  * @property-read \App\Models\Prestation $prestation
  * @method static \Illuminate\Database\Eloquent\Builder|Devis newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Devis newQuery()
@@ -129,6 +131,8 @@ namespace App\Models{
  * @property-read \App\Models\RegimeFiscal $RegimeFiscal
  * @property-read \App\Models\TypeActivite $activiteType
  * @property-read \App\Models\Categorie $categorie
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Devis[] $devis
+ * @property-read int|null $devis_count
  * @method static \Database\Factories\EntrepriseFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Entreprise newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Entreprise newQuery()

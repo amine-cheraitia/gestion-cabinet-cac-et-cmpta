@@ -33,5 +33,6 @@ Route::post('/devis/store', [DevisController::class, 'store'])->name('devis.stor
 Route::get('/devis/{id}', [DevisController::class, 'edit'])->name('devis.edit');
 Route::patch('/devis/{id}', [DevisController::class, 'update'])->name('devis.update');
 Route::get('/devis/{id}/delete', [DevisController::class, 'destroy'])->name('devis.destroy');
+Route::get('/devis/pdf/{id}', [DevisController::class, 'pdf'])->name('devis.pdf');
 
 Route::post('/devis/fetch', [DevisController::class, 'calculPrix'])->name('devis.calculPrix');
