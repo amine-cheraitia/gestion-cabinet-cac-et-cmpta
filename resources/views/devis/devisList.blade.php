@@ -62,7 +62,7 @@ Liste des clients
 
                     <td class="d-flex"><a href="{{route('devis.edit',$d->id)}}" class="btn btn-outline-secondary">
                             <i class="fas fa-minus"></i></a> &nbsp;
-                        <a href="{{route('client.destroy',$d->id)}}" class="btn btn-outline-secondary"><i
+                        <a href="{{route('devis.destroy',$d->id)}}" class="btn btn-outline-secondary"><i
                                 style="font-size: 20px" class="fas fa-times"></i></a>
                     </td>
                 </tr>

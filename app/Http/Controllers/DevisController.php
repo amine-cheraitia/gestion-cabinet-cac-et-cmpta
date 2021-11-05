@@ -66,4 +66,36 @@ class DevisController extends Controller
         ]);
         return redirect()->route('devis.list');
     }
+
+    public function edit($id)
+    {
+
+        $devis = Devis::whereId($id)->first();
+        $entreprises = Entreprise::all();
+        $exercices = Exercice::all();
+        $prestations = Prestation::all();
+
+        return view('devis.devisEdit', compact('entreprises', 'devis', 'exercices', 'prestations'));
+    }
+
+    public function update($id)
+    {
+
+        $data = request()->validate([
+            'date_devis' => 'required',
+            'exercice_id' => 'required',
+            'entreprise_id' => 'required',
+            'prestation_id' => 'required',
+            'total' => 'required',
+        ]);
+        Devis::whereId($id)->update($data);
+        return redirect()->route('devis.list');
+    }
+
+    public function destroy($id)
+    {
+
+        Devis::whereId($id)->delete();
+        return redirect()->route('devis.list');
+    }
 }
