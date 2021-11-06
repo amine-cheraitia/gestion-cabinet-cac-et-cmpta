@@ -239,6 +239,7 @@ namespace App\Models{
  * @property int $entreprise_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Entreprise $entreprise
  * @method static \Illuminate\Database\Eloquent\Builder|Mission newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Mission newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Mission query()
