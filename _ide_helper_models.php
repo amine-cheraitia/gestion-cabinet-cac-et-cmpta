@@ -239,7 +239,10 @@ namespace App\Models{
  * @property int $entreprise_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $status
+ * @property string $num_missions
  * @property-read \App\Models\Entreprise $entreprise
+ * @property-read \App\Models\Prestation|null $prestation
  * @method static \Illuminate\Database\Eloquent\Builder|Mission newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Mission newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Mission query()
@@ -250,8 +253,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Mission whereEnd($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Mission whereEntrepriseId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Mission whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mission whereNumMissions($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Mission wherePrestationId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Mission whereStart($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mission whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Mission whereTextColor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Mission whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Mission whereUpdatedAt($value)
@@ -296,9 +301,11 @@ namespace App\Models{
  * @property int $durée
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $code_prestation
  * @method static \Illuminate\Database\Eloquent\Builder|Prestation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Prestation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Prestation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Prestation whereCodePrestation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Prestation whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Prestation whereDesignation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Prestation whereDurée($value)

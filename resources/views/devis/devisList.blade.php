@@ -61,7 +61,7 @@ Liste des clients
                 @foreach ($devis as $d)
                 <tr>
                     <td class="text-center"><strong>{{$loop->iteration}}</strong></td>
-                    <td><strong><a href="{{route('client.edit',$d->id)}}" class="link-dark"
+                    <td><strong><a href="{{route('devis.edit',$d->id)}}" class="link-dark"
                                 style="text-underline-position: none">{{$d->num_devis}}</a></strong></td>
                     <td>{{$d->entreprise->raison_social}}</td>
                     <td>{{$d->date_devis}}</td>

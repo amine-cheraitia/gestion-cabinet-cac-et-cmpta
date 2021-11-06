@@ -47,5 +47,8 @@ Route::post('/missions/store', [MissionController::class, 'store'])->name('missi
 Route::get('/missions/{id}', [MissionController::class, 'edit'])->name('mission.edit');
 Route::patch('/missions/{id}', [MissionController::class, 'update'])->name('mission.update');
 Route::get('/missions/{id}/delete', [MissionController::class, 'destroy'])->name('mission.destroy');
+
+//--ajax
+Route::get('/missions/fetch', [MissionController::class, 'devisContent'])->name('mission.devisContent');
 /* Route::get('/missions', 'App\Http\Controllers\MissionController@index')->name('mission.list');
 [MissionController::class, 'index'] */
