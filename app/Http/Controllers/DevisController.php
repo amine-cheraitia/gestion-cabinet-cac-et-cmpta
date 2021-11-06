@@ -9,6 +9,7 @@ use App\Models\Mission;
 use App\Models\Prestation;
 use Illuminate\Http\Request;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use PDF;
 
 class DevisController extends Controller
 {
@@ -105,6 +106,30 @@ class DevisController extends Controller
     public function pdf($id)
     {
         $devis = Devis::findOrFail($id);
-        return view('devis.pdf', compact('devis'));
+
+
+        $data['num_devis'] = $devis->num_devis;
+        $data['date_devis'] = $devis->date_devis;
+        $data['total'] = $devis->total;
+        $data['prestation'] = $devis->prestation->designation;
+        $data['entreprise'] = [
+            /*             'raison_social' => $devis->entreprise->raison_social,
+            'num_registre_commerce' => $devis->entreprise->num_registre_commerce,
+            'num_art_imposition' => $devis->entreprise->num_art_imposition,
+            'num_id_fiscale' => $devis->entreprise->num_id_fiscale,
+            'adresse' => $devis->entreprise->adresse,
+            'email' => $devis->entreprise->email, */];
+        $data['raison_social'] = $devis->entreprise->raison_social;
+        $data['num_registre_commerce'] = $devis->entreprise->num_registre_commerce;
+        $data['num_art_imposition'] = $devis->entreprise->num_art_imposition;
+        $data['num_id_fiscale'] = $devis->entreprise->num_id_fiscale;
+        $data['adresse'] = $devis->entreprise->adresse;
+        $data['email'] = $devis->entreprise->email;
+
+        $pdf = PDF::loadView('devis.pdf', $data);
+        return $pdf->stream($devis->num_devis . ".pdf");
+
+
+        /* return view('devis.pdf', compact('devis')); */
     }
 }

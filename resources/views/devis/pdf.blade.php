@@ -3,15 +3,20 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>A simple, clean, and responsive HTML invoice template</title>
+    <title>Devis N° :{{$num_devis}}</title>
 
     <style>
+        @page {
+            header: page-header;
+            footer: page-footer;
+        }
+
         .invoice-box {
             max-width: 800px;
             margin: auto;
             padding: 30px;
-            border: 1px solid #eee;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            /*             border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); */
             font-size: 16px;
             line-height: 24px;
             font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
@@ -112,10 +117,11 @@
                                     style="width: 100%; max-width: 300px" />
                             </td>
 
-                            <td>
-                                Invoice #: 123<br />
-                                Created: January 1, 2015<br />
-                                Due: February 1, 2015
+                            <td style="text-align: left;width:40%">
+                                N° Devis #: <strong>{{$num_devis}}</strong><br />
+                                Date du Devis:
+                                <strong>{{Carbon\carbon::parse($date_devis)->format('m-d-Y')}}</strong><br />
+                                Date d'impression: <strong>{{Carbon\carbon::now()->format('m-d-Y')}}</strong>
                             </td>
                         </tr>
                     </table>
@@ -126,16 +132,22 @@
                 <td colspan="2">
                     <table>
                         <tr>
-                            <td>
-                                Sparksuite, Inc.<br />
-                                12345 Sunny Road<br />
-                                Sunnyville, CA 12345
+                            <td style="width:60%">
+                                <strong>CABINET MEDDAHI</strong><br />
+                                <strong>Comptabilité et commissariat aux comptes</strong><br />
+                                554 Cité el djawhara, BT11 N°01 Les Halles, Alger.<br>
+
+
                             </td>
 
-                            <td>
-                                Acme Corp.<br />
-                                John Doe<br />
-                                john@example.com
+                            <td style="text-align: left;width:40%">
+                                <strong>{{$raison_social}}</strong><br />
+                                adresse :{{$adresse}}<br />
+                                N°RC :{{$num_registre_commerce}}<br />
+                                ART IMP :{{$num_art_imposition}}<br />
+                                NIF :{{$num_id_fiscale}}<br />
+                                Email :{{$email}}<br />
+
                             </td>
                         </tr>
                     </table>
@@ -155,18 +167,18 @@
             </tr>
 
             <tr class="heading">
-                <td>Item</td>
+                <td>Designation</td>
 
-                <td>Price</td>
+                <td>Montant</td>
             </tr>
 
             <tr class="item">
-                <td>Website design</td>
+                <td>{{$prestation}}</td>
 
-                <td>$300.00</td>
+                <td>{{$total}}DZD</td>
             </tr>
 
-            <tr class="item">
+            {{-- <tr class="item">
                 <td>Hosting (3 months)</td>
 
                 <td>$75.00</td>
@@ -176,12 +188,12 @@
                 <td>Domain name (1 year)</td>
 
                 <td>$10.00</td>
-            </tr>
+            </tr> --}}
 
             <tr class="total">
                 <td></td>
 
-                <td>Total: $385.00</td>
+                <td>Total: {{$total}}DZD</td>
             </tr>
         </table>
     </div>

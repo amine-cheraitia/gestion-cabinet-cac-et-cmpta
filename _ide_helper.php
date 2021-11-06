@@ -15658,7 +15658,115 @@
      
 }
 
-        namespace Barryvdh\Debugbar { 
+        namespace Meneses\LaravelMpdf\Facades { 
+            /**
+     * Class LaravelMpdf
+     *
+     * @package Meneses\LaravelMpdf\Facades
+     */ 
+        class LaravelMpdf {
+                    /**
+         * 
+         *
+         * @param array $config
+         * @return \Meneses\LaravelMpdf\LaravelMpdf 
+         * @static 
+         */ 
+        public static function getPdf($config = [])
+        {
+                        /** @var \Meneses\LaravelMpdf\LaravelMpdfWrapper $instance */
+                        return $instance->getPdf($config);
+        }
+                    /**
+         * Load a HTML string
+         *
+         * @param string $html
+         * @return \Pdf 
+         * @throws \Mpdf\MpdfException
+         * @static 
+         */ 
+        public static function loadHTML($html, $config = [])
+        {
+                        /** @var \Meneses\LaravelMpdf\LaravelMpdfWrapper $instance */
+                        return $instance->loadHTML($html, $config);
+        }
+                    /**
+         * Chunk a HTML with given word and load string
+         *
+         * @param string $separator
+         * @param string $html
+         * @return \Pdf 
+         * @throws \Mpdf\MpdfException
+         * @static 
+         */ 
+        public static function chunkLoadHTML($separator, $html, $config = [])
+        {
+                        /** @var \Meneses\LaravelMpdf\LaravelMpdfWrapper $instance */
+                        return $instance->chunkLoadHTML($separator, $html, $config);
+        }
+                    /**
+         * Load a HTML file
+         *
+         * @param string $file
+         * @return \Pdf 
+         * @throws \Mpdf\MpdfException
+         * @static 
+         */ 
+        public static function loadFile($file, $config = [])
+        {
+                        /** @var \Meneses\LaravelMpdf\LaravelMpdfWrapper $instance */
+                        return $instance->loadFile($file, $config);
+        }
+                    /**
+         * Chunk a HTML file with given word and load HTML
+         *
+         * @param string $separator
+         * @param string $file
+         * @return \Pdf 
+         * @static 
+         */ 
+        public static function chunkLoadFile($separator, $file, $config = [])
+        {
+                        /** @var \Meneses\LaravelMpdf\LaravelMpdfWrapper $instance */
+                        return $instance->chunkLoadFile($separator, $file, $config);
+        }
+                    /**
+         * Load a View and convert to HTML
+         *
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @return \Pdf 
+         * @throws \Mpdf\MpdfException
+         * @static 
+         */ 
+        public static function loadView($view, $data = [], $mergeData = [], $config = [])
+        {
+                        /** @var \Meneses\LaravelMpdf\LaravelMpdfWrapper $instance */
+                        return $instance->loadView($view, $data, $mergeData, $config);
+        }
+                    /**
+         * Chunk a View with given word and load HTML
+         *
+         * @param string $separator
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @return \Pdf 
+         * @throws \Mpdf\MpdfException
+         * @static 
+         */ 
+        public static function chunkLoadView($separator, $view, $data = [], $mergeData = [], $config = [])
+        {
+                        /** @var \Meneses\LaravelMpdf\LaravelMpdfWrapper $instance */
+                        return $instance->chunkLoadView($separator, $view, $data, $mergeData, $config);
+        }
+         
+    }
+     
+}
+
+    namespace Barryvdh\Debugbar { 
             /**
      * 
      *
@@ -19939,6 +20047,7 @@ namespace  {
             class URL extends \Illuminate\Support\Facades\URL {}
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
+            class PDF extends \Meneses\LaravelMpdf\Facades\LaravelMpdf {}
             class Debugbar extends \Barryvdh\Debugbar\Facade {}
             class Flare extends \Facade\Ignition\Facades\Flare {}
      
