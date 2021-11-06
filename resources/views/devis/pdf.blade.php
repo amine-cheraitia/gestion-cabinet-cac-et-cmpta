@@ -109,7 +109,7 @@
     <div class="invoice-box">
         <table cellpadding="0" cellspacing="0">
             <tr class="top">
-                <td colspan="2">
+                <td colspan="6">
                     <table>
                         <tr>
                             <td class="title">
@@ -127,12 +127,24 @@
                     </table>
                 </td>
             </tr>
+            <tr>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td colspan="6"></td>
+            </tr>
 
             <tr class="information">
-                <td colspan="2">
+                <td colspan="6">
                     <table>
                         <tr>
-                            <td style="width:60%">
+                            <td colspan="3" style="width:60%">
                                 <strong>CABINET MEDDAHI</strong><br />
                                 <strong>Comptabilité et commissariat aux comptes</strong><br />
                                 554 Cité el djawhara, BT11 N°01 Les Halles, Alger.<br>
@@ -140,7 +152,7 @@
 
                             </td>
 
-                            <td style="text-align: left;width:40%">
+                            <td colspan="3" style="text-align: left;width:40%">
                                 <strong>{{$raison_social}}</strong><br />
                                 adresse :{{$adresse}}<br />
                                 N°RC :{{$num_registre_commerce}}<br />
@@ -154,7 +166,7 @@
                 </td>
             </tr>
 
-            <tr class="heading">
+            {{-- <tr class="heading">
                 <td>Payment Method</td>
 
                 <td>Check #</td>
@@ -164,18 +176,18 @@
                 <td>Check</td>
 
                 <td>1000</td>
-            </tr>
+            </tr> --}}
 
             <tr class="heading">
-                <td>Designation</td>
+                <td colspan="4">Designation</td>
 
-                <td>Montant</td>
+                <td style="text-align: right" colspan="2">Montant</td>
             </tr>
 
             <tr class="item">
-                <td>{{$prestation}}</td>
+                <td colspan="4">{{$prestation}}</td>
 
-                <td>{{$total}}DZD</td>
+                <td style="text-align: right" colspan="2">{{ number_format($total, 2, ',', ' ');}} DZD</td>
             </tr>
 
             {{-- <tr class="item">
@@ -189,11 +201,21 @@
 
                 <td>$10.00</td>
             </tr> --}}
+            <tr>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td colspan="6"></td>
+            </tr>
 
-            <tr class="total">
-                <td></td>
+            <tr {{-- class="total" --}}>
+                <td style="text-align: right;font-weight: bold;" colspan="4">
+                    Total:
+                </td>
 
-                <td>Total: {{$total}}DZD</td>
+                <td colspan="2" style="font-weight: bold;text-align: right">{{ number_format($total, 2, ',', ' ')}}
+                    DZD
+                </td>
             </tr>
         </table>
     </div>

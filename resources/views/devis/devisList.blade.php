@@ -65,16 +65,20 @@ Liste des clients
                                 style="text-underline-position: none">{{$d->num_devis}}</a></strong></td>
                     <td>{{$d->entreprise->raison_social}}</td>
                     <td>{{$d->date_devis}}</td>
-                    <td>{{$d->total}} DA</td>
+                    <td>{{ number_format($d->total, 2, ',', ' '); }} DA</td>
 
                     {{-- <td>{{$entreprise->num_registre_commerce}}</td>
                     <td>{{$entreprise->num_id_fiscale}}</td>
                     <td>{{$entreprise->num_art_imposition}}</td> --}}
 
-                    <td class="d-flex"><a href="{{route('devis.edit',$d->id)}}" class="btn btn-outline-secondary">
+                    <td class="d-flex">
+                        <a href="{{route('devis.pdf',$d->id)}}" class="btn btn-outline-primary"><i
+                                style="font-size: 15px;" class="fas fa-print"></i></a>&nbsp;
+                        <a href="{{route('devis.edit',$d->id)}}" class="btn btn-outline-secondary">
                             <i class="fas fa-minus"></i></a> &nbsp;
                         <a href="{{route('devis.destroy',$d->id)}}" class="btn btn-outline-danger"><i
                                 style="font-size: 20px" class="fas fa-times"></i></a>
+
                     </td>
                 </tr>
                 @endforeach
