@@ -99,6 +99,8 @@ class DevisController extends Controller
         if (Mission::whereDevisId($id)->count()) {
             return redirect()->route('devis.list')->with('errors', "le Devis ne peut pas être supprimé");
         }
+
+
         Devis::whereId($id)->delete();
         return redirect()->route('devis.list')->withMessage('le Devis a été supprimé');;
     }

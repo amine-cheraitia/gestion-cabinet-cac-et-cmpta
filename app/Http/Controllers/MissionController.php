@@ -124,23 +124,11 @@ class MissionController extends Controller
 
         ]);
         return redirect()->route('mission.list');
-        /*        Mission::create([
-            "entreprise_id" => $request->entreprise_id,
-            "prestation_id" => $request->prestation_id,
-            "color" => $request->color,
-            "textColor" => $request->textColor,
-            "allDay" => 1,
-            "status" => 0,
-            "start" => $request->start,
-            "end" => $request->end,
-            "title" => $title,
-            'num_missions' => $num_missions,
-            "total" => $request->total,
-        ]); */
     }
 
     public function destroy($id)
     {
-        # code...
+        Mission::whereId($id)->delete();
+        return redirect()->route('mission.list')->withMessage('la mission a été supprimé');;
     }
 }
