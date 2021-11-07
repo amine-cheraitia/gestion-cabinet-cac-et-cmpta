@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,7 +20,8 @@ class Mission extends Model
         "start",
         "end",
         "title",
-        'num_missions'
+        'num_missions',
+        'total'
     ];
     protected $guard = [];
 
@@ -38,17 +40,27 @@ class Mission extends Model
         return $this->belongsTo(Prestation::class, 'prestation_id');
     }
 
-    public function getStatusAttribute($attribue)
+    public function getStatusIntAttribute()
     {
         return [
             0 => '<span class="badge bg-warning text-dark">En cours',
             1 => '<span class="badge bg-success">Achevé</span>'
-        ][$attribue];
+        ][$this->status];
+    }
+
+    /*    public function getStatusAttribute($attribue)
+    {
+
+
         /*         if(){
             '';
 
         }else{
                 '<span class="badge bg-warning text-dark">En cours';
         } */
-    }
+    /*} */
+
+    /*    public function setStartAttribue(){
+        return Carbon\Carbon::format('html');
+    } */
 }

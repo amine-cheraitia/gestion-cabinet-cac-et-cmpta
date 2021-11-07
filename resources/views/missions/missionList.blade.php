@@ -73,7 +73,7 @@ Liste des clients
                     <td>{{$mission->start}}</td>
                     <td>{{$mission->end}} <i class="fas fa-presentation "></i></td>
                     <td style="text-align: center">
-                        {!!$mission->status!!}</span>
+                        {!!$mission->status_int!!}</span>
                     </td>
 
 

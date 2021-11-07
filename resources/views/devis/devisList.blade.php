@@ -73,7 +73,7 @@ Liste des clients
                     <td>{{$entreprise->num_art_imposition}}</td> --}}
 
                     <td class="d-flex">
-                        <a href="{{route('devis.pdf',$d->id)}}" class="btn btn-outline-primary"><i
+                        <a target="_blank" href="{{route('devis.pdf',$d->id)}}" class="btn btn-outline-primary"><i
                                 style="font-size: 15px;" class="fas fa-print"></i></a>&nbsp;
                         <a href="{{route('devis.edit',$d->id)}}" class="btn btn-outline-secondary">
                             <i class="fas fa-minus"></i></a> &nbsp;

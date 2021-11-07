@@ -241,7 +241,9 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property int $status
  * @property string $num_missions
+ * @property string $total
  * @property-read \App\Models\Entreprise $entreprise
+ * @property-read mixed $status_int
  * @property-read \App\Models\Prestation|null $prestation
  * @method static \Illuminate\Database\Eloquent\Builder|Mission newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Mission newQuery()
@@ -259,6 +261,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Mission whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Mission whereTextColor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Mission whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mission whereTotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Mission whereUpdatedAt($value)
  */
 	class Mission extends \Eloquent {}
