@@ -17,7 +17,7 @@ Liste des clients
 </style>
 @endsection
 @section('content')
-<h2 class="mt-4 text-center">Liste des Entreprises</h2>
+<h2 class="my-4 text-center">Liste des Entreprises</h2>
 @if(session('errors'))
 <div class="col-lg-12">
     <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
@@ -28,6 +28,7 @@ Liste des clients
     <div class="alert alert-success" role="alert">{{ session('message') }}</div>
 </div>
 @endif
+<a href="{{route('client.index')}}" class="btn btn-dark my-2">Crée une mission</a>
 <div class="card mb-4 shadow">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
@@ -80,7 +81,7 @@ Liste des clients
                     <td>{{$entreprise->RegimeFiscal->designation}}</td>
                     <td class="d-flex"><a href="{{route('client.edit',$entreprise->id)}}"
                             class="btn btn-outline-secondary"> <i class="fas fa-minus"></i></a> &nbsp;
-                        <a href="{{route('client.destroy',$entreprise->id)}}" class="btn btn-outline-secondary"><i
+                        <a href="{{route('client.destroy',$entreprise->id)}}" class="btn btn-outline-danger"><i
                                 style="font-size: 20px" class="fas fa-times"></i></a>
                     </td>
                 </tr>

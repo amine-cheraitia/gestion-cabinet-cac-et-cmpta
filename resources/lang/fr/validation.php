@@ -146,7 +146,14 @@ return [
         "fiscal_id" => "Régime fiscal",
         "activite_id" => "Type d'activité",
         "categorie_id" => "Catégorie",
-        "adresse" => "Adresse"
+        "adresse" => "Adresse",
+        'entreprise_id' => "Entreprise",
+        'prestation_id' => "Prestation",
+        'start' => "Date de debut",
+        'end' => "Date de fin",
+        'color' => "Couleur du fond",
+        'textColor' => 'Couleur de texte',
+        'total' => 'montant total'
 
     ]
 ];

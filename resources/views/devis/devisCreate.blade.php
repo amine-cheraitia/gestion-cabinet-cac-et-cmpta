@@ -170,11 +170,12 @@ Création de Devis
             </div>
         </div>
     </div>
+</div>
 
 
-    {{ csrf_field() }}
-    <script>
-        $(document).ready(function(){
+{{ csrf_field() }}
+<script>
+    $(document).ready(function(){
         $('#prestation_id').val(null).change();
         $('#entreprise_id').val(null).change();
         if(($("#entreprise_id").val()==null ) || ($("#prestation_id").val()==null)){
@@ -229,17 +230,9 @@ Création de Devis
             }
 
            } )
-
-
-
-
         }
-
-
-
-
     });
 });
-    </script>
+</script>
 
-    @endsection
+@endsection

@@ -37,5 +37,10 @@ return [
         'num_id_fiscale' => "N° d'Identification fiscal",
         'num_registre_commerce' => "N° Registre de Commerce",
         'num_registre_commerce' => "N° Registre de Commerce",
+        'entreprise_id' => "Entreprise",
+        'prestation_id' => "Prestation",
+        'star' => "Date de debut",
+        'end' => "Date de fin",
+
     ],
 ];

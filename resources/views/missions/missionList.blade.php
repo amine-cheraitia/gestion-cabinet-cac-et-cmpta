@@ -18,7 +18,7 @@ Liste des clients
 
 @endsection
 @section('content')
-<h2 class="mt-4 text-center">Liste des Missions</h2>
+<h2 class="my-4 text-center">Liste des Missions</h2>
 @if(session('errors'))
 <div class="col-lg-12">
     <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
@@ -29,6 +29,7 @@ Liste des clients
     <div class="alert alert-success" role="alert">{{ session('message') }}</div>
 </div>
 @endif
+<a href="{{route('mission.create')}}" class="btn btn-dark my-2">Crée une mission</a>
 <div class="card mb-4 shadow">
     <div class="card-header">
         <i class="fas fa-project-diagram"></i>

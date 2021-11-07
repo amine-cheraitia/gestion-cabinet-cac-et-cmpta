@@ -21,8 +21,10 @@ class MissionController extends Controller
 
     public function create()
     {
+        $devisUsed = Mission::whereNotNull('devis_id')->get();
+
         $entreprises = Entreprise::all();
-        $devis = Devis::all(); ///wherenotin
+        $devis = Devis::whereNotIn("id", $devisUsed->pluck('devis_id'))->get(); ///wherenotin
         $prestations = Prestation::all();
 
         /* dd($missions); */
@@ -34,12 +36,13 @@ class MissionController extends Controller
 
 
         $request->validate([
-            'start' => 'required',
-            'end' => 'required',
+            'start' => 'required|date|before:end',
+            'end' => 'required|date|after:start',
             'color' => 'required',
             'textColor' => 'required',
             'prestation_id' => 'required',
             'entreprise_id' => 'required',
+            "total" => 'required'
 
         ]);
 
@@ -61,6 +64,7 @@ class MissionController extends Controller
             "end" => $request->end,
             "title" => $title,
             'num_missions' => $num_missions,
+            "total" => $request->total,
         ]);
 
 
@@ -68,5 +72,20 @@ class MissionController extends Controller
     }
     public function devisContent(Request $request)
     {
+        $devis_id = $request->get('devis_id');
+
+        $devis = Devis::whereId($devis_id)->first(['id', 'entreprise_id', 'prestation_id', 'total']);
+
+        $total = number_format($devis->total, 2, '.', '');
+
+        return response()->json([
+            'total' => $total,
+            'entreprise_id' => $devis->entreprise_id,
+            'prestation_id' => $devis->prestation_id,
+            'devis_id' => $devis->id
+        ]);
+        //$total = number_format($montant, 2, ',', ' ');
+        /* $total = number_format($montant, 2, '.', ''); //12345.67
+        echo $total; */
     }
 }
