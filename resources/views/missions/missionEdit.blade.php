@@ -104,7 +104,8 @@ Création de Mission
         <div class="col-md-3">
             <label for="start" class="form-label">Date de debut</label>
             <input {{-- type="date" --}}class="form-control shadow @error('start')is-invalid
-                @enderror" id="start" value="{{date('Y-m-d', strtotime($mission->start))}}" required name="start">
+                @enderror" id="start" value="{{/* date('Y-m-d', strtotime( */$mission->start/* )) */}}" required
+                name="start">
             @error('start')
             <div class="invalid-feedback">{{$errors->first('start')}}</div>
             @enderror
