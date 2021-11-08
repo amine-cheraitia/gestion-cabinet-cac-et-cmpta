@@ -19,6 +19,14 @@ class MissionController extends Controller
         return view('missions.missionList', compact('missions'));
     }
 
+    public function show($id)
+    {
+
+        $mission = Mission::whereId($id)->with(["entreprise", "prestation"])->first();
+
+        return view('missions.missionShow', compact('mission'));
+    }
+
     public function create()
     {
         $devisUsed = Mission::whereNotNull('devis_id')->get();

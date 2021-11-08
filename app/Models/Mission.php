@@ -23,7 +23,7 @@ class Mission extends Model
         'num_missions',
         'total'
     ];
-    protected $guard = [];
+    protected $guarded = [];
 
     /**
      * Get the entreprise that owns the Mission
@@ -40,11 +40,22 @@ class Mission extends Model
         return $this->belongsTo(Prestation::class, 'prestation_id');
     }
 
+    public function getRaisonSocialAttribute($value)
+    {
+        return ucfirst($value);
+    }
     public function getStatusIntAttribute()
     {
         return [
-            0 => '<span class="badge bg-warning text-dark">En cours',
+            0 => '<span class="badge bg-warning text-dark">En cours</span>',
             1 => '<span class="badge bg-success">Achevé</span>'
+        ][$this->status];
+    }
+    public function getStatustxtAttribute()
+    {
+        return [
+            0 => 'En cours',
+            1 => 'Achevé'
         ][$this->status];
     }
 

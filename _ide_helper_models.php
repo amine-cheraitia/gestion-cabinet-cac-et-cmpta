@@ -243,7 +243,9 @@ namespace App\Models{
  * @property string $num_missions
  * @property string $total
  * @property-read \App\Models\Entreprise $entreprise
+ * @property-read mixed $raison_social
  * @property-read mixed $status_int
+ * @property-read mixed $statustxt
  * @property-read \App\Models\Prestation|null $prestation
  * @method static \Illuminate\Database\Eloquent\Builder|Mission newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Mission newQuery()

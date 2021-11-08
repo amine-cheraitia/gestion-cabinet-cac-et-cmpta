@@ -42,9 +42,10 @@ Route::post('/devis/fetch', [DevisController::class, 'calculPrix'])->name('devis
 
 //mission
 Route::get('/missions', [MissionController::class, 'index'])->name('mission.list');
+Route::get('/missions/{id}', [MissionController::class, 'show'])->name('mission.show');
 Route::get('/missions/create', [MissionController::class, 'create'])->name('mission.create');
 Route::post('/missions/store', [MissionController::class, 'store'])->name('mission.store');
-Route::get('/missions/{id}', [MissionController::class, 'edit'])->name('mission.edit');
+Route::get('/missions/edit/{id}', [MissionController::class, 'edit'])->name('mission.edit');
 Route::patch('/missions/{id}', [MissionController::class, 'update'])->name('mission.update');
 Route::get('/missions/{id}/delete', [MissionController::class, 'destroy'])->name('mission.destroy');
 

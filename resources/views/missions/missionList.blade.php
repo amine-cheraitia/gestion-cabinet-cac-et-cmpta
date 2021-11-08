@@ -67,7 +67,7 @@ Liste des missions
                 @foreach ($missions as $mission)
                 <tr>
                     <td class="text-center"><strong>{{$loop->iteration}}</strong></td>
-                    <td><strong><a href="{{route('mission.edit',$mission->id)}}" class="link-dark"
+                    <td><strong><a href="{{route('mission.show',$mission->id)}}" class="link-dark"
                                 style="text-underline-position: none">{{$mission->num_missions}}</a></strong></td>
                     <td>{{ $mission->entreprise->raison_social }}</td>
                     <td>{{ $mission->prestation->designation }}</td>

@@ -1,6 +1,6 @@
 @extends('main')
 @section('title')
-Création de Mission
+Edition de Mission
 @endsection
 @section('style')
 {{--
