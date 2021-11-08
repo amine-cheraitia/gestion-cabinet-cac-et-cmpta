@@ -111,13 +111,18 @@ Carbon\Carbon::setLocale('fr');
                     Mandat</a> &nbsp;
                 @endif
 
+                @if ($mission->convention)
 
-
-
-                <a href="{{route('devis.destroy',$mission->id)}}" class="btn btn-dark"><i class="fas fa-cogs"></i>
-                    Générer la convention</a>&nbsp;
                 <a target="_blank" href="{{route('devis.pdf',$mission->id)}}" class="btn btn-outline-dark"><i
                         style="font-size: 15px;" class="fas fa-print"></i> Imprimer la convention </a>
+                @else
+
+                <a href="{{route('devis.destroy',$mission->id)}}" class="btn btn-dark"><i class="fas fa-cogs"></i>
+                    Générer la convention</a>
+                @endif
+
+
+
 
             </div>
 

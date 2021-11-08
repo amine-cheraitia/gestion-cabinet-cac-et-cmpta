@@ -65,6 +65,7 @@ namespace App\Models{
  * @property string $date_convention
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $num_convention
  * @method static \Illuminate\Database\Eloquent\Builder|Convention newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Convention newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Convention query()
@@ -72,6 +73,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Convention whereDateConvention($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Convention whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Convention whereMissionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Convention whereNumConvention($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Convention whereUpdatedAt($value)
  */
 	class Convention extends \Eloquent {}
@@ -244,6 +246,7 @@ namespace App\Models{
  * @property int $status
  * @property string $num_missions
  * @property string $total
+ * @property-read \App\Models\Convention|null $convention
  * @property-read \App\Models\Entreprise $entreprise
  * @property-read mixed $raison_social
  * @property-read mixed $status_int

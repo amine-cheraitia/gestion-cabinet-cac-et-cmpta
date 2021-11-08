@@ -143,10 +143,10 @@
                 <td colspan="3" style="text-align: left;width:40%">
                     Réf #: <strong>{{$num_mandat}}</strong><br />
 
-                    Date d'impression: <strong>{{Carbon\carbon::now()->format('m/d/Y')}}</strong>
+                    Date d'impression: <strong>{{Carbon\carbon::now()->format('d/m/Y')}}</strong>
                 </td>
                 <td colspan="3" style="text-align: right;width:40%">
-                    Alger, le <strong>{{Carbon\carbon::parse($date_mandat)->format('m/d/Y')}}</strong>
+                    Alger, le <strong>{{Carbon\carbon::parse($date_mandat)->format('d/m/Y')}}</strong>
                 </td>
             </tr>
             <tr>
@@ -214,8 +214,10 @@
         </table>
         <div style="color:black">
             Je soussigné, Hakima Meddahi, Commissaire aux comptes demeurant à Coopérative el Salama Bt53 N° D2
-            Birkhadem, Alger, inscrit au Tableau de l'Ordre des Commissaires Aux Comptes sous le n°193, déclare accepte
-            le Mandat de Commissariat aux Comptes, au profit de {{$raison_social}} dont le siège social est sis à
+            Birkhadem, Alger, inscrit au Tableau de l'Ordre des Commissaires Aux Comptes sous le n°193, déclare
+            l'acceptation
+            du Mandat de {{$prestation}}/ Commissariat aux Comptes, au profit de {{$raison_social}} dont le siège social
+            est sis à
             {{$adresse}} au titre des exercices du {{Carbon\carbon::parse($start)->format('Y')}} au
             {{Carbon\carbon::parse($end)->format('Y')}}<br><br>
             Le commissaire aux comptes déclare n'ête frappé d'aucune incompatibilité par la législation et la
