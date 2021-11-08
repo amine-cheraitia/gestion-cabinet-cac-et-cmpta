@@ -1,6 +1,6 @@
 @extends('main')
 @section('title')
-Liste des clients
+Liste des missions
 @endsection
 @section('style')
 
@@ -29,12 +29,13 @@ Liste des clients
     <div class="alert alert-success" role="alert">{{ session('message') }}</div>
 </div>
 @endif
-<a href="{{route('mission.create')}}" class="btn btn-dark my-2">Crée une mission</a>
+
 <div class="card mb-4 shadow">
-    <div class="card-header">
-        <i class="fas fa-project-diagram"></i>
-        Liste des Missions
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <div><i class="fas fa-project-diagram"></i>
+            Liste des Missions</div>
         {{-- //todo: boutton d'ajout --}}
+        <a href="{{route('mission.create')}}" class="btn btn-dark {{-- my-2 --}} ">Crée une mission</a>
     </div>
     <div class="card-body">
         <table id="datatablesSimple">

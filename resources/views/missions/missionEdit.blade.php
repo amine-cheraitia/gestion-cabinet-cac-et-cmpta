@@ -21,127 +21,134 @@ Création de Mission
 
 @endsection
 @section('content')
-<h2 class="mt-5 text-center">{{-- <i class="fas fa-project-diagram"> --}}Modification de la mission:
-        {{$mission->num_missions}} </h2>
+{{-- <h2 class="mt-5 text-center">{{-- <i class="fas fa-project-diagram">Modification de la mission:
+        {{$mission->num_missions}} </h2> --}}
+<div class="card shadow mt-5 shadow">
+    <div class="card-header">
+        <h6><i class="fas fa-project-diagram"></i><strong> Modification de la mission:
+                {{$mission->num_missions}}</strong></h6>
+    </div>
 
-<div class="card-body">
+    <div class="card-body">
 
 
-    <form class="row g-3 needs-validation shadow " novalidate method="POST"
-        action="{{route('mission.update',$mission->id)}}">
-        @csrf
-        @method('PATCH')
-        <div class="col-md-12">
-            <label for="devis_id" class="form-label">Via un Devis</label>
-            <select class="form-select shadow @error('devis_id')is-invalid
+        <form class="row g-3 needs-validation  " novalidate method="POST"
+            action="{{route('mission.update',$mission->id)}}">
+            @csrf
+            @method('PATCH')
+            <div class="col-md-12">
+                <label for="devis_id" class="form-label">Via un Devis</label>
+                <select class="form-select shadow @error('devis_id')is-invalid
                     @enderror" id="devis_id" required name="devis_id">
-                <option selected disabled value="{{null}}">...</option>
-                @foreach ($devis as $d)
-                <option value="{{$d->id}}" {{($d->id == $mission->devis_id )? "selected" : '' }} >{{$d->num_devis}}
-                </option>
-                @endforeach
-            </select>
-            @error('entreprise_id')
-            <div class="invalid-feedback">{{$errors->first('entreprise_id')}}</div>
-            @enderror
-        </div>
-        <div class="col-md-12">
-            <label for="status" class="form-label">Statut de la mission</label>
-            <select class="form-select shadow @error('status')is-invalid
+                    <option selected disabled value="{{null}}">...</option>
+                    @foreach ($devis as $d)
+                    <option value="{{$d->id}}" {{($d->id == $mission->devis_id )? "selected" : '' }} >{{$d->num_devis}}
+                    </option>
+                    @endforeach
+                </select>
+                @error('entreprise_id')
+                <div class="invalid-feedback">{{$errors->first('entreprise_id')}}</div>
+                @enderror
+            </div>
+            <div class="col-md-12">
+                <label for="status" class="form-label">Statut de la mission</label>
+                <select class="form-select shadow @error('status')is-invalid
                     @enderror" id="status" required name="status">
-                <option selected disabled value="{{null}}">...</option>
-                <option value=0 {{( 0==$mission->status )? "selected" : ''}}>En cours
-                </option>
-                <option value=1 {{( 1==$mission->status )? "selected" : ''}}>Achevé</option>
+                    <option selected disabled value="{{null}}">...</option>
+                    <option value=0 {{( 0==$mission->status )? "selected" : ''}}>En cours
+                    </option>
+                    <option value=1 {{( 1==$mission->status )? "selected" : ''}}>Achevé</option>
 
 
 
-            </select>
-            @error('entreprise_id')
-            <div class="invalid-feedback">{{$errors->first('entreprise_id')}}</div>
-            @enderror
-        </div>
-        <div class="col-md-12">
-            <label for="entreprise_id" class="form-label">Raison Social de l'Entreprise</label>
-            <select class="form-select shadow @error('entreprise_id')is-invalid
+                </select>
+                @error('entreprise_id')
+                <div class="invalid-feedback">{{$errors->first('entreprise_id')}}</div>
+                @enderror
+            </div>
+            <div class="col-md-12">
+                <label for="entreprise_id" class="form-label">Raison Social de l'Entreprise</label>
+                <select class="form-select shadow @error('entreprise_id')is-invalid
                     @enderror" id="entreprise_id" required name="entreprise_id">
-                <option selected disabled value="">...</option>
-                @foreach ($entreprises as $entreprise)
-                <option value="{{$entreprise->id}}" {{($entreprise->id == $mission->entreprise_id )? "selected" : ''
-                    }}>{{$entreprise->raison_social}}</option>
-                @endforeach
-            </select>
-            @error('entreprise_id')
-            <div class="invalid-feedback">{{$errors->first('entreprise_id')}}</div>
-            @enderror
-        </div>
-        <div class="col-md-12">
-            <label for="prestation_id" class="form-label">Désignation de la prestation</label>
-            <select class="form-select shadow @error('prestation_id')is-invalid
+                    <option selected disabled value="">...</option>
+                    @foreach ($entreprises as $entreprise)
+                    <option value="{{$entreprise->id}}" {{($entreprise->id == $mission->entreprise_id )? "selected" : ''
+                        }}>{{$entreprise->raison_social}}</option>
+                    @endforeach
+                </select>
+                @error('entreprise_id')
+                <div class="invalid-feedback">{{$errors->first('entreprise_id')}}</div>
+                @enderror
+            </div>
+            <div class="col-md-12">
+                <label for="prestation_id" class="form-label">Désignation de la prestation</label>
+                <select class="form-select shadow @error('prestation_id')is-invalid
                 @enderror" id="prestation_id" required name="prestation_id">
-                <option selected disabled value="">...</option>
-                @foreach ($prestations as $prestation)
-                <option value="{{$prestation->id}}" {{($prestation->id == $mission->prestation_id )? "selected" : ''
-                    }}>{{$prestation->designation}}</option>
-                @endforeach
-            </select>
-            @error('prestation_id')
-            <div class="invalid-feedback">{{$errors->first('prestation_id')}}</div>
-            @enderror
-        </div>
-        {{-- <td><input type="text" name="total" id="total" class="sub_total form-control shadow" readonly="readonly">
-        </td> --}}
-        <div class="col-md-12">
-            <label for="total" class="form-label">Montant total de la mission</label>
-            <input type="text" class="form-control shadow  @error('total')is-invalid
+                    <option selected disabled value="">...</option>
+                    @foreach ($prestations as $prestation)
+                    <option value="{{$prestation->id}}" {{($prestation->id == $mission->prestation_id )? "selected" : ''
+                        }}>{{$prestation->designation}}</option>
+                    @endforeach
+                </select>
+                @error('prestation_id')
+                <div class="invalid-feedback">{{$errors->first('prestation_id')}}</div>
+                @enderror
+            </div>
+            {{-- <td><input type="text" name="total" id="total" class="sub_total form-control shadow"
+                    readonly="readonly">
+            </td> --}}
+            <div class="col-md-12">
+                <label for="total" class="form-label">Montant total de la mission</label>
+                <input type="text" class="form-control shadow  @error('total')is-invalid
                 @enderror" id="total" value="{{$mission->total}}" required name="total" readonly="readonly">
-            @error('total')
-            <div class="invalid-feedback">{{$errors->first('total')}}</div>
-            @enderror
-        </div>
-        {{-- --}}
+                @error('total')
+                <div class="invalid-feedback">{{$errors->first('total')}}</div>
+                @enderror
+            </div>
+            {{-- --}}
 
-        <div class="col-md-3">
-            <label for="start" class="form-label">Date de debut</label>
-            <input {{-- type="date" --}}class="form-control shadow @error('start')is-invalid
+            <div class="col-md-3">
+                <label for="start" class="form-label">Date de debut</label>
+                <input {{-- type="date" --}}class="form-control shadow @error('start')is-invalid
                 @enderror" id="start" value="{{/* date('Y-m-d', strtotime( */$mission->start/* )) */}}" required
-                name="start">
-            @error('start')
-            <div class="invalid-feedback">{{$errors->first('start')}}</div>
-            @enderror
-        </div>
-        <div class="col-md-3">
-            {{-- <input id="end" class="form-control" name="end" placeholder="End date & time"> --}}
-            <label for="end" class="form-label">Date de fin</label>
-            <input {{-- type="date" --}} class="form-control shadow @error('end')is-invalid
+                    name="start">
+                @error('start')
+                <div class="invalid-feedback">{{$errors->first('start')}}</div>
+                @enderror
+            </div>
+            <div class="col-md-3">
+                {{-- <input id="end" class="form-control" name="end" placeholder="End date & time"> --}}
+                <label for="end" class="form-label">Date de fin</label>
+                <input {{-- type="date" --}} class="form-control shadow @error('end')is-invalid
                 @enderror" id="end" placeholder="Veuillez saisir la raison social"
-                value="{{/* date('Y-m-d', strtotime( */$mission->end/* )) */}}" required name="end">
-            @error('end')
-            <div class="invalid-feedback">{{$errors->first('end')}}</div>
-            @enderror
-        </div>
-        <div class="col-md-3">
-            <label for="color" class="form-label">Couleur du fond</label>
-            <input style="height: 38px" type="color" class="form-control shadow  @error('color')is-invalid
+                    value="{{/* date('Y-m-d', strtotime( */$mission->end/* )) */}}" required name="end">
+                @error('end')
+                <div class="invalid-feedback">{{$errors->first('end')}}</div>
+                @enderror
+            </div>
+            <div class="col-md-3">
+                <label for="color" class="form-label">Couleur du fond</label>
+                <input style="height: 38px" type="color" class="form-control shadow  @error('color')is-invalid
             @enderror" id="color" value="{{$mission->color}}" required name="color">
-            @error('color')
-            <div class="invalid-feedback">{{$errors->first('color')}}</div>
-            @enderror
-        </div>
-        <div class="col-md-3">
-            <label for="textColor" class="form-label">Couleur du text</label>
-            <input style="height: 38px" type="color" class="form-control shadow  @error('textColor')is-invalid
+                @error('color')
+                <div class="invalid-feedback">{{$errors->first('color')}}</div>
+                @enderror
+            </div>
+            <div class="col-md-3">
+                <label for="textColor" class="form-label">Couleur du text</label>
+                <input style="height: 38px" type="color" class="form-control shadow  @error('textColor')is-invalid
             @enderror" id="textColor" value="{{old('num_art_imposition')}}" required name="textColor">
-            @error('textColor')
-            <div class="invalid-feedback">{{$errors->first('textColor')}}</div>
-            @enderror
-        </div>
+                @error('textColor')
+                <div class="invalid-feedback">{{$errors->first('textColor')}}</div>
+                @enderror
+            </div>
 
 
-        <div class="col-12 text-center mt-5">
-            <button class="btn btn-dark shadow mb-5 " type="submit">Enregistré</button>
-        </div>
-    </form>
+            <div class="col-12 text-center mt-5">
+                <button class="btn btn-dark shadow mb-3 " type="submit">Mettre à jour</button>
+            </div>
+        </form>
+    </div>
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -235,7 +242,7 @@ Création de Mission
         });
         //change devis
         $('#devis_id').change(function (e) {
-
+            console.log("ceci a changer");
             var devis_id = $('#devis_id').val();
             var _token = $('input[name="_token"]').val();
             $.ajax({
@@ -259,8 +266,8 @@ Création de Mission
     //end ready
 
 </script>
-<script src="js/jquery.datetimepicker.full.min.js"></script>
-<script src="js/jquery.js"></script>
+{{-- <script src="js/jquery.datetimepicker.full.min.js"></script>
+<script src="js/jquery.js"></script> --}}
 {{-- ce que j'add --}}
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
 <script src="{{asset('/js/jquery.datetimepicker.full.min.js')}}"></script>

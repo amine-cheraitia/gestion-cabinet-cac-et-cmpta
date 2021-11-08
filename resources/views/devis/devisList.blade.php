@@ -1,6 +1,6 @@
 @extends('main')
 @section('title')
-Liste des clients
+Liste des Devis
 @endsection
 @section('style')
 
@@ -29,12 +29,15 @@ Liste des clients
     <div class="alert alert-success" role="alert">{{ session('message') }}</div>
 </div>
 @endif
-<a href="{{route('devis.create')}}" class="btn btn-dark my-2">Crée un Devis</a>
+
 <div class="card mb-4 shadow">
-    <div class="card-header">
-        <i class="fas fa-file-alt"></i>
-        Liste des Devis
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <div><i class="fas fa-file-alt"></i>
+            Liste des Devis</div>
         {{-- //todo: boutton d'ajout --}}
+        <a href="{{route('devis.create')}}" class="btn btn-dark ">Crée un Devis</a>
+
     </div>
     <div class="card-body">
         <table id="datatablesSimple">

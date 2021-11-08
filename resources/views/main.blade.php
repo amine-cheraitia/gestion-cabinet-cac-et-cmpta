@@ -281,7 +281,7 @@
                     <div {{-- class="col-lg-8 col-md-10 mx-auto" --}}>
 
                         @yield('content')
-                        <p class="mt-4">random text</p>
+                        {{-- <p class="mt-4">random text</p> --}}
 
 
 

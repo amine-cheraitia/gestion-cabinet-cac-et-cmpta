@@ -28,12 +28,14 @@ Liste des clients
     <div class="alert alert-success" role="alert">{{ session('message') }}</div>
 </div>
 @endif
-<a href="{{route('client.index')}}" class="btn btn-dark my-2">Crée une mission</a>
+
 <div class="card mb-4 shadow">
-    <div class="card-header">
-        <i class="fas fa-table me-1"></i>
-        Liste des Entreprises
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <div><i class="far fa-address-card"></i>
+            Liste des Entreprises</div>
         {{-- //todo: boutton d'ajout --}}
+        <a href="{{route('client.index')}}" class="btn btn-dark {{-- my-2 --}}">Crée une fiche d'entreprise</a>
     </div>
     <div class="card-body">
         <table id="datatablesSimple">
