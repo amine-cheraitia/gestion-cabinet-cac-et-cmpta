@@ -80,6 +80,8 @@ Liste des missions
 
                     <td class="d-flex">
                         {{-- TO do consulter les missions aprés le setup des taches --}}
+                        <a href="{{route('mission.show',$mission->id)}}" class="btn btn-outline-primary"><i
+                                style="font-size: 15px" class="fas fa-sign-in-alt"></i></a> &nbsp;
                         <a href="{{route('mission.edit',$mission->id)}}" class="btn btn-outline-secondary">
                             <i class="fas fa-minus"></i></a> &nbsp;
                         <a href="{{route('mission.destroy',$mission->id)}}" class="btn btn-outline-danger"><i

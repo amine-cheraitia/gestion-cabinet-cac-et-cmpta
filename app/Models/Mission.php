@@ -40,6 +40,12 @@ class Mission extends Model
         return $this->belongsTo(Prestation::class, 'prestation_id');
     }
 
+
+    public function mandat()
+    {
+        return $this->hasOne(Mandat::class, 'mission_id');
+    }
+
     public function getRaisonSocialAttribute($value)
     {
         return ucfirst($value);

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DevisController;
 use App\Http\Controllers\MissionController;
 use App\Http\Controllers\EntrepriseController;
+use App\Http\Controllers\MandatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,10 @@ Route::get('/missions/{id}/delete', [MissionController::class, 'destroy'])->name
 //--ajax
 Route::post('/missions/fetch/', [MissionController::class, 'devisContent'])->name('mission.devisContent');
 
-//
+//mandat
+Route::get('/mandat/generate/{id}', [MandatController::class, 'generate'])->name('mandat.generate');
+Route::get('/mandat/pdf/{id}', [MandatController::class, 'pdf'])->name('mandat.pdf');
+
 
 /* Route::get('/missions', 'App\Http\Controllers\MissionController@index')->name('mission.list');
 [MissionController::class, 'index'] */

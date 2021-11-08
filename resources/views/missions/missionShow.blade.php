@@ -36,7 +36,16 @@ Missions
 @section('content')
 
 <h2 class="my-4 text-center">Détail de la mission {{$mission->num_missions}}</h2>
-
+@if(session('errors'))
+<div class="col-lg-12">
+    <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
+</div>
+@endif
+@if(session('message'))
+<div class="col-lg-12">
+    <div class="alert alert-success" role="alert">{{ session('message') }}</div>
+</div>
+@endif
 
 {{-- @php
 Carbon\Carbon::setLocale('fr');
@@ -88,15 +97,23 @@ Carbon\Carbon::setLocale('fr');
 
 
         </div>
+
         <div class="row my-3">
             <div id="btn" class="d-flex flex text-center justify-content-center">
-                <a target="_blank" href="{{route('devis.pdf',$mission->id)}}" class="btn btn-primary">{{-- <i
-                        style="font-size: 15px;" class="fas fa-print"> --}}<i class="fas fa-cogs"></i></i> Générer le
-                    Mandat</a>&nbsp;
-                <a target="_blank" href="{{route('devis.pdf',$mission->id)}}" class="btn btn-outline-primary"><i
+
+                @if ($mission->mandat)
+                <a target="_blank" href="{{route('mandat.pdf',$mission->id)}}" class="btn btn-outline-primary"><i
                         style="font-size: 15px;" class="fas fa-print"></i> Imprimer le Mandat</a>&nbsp;
-                {{-- <a href="{{route('devis.edit',$mission->id)}}" class="btn btn-outline-secondary">
-                    <i class="fas fa-minus"></i></a> &nbsp; --}}
+                @else
+                <a href="{{route('mandat.generate',$mission->id)}}" class="btn btn-primary"><i
+                        class="fas fa-cogs"></i></i>
+                    Générer le
+                    Mandat</a> &nbsp;
+                @endif
+
+
+
+
                 <a href="{{route('devis.destroy',$mission->id)}}" class="btn btn-dark"><i class="fas fa-cogs"></i>
                     Générer la convention</a>&nbsp;
                 <a target="_blank" href="{{route('devis.pdf',$mission->id)}}" class="btn btn-outline-dark"><i

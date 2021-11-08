@@ -211,6 +211,7 @@ namespace App\Models{
  * @property string $date_mandat
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $num_mandat
  * @method static \Illuminate\Database\Eloquent\Builder|Mandat newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Mandat newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Mandat query()
@@ -218,6 +219,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Mandat whereDateMandat($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Mandat whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Mandat whereMissionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mandat whereNumMandat($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Mandat whereUpdatedAt($value)
  */
 	class Mandat extends \Eloquent {}
@@ -246,6 +248,7 @@ namespace App\Models{
  * @property-read mixed $raison_social
  * @property-read mixed $status_int
  * @property-read mixed $statustxt
+ * @property-read \App\Models\Mandat|null $mandat
  * @property-read \App\Models\Prestation|null $prestation
  * @method static \Illuminate\Database\Eloquent\Builder|Mission newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Mission newQuery()

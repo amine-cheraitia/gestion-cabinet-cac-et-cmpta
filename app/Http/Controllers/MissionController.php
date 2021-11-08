@@ -22,7 +22,7 @@ class MissionController extends Controller
     public function show($id)
     {
 
-        $mission = Mission::whereId($id)->with(["entreprise", "prestation"])->first();
+        $mission = Mission::whereId($id)->with(["entreprise", "prestation", "mandat"])->first();
 
         return view('missions.missionShow', compact('mission'));
     }
