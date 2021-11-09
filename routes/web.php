@@ -5,6 +5,7 @@ use App\Http\Controllers\DevisController;
 use App\Http\Controllers\MissionController;
 use App\Http\Controllers\EntrepriseController;
 use App\Http\Controllers\MandatController;
+use App\Http\Controllers\ConventionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +57,10 @@ Route::post('/missions/fetch/', [MissionController::class, 'devisContent'])->nam
 //mandat
 Route::get('/mandat/generate/{id}', [MandatController::class, 'generate'])->name('mandat.generate');
 Route::get('/mandat/pdf/{id}', [MandatController::class, 'pdf'])->name('mandat.pdf');
+
+//convention
+Route::get('/convention/generate/{id}', [ConventionController::class, 'generate'])->name('convention.generate');
+Route::get('/convention/pdf/{id}', [ConventionController::class, 'pdf'])->name('convention.pdf');
 
 
 /* Route::get('/missions', 'App\Http\Controllers\MissionController@index')->name('mission.list');

@@ -8,6 +8,7 @@ use App\Models\Entreprise;
 use App\Models\RegimeFiscal;
 use App\Models\TypeActivite;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class EntrepriseController extends Controller
 {
@@ -43,12 +44,14 @@ class EntrepriseController extends Controller
             'categorie_id' => 'required',
         ]);
         Entreprise::create(request()->all());
+
+        alert()->success('Entreprise', "L'entreprise a bien été enregistré");
         return redirect()->route('client.list');
-        return "ok";
+        /*         return "ok";
         $entreprises = Entreprise::with('RegimeFiscal')->get();
         //$entreprises->with('RegimeFiscal')->get();
-        ($entreprises);
-        return view('clients.clientCreate', compact('entreprises'));
+        /* ($entreprises);
+        return view('clients.clientCreate', compact('entreprises')); */
     }
 
     public function show($id)
@@ -92,15 +95,18 @@ class EntrepriseController extends Controller
         ]);
 
         Entreprise::whereId($id)->update($data);
+        alert()->success('Entreprise', "les informations de l'entreprise se sont mis à jour");
         return redirect()->route('client.list');
     }
     public function destroy($id)
     {
 
         if (Devis::where('entreprise_id', $id)->count()) {
+            Alert::error('Suppression d\'entreprise', "l'Entreprise ne peut pas étre supprimé");
             return redirect()->route('client.list')->with('errors', "l'Entreprise ne peut pas étre supprimé");
         }
 
+        Alert::info('Suppression d\'entreprise', 'L\'Entreprise a bien été supprimer');
         Entreprise::whereId($id)->delete();
         return redirect()->route('client.list')->withMessage('l\'Entreprise a été supprimé');
     }

@@ -18,7 +18,9 @@
     @yield('style')
 </head>
 
+
 <body class="sb-nav-fixed">
+    @include('sweetalert::alert')
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>

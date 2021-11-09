@@ -39,7 +39,6 @@ class MandatController extends Controller
         $mandat = Mandat::whereMissionId($id)->first();
         $mission = Mission::whereId($id)->first();
 
-
         $data['num_mandat'] = $mandat->num_mandat;
         $data['raison_social'] = $mission->entreprise->raison_social;
         $data['adresse'] = $mission->entreprise->adresse;
@@ -48,12 +47,7 @@ class MandatController extends Controller
         $data['start'] = $mission->start;
         $data['end'] = $mission->end;
 
-
-
         $pdf = PDF::loadView('mandats.pdf', $data);
-        return $pdf->stream($mandat->num_devis . ".pdf");
-
-
-        /* return view('devis.pdf', compact('devis')); */
+        return $pdf->stream($mandat->date_mandat . ".pdf");
     }
 }
