@@ -44,8 +44,14 @@ Route::post('/devis/fetch', [DevisController::class, 'calculPrix'])->name('devis
 
 //mission
 Route::get('/missions', [MissionController::class, 'index'])->name('mission.list');
-Route::get('/missions/{id}', [MissionController::class, 'show'])->name('mission.show');
+Route::get('/missions/{id}/show', [MissionController::class, 'show'])->name('mission.show');
 Route::get('/missions/create', [MissionController::class, 'create'])->name('mission.create');
+Route::get('/missions/planning', [MissionController::class, 'planning'])->name('mission.planning');
+Route::get('/planning', function () {
+    return view('missions.missionPlanning');
+});
+
+
 Route::post('/missions/store', [MissionController::class, 'store'])->name('mission.store');
 Route::get('/missions/edit/{id}', [MissionController::class, 'edit'])->name('mission.edit');
 Route::patch('/missions/{id}', [MissionController::class, 'update'])->name('mission.update');

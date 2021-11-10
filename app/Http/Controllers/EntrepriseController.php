@@ -27,6 +27,7 @@ class EntrepriseController extends Controller
         $categorie = Categorie::all();
         return view('clients.clientCreate', compact('categorie', 'regimeFiscal', 'typeActivite'));
     }
+
     public function store(Request $request)
     {
         //To do regex num tel

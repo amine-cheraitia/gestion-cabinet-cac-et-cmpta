@@ -111,7 +111,7 @@
 </head>
 
 <body>
-    <div class="invoice-box pt-5">
+    {{-- <div class="invoice-box pt-5">
         <table cellpadding="0" cellspacing="0">
             <tr class="top">
                 <td colspan="6">
@@ -248,10 +248,49 @@
 
             </td>
         </tr>
-    </table>
+    </table>--}}
 
 
+    <header class="invoice-box " style="font-weight: bold; text-decoration: underline; text-align: center;color: black">
+        République Algérienne Démocratique et Populaire <br>
+        Conseil National de l’Organisation Nationale des Comptables Agréés <br>
+        Organisation Nationale des Comptables Agréés <br>
 
+    </header>
+    <br><br><br>
+    <div id="first" style="text-align: center;position: relative; height: 100vh;">
+        <div style="margin-bottom: 50px">
+            <img src="https://www.sparksuite.com/images/logo.png"
+                style="width: 100%; max-width: 300px;font-weight: bold" /> <br><br>
+            <h4>CABINET MEDDAHI</h4>
+            <h5> Comptabilité et commissariat aux comptes <br><br>
+                Adresse : 554 Cité el djawhara, BT11 N°01 Les Halles, Alger.</h5>
+        </div>
+        <div style="text-align: left;font-weight: bold">
+            N°: {{$num_convention}} <br>
+            Date : {{Carbon\Carbon::parse($date_convention)->format('d/m/Y')}}
+        </div>
+        <br><br>
+        <div>
+            <h3>CONVENTION DE PRESTATION DE SERVICES<br>
+                AUDIT LEGAL (COMMISARIAT AUX COMPTES)
+            </h3>
+        </div>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <div style="text-align: center;font-weight: bold; position absolute">Textes de Référence : <br>
+            *Article 45 de la loi 10-01 du 11/07/2010 <br>
+            * Décret exécutif n° 04/02 du 23/06/2004
+        </div>
+        <br><br> <br><br>
+        <footer style="text-align:left">{PAGENO}</footer>
+
+
+    </div>
     <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci iure illo cum optio a omnis magnam corporis
         dolorem necessitatibus voluptas voluptates voluptate voluptatibus consequuntur eos nihil facere, temporibus odio
         dolorum.
