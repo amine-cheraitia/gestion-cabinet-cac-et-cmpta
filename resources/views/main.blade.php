@@ -87,7 +87,6 @@
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="{{route('client.list')}}">Consulter</a>
-
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gUser"
@@ -139,6 +138,7 @@
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="#">Consulter</a>
+                                <a class="nav-link" href="{{route('mission.planningLayout')}}">Consulter Planning</a>
 
                             </nav>
                         </div>
