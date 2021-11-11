@@ -140,26 +140,105 @@ class MissionController extends Controller
         return redirect()->route('mission.list')->withMessage('la mission a été supprimé');;
     }
     public function planning()
-    {/*
+    {
+        /*
         $devisUsed = Mission::whereNotNull('devis_id')->get();
-
         $entreprises = Entreprise::all();
         $devis = Devis::whereNotIn("id", $devisUsed->pluck('devis_id'))->get(); ///wherenotin
         $prestations = Prestation::all();
- */
-        $event = Mission::Latest()->get();
-        return response()->json($event, 200);
+        */
 
+        $event = Mission::Latest()->get();
+        return response()->json(
+            $event
+        );
+
+        /*
         $missions = Mission::Latest()->get();
-        return response()->json($missions);
+        return response()->json($missions); */
         /*         return view('missions.missionPlanning', compact('entreprises', 'devis', 'prestations'));
         return view('missions.missionPlanning'); */
     }
 
     public function planningLayout()
     {
+        $devisUsed = Mission::whereNotNull('devis_id')->get();
+        $entreprises = Entreprise::all();
+        $devis = Devis::whereNotIn("id", $devisUsed->pluck('devis_id'))->get(); ///wherenotin
+        $prestations = Prestation::all();
+        return view('missions.missionPlanning', compact('prestations', 'devis', 'entreprises'));
+    }
 
 
-        return view('missions.missionPlanning');
+    public function storeViaPlanning(Request $request)
+    {
+
+        try {
+            $request->validate([
+                'start' => 'required|date|before:end',
+                'end' => 'required|date|after:start',
+                'color' => 'required',
+                'textColor' => 'required',
+                'prestation_id' => 'required',
+                'entreprise_id' => 'required',
+                "total" => 'required'
+            ]);
+
+            if (empty($request->id)) {
+                $num_missions = IdGenerator::generate(['table' => 'missions', 'field' => 'num_missions', 'length' => 7, 'prefix' => 'M' . date('y') . '-', 'reset_on_prefix_change' => true]);
+                $entreprise = Entreprise::whereId($request->entreprise_id)->first();
+                $code = Prestation::whereId($request->prestation_id)->first();
+                $title = $num_missions . "-" . $entreprise->raison_social . "-" . $code->code_prestation;
+
+                Mission::create([
+                    "devis_id" => $request->devis_id,
+                    "entreprise_id" => $request->entreprise_id,
+                    "prestation_id" => $request->prestation_id,
+                    "color" => $request->color,
+                    "textColor" => $request->textColor,
+                    "allDay" => 1,
+                    "status" => 0,
+                    "start" => $request->start,
+                    "end" => $request->end,
+                    "title" => $title,
+                    'num_missions' => $num_missions,
+                    "total" => $request->total,
+                ]);
+                alert()->success('Mission', "La mission a bien été crée");
+            } else {
+
+                $num_missions = Mission::whereId($request->id)->first('num_missions');
+                $entreprise = Entreprise::whereId($request->entreprise_id)->first();
+
+                $code = Prestation::whereId($request->prestation_id)->first();
+                $title = $num_missions->num_missions . "-" . $entreprise->raison_social . "-" . $code->code_prestation;
+
+                Mission::whereId($request->id)->update([
+                    "devis_id" => $request->devis_id,
+                    "entreprise_id" => $request->entreprise_id,
+                    "prestation_id" => $request->prestation_id,
+                    "color" => $request->color,
+                    "textColor" => $request->textColor,
+                    "start" => $request->start,
+                    "end" => $request->end,
+                    "total" => $request->total,
+                    "title" => $title,
+
+                ]);
+
+                alert()->success('Mise à jour', 'La mission a bien été modifié');
+            }
+        } catch (\Throwable $th) {
+            alert()->error('error', "Veuillez vérifier les données que vous avez introduit " . $th->getMessage());
+            return redirect()->back();
+        }
+        return redirect()->back();
+    }
+
+    public function deleteViaPlanning($id)
+    {
+        Mission::whereId($id)->delete();
+        alert()->success('Mission', 'Mission a bien été supprimer');
+        return redirect()->back();
     }
 }

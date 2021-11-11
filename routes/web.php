@@ -39,27 +39,27 @@ Route::patch('/devis/{id}', [DevisController::class, 'update'])->name('devis.upd
 Route::get('/devis/{id}/delete', [DevisController::class, 'destroy'])->name('devis.destroy');
 //---pdf
 Route::get('/devis/pdf/{id}', [DevisController::class, 'pdf'])->name('devis.pdf');
-//---ajax
+//---ajax devis
 Route::post('/devis/fetch', [DevisController::class, 'calculPrix'])->name('devis.calculPrix');
 
 //mission
 Route::get('/missions', [MissionController::class, 'index'])->name('mission.list');
 Route::get('/missions/{id}/show', [MissionController::class, 'show'])->name('mission.show');
 Route::get('/missions/create', [MissionController::class, 'create'])->name('mission.create');
-Route::get('/missions/planning', [MissionController::class, 'planning'])->name('mission.planning');
-Route::get('/planning', function () {
-    return view('missions.missionPlanning');
-});
-
-
 Route::post('/missions/store', [MissionController::class, 'store'])->name('mission.store');
 Route::get('/missions/edit/{id}', [MissionController::class, 'edit'])->name('mission.edit');
 Route::patch('/missions/{id}', [MissionController::class, 'update'])->name('mission.update');
 Route::get('/missions/{id}/delete', [MissionController::class, 'destroy'])->name('mission.destroy');
+//mission planning
+Route::get('/missions/planning/fetch', [MissionController::class, 'planning'])->name('mission.planning');
+Route::get('/missions/planning', [MissionController::class, 'planningLayout'])->name('mission.planningLayout');
 
-//--ajax
+
+//--ajax mission
 Route::post('/missions/fetch/', [MissionController::class, 'devisContent'])->name('mission.devisContent');
-
+//--ajax mission planning store
+Route::post('/missions/planning/store', [MissionController::class, 'storeViaPlanning'])->name('mission.storeViaPlanning');
+Route::get('/missions/{id}/deleteViaPlanning', [MissionController::class, 'deleteViaPlanning'])->name('mission.deleteViaPlanning');
 //mandat
 Route::get('/mandat/generate/{id}', [MandatController::class, 'generate'])->name('mandat.generate');
 Route::get('/mandat/pdf/{id}', [MandatController::class, 'pdf'])->name('mandat.pdf');
