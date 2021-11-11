@@ -6,6 +6,7 @@ use App\Http\Controllers\MissionController;
 use App\Http\Controllers\EntrepriseController;
 use App\Http\Controllers\MandatController;
 use App\Http\Controllers\ConventionController;
+use App\Http\Controllers\TacheController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +69,13 @@ Route::get('/mandat/pdf/{id}', [MandatController::class, 'pdf'])->name('mandat.p
 Route::get('/convention/generate/{id}', [ConventionController::class, 'generate'])->name('convention.generate');
 Route::get('/convention/pdf/{id}', [ConventionController::class, 'pdf'])->name('convention.pdf');
 
-
+//taches
+Route::get('/taches', [TacheController::class, 'index'])->name('tache.list');
+Route::get('/taches/{id}/show', [TacheController::class, 'show'])->name('tache.show');
+Route::get('/taches/create', [TacheController::class, 'create'])->name('tache.create');
+Route::post('/taches/store', [TacheController::class, 'store'])->name('tache.store');
+Route::get('/taches/edit/{id}', [TacheController::class, 'edit'])->name('tache.edit');
+Route::patch('/taches/{id}', [TacheController::class, 'update'])->name('tache.update');
+Route::get('/taches/{id}/delete', [TacheController::class, 'destroy'])->name('tache.destroy');
 /* Route::get('/missions', 'App\Http\Controllers\MissionController@index')->name('mission.list');
 [MissionController::class, 'index'] */

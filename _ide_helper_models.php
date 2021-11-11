@@ -384,6 +384,11 @@ namespace App\Models{
  * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $num_tache
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Commentaire[] $commentaires
+ * @property-read int|null $commentaires_count
+ * @property-read \App\Models\Mission $mission
+ * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Tache newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Tache newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Tache query()
@@ -394,6 +399,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Tache whereEnd($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tache whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tache whereMissionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tache whereNumTache($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tache whereStart($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tache whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tache whereTextColor($value)
