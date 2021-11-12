@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,6 +22,13 @@ class Tache extends Model
         "user_id",
         'num_tache',
     ];
+    /* protected $dateFormat = 'd-m-Y H:i:s'; */
+    /*     protected $casts = [
+        'start' => 'datetime:d-m-Y H:i:s',
+        'end' => 'datetime:d-m-Y H:i:s',
+        'updated_at' => 'datetime:d-m-Y H:i:s',
+        'created_at' => 'datetime:d-m-Y H:i:s',
+    ]; */
 
     public function user()
     {
@@ -50,5 +58,24 @@ class Tache extends Model
             0 => 'En cours',
             1 => 'Achevé'
         ][$this->status];
+    }
+    public function setStartAttribute($value)
+    {
+        $this->attributes['start'] = Carbon::parse($value)->format('Y-m-d H:i:s'); /* Carbon::createFromFormat('d-m-Y H:i:s', $value)->format('Y-m-d H:i:s') */;
+    }
+
+    public function getStartAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['start'])->format('d-m-Y H:i:s');
+    }
+    //end a revoir
+    public function setEndAttribute($value)
+    {
+        $this->attributes['end'] = Carbon::parse($value)->format('Y-m-d H:i:s');/*  Carbon::createFromFormat('d-m-Y H:i:s', $value)->format('Y-m-d H:i:s'); */
+    }
+
+    public function getEndAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['end'])->format('d-m-Y H:i:s');
     }
 }

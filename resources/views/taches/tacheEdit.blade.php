@@ -30,7 +30,7 @@ Edition de tache
     <div class="card-body">
 
 
-        <form class="row g-3 needs-validation shadow " novalidate method="POST" action="{{route('tache.store')}}">
+        <form class="row g-3 needs-validation " novalidate method="POST" action="{{route('tache.update',$tache->id)}}">
             @csrf
             @method('PATCH')
             <div class="col-md-12">
@@ -233,8 +233,8 @@ Edition de tache
 
 
         jQuery.datetimepicker.setLocale('fr');
-        $('#start').datetimepicker({format:"Y-m-d H:i:s"});
-        $('#end').datetimepicker({format:"Y-m-d H:i:s"});
+        $('#start').datetimepicker({format:"d-m-Y H:i:s"});
+        $('#end').datetimepicker({format:"d-m-Y H:i:s"});
 
 
     })
