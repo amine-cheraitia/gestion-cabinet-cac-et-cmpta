@@ -387,6 +387,8 @@ namespace App\Models{
  * @property string $num_tache
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Commentaire[] $commentaires
  * @property-read int|null $commentaires_count
+ * @property-read mixed $status_int
+ * @property-read mixed $statustxt
  * @property-read \App\Models\Mission $mission
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Tache newModelQuery()

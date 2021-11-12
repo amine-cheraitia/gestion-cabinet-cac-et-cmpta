@@ -36,4 +36,19 @@ class Tache extends Model
     {
         return $this->hasMany(Commentaire::class, 'tache_id');
     }
+
+    public function getStatusIntAttribute()
+    {
+        return [
+            0 => '<span class="badge bg-warning text-dark">En cours</span>',
+            1 => '<span class="badge bg-success">Achevé</span>'
+        ][$this->status];
+    }
+    public function getStatustxtAttribute()
+    {
+        return [
+            0 => 'En cours',
+            1 => 'Achevé'
+        ][$this->status];
+    }
 }
