@@ -71,16 +71,20 @@ class TacheController extends Controller
 
     public function edit($id)
     {
-        $taches = Tache::all();
+        $users = User::all();
+        $missions = Mission::all();
+        $tache = Tache::whereId($id)->first();
 
-        return view('taches.tachesList', compact('taches'));
+        return view('taches.tacheEdit', compact('tache', 'missions', 'users'));
     }
 
     public function update($id)
     {
-        $taches = Tache::all();
-
-        return view('taches.tachesList', compact('taches'));
+        /*         $users = User::all();
+        $missions = Mission::all();
+        $tache = Tache::whereId($id)->first();
+        dd($tache); */
+        return view('taches.tacheEdit', compact('tache', 'missions', 'users'));
     }
 
     public function destroy()
