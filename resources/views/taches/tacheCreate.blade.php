@@ -54,7 +54,7 @@ Création de tache
 
         <div class="col-md-12">
             <label for="designation" class="form-label">Désignation</label>
-            <input type="text" class="form-control shadow  @error('total')is-invalid
+            <input type="text" class="form-control shadow  @error('designation')is-invalid
                 @enderror" id="designation" placeholder="Veuillez décrire la tache" value="{{old('designation')}}"
                 required name="designation">
             @error('designation')
