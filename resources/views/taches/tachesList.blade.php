@@ -69,7 +69,7 @@ Liste des missions
                     <td class="text-center"><strong>{{$loop->iteration}}</strong></td>
                     <td><strong><a href="{{route('mission.show',$tache->id)}}" class="link-dark"
                                 style="text-underline-position: none">{{$tache->num_tache}}</a></strong></td>
-                    <td>{{ $tache->mission->num_mission }}</td>
+                    <td>{{ $tache->mission->num_missions }}</td>
                     <td>{{ $tache->user->name }}</td>
                     <td>{{$tache->start}}</td>
                     <td>{{$tache->end}} <i class="fas fa-presentation "></i></td>

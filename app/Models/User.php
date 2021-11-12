@@ -19,8 +19,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'prenom',
         'email',
         'password',
+        'role_id'
     ];
 
     /**
@@ -41,4 +43,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getRoleFAttribute()
+    {
+
+        return $this->name . " " . $this->prenom . "-" . $this->getRoleOptionAttribute()[$this->role_id];
+    }
+
+    public function getRoleIddAttribute($attributes)
+    {
+        return  $this->getRoleOptionAttribute()[$attributes];
+    }
+
+    public function getRoleOptionAttribute()
+    {
+        return [
+            0 => "",
+            1 => "secrétaire",
+            2 => "Comptable",
+            3 => "Auditeur",
+            4 => "Commissaire aux comptes"
+        ];
+    }
 }
