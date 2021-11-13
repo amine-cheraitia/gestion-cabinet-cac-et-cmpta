@@ -84,3 +84,6 @@ Route::post('/taches/planning/store', [TacheController::class, 'storeViaPlanning
 Route::get('/taches/{id}/deleteViaPlanning', [TacheController::class, 'deleteViaPlanning'])->name('tache.deleteViaPlanning');
 /* Route::get('/missions', 'App\Http\Controllers\MissionController@index')->name('mission.list');
 [MissionController::class, 'index'] */
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

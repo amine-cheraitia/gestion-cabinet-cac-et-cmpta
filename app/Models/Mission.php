@@ -57,8 +57,8 @@ class Mission extends Model
     public function getStatusIntAttribute()
     {
         return [
-            0 => '<span class="badge bg-warning text-dark">En cours</span>',
-            1 => '<span class="badge bg-success">Achevé</span>'
+            0 => '<span class="badge badge-pill badge-warning">En cours</span>',
+            1 => '<span class="badge badge-pill badge-success">Achevé</span>'
         ][$this->status];
     }
     public function getStatustxtAttribute()

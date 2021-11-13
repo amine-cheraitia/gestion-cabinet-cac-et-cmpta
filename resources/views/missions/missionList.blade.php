@@ -11,7 +11,7 @@ Liste des missions
         color: #fff !important;
     }
 
-    li a {
+    .dataTable-pagination-list li a {
         color: #212529 !important
     }
 </style>

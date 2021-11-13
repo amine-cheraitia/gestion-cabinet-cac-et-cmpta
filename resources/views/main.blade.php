@@ -14,7 +14,18 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="{{asset('/js/datatables-simple-demo.js')}}"></script>
-    <!-- <link rel="stylesheet" href="css/app.css" /> -->
+    {{-- //laravel mix --}}
+    <script src="{{asset('/js/app.js')}}"></script>
+    <link href="{{asset('/css/app.css')}}" rel="stylesheet" />
+    {{--
+    <link rel="stylesheet" href="css/app.css" /> --}}
+    {{--
+    <link href="https://fonts.googleapis.com/css2?family=Nunito" rel="stylesheet"> --}}
+    <style>
+        /*         * {
+            font-family: 'Nunito', sans-serif;
+        } */
+    </style>
     @yield('style')
 </head>
 
@@ -23,7 +34,7 @@
     @include('sweetalert::alert')
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand ps-3" href="index.html">Gestion Cabinet CAC</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
             <i class="fas fa-bars"></i>
@@ -273,7 +284,7 @@
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Logged in as:</div>
-                    Start Bootstrap
+                    {{Auth::user()->name}}
                 </div>
             </nav>
         </div>
