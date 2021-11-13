@@ -64,7 +64,6 @@ Route::get('/missions/{id}/deleteViaPlanning', [MissionController::class, 'delet
 //mandat
 Route::get('/mandat/generate/{id}', [MandatController::class, 'generate'])->name('mandat.generate');
 Route::get('/mandat/pdf/{id}', [MandatController::class, 'pdf'])->name('mandat.pdf');
-
 //convention
 Route::get('/convention/generate/{id}', [ConventionController::class, 'generate'])->name('convention.generate');
 Route::get('/convention/pdf/{id}', [ConventionController::class, 'pdf'])->name('convention.pdf');
@@ -77,5 +76,7 @@ Route::post('/taches/store', [TacheController::class, 'store'])->name('tache.sto
 Route::get('/taches/edit/{id}', [TacheController::class, 'edit'])->name('tache.edit');
 Route::patch('/taches/{id}', [TacheController::class, 'update'])->name('tache.update');
 Route::get('/taches/{id}/delete', [TacheController::class, 'destroy'])->name('tache.destroy');
+//tache planning
+Route::get('/taches/planning', [TacheController::class, 'planningLayout'])->name('tache.planningLayout');
 /* Route::get('/missions', 'App\Http\Controllers\MissionController@index')->name('mission.list');
 [MissionController::class, 'index'] */

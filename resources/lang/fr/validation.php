@@ -153,7 +153,9 @@ return [
         'end' => "Date de fin",
         'color' => "Couleur du fond",
         'textColor' => 'Couleur de texte',
-        'total' => 'montant total'
+        'total' => 'montant total',
+        'mission_id' => "Mission",
+        'user_id' => "Collaborateur",
 
     ]
 ];

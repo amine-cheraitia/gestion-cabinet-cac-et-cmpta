@@ -110,7 +110,7 @@ Edition de Mission
             <div class="col-md-3">
                 <label for="start" class="form-label">Date de debut</label>
                 <input {{-- type="date" --}}class="form-control shadow @error('start')is-invalid
-                @enderror" id="start" value="{{/* date('Y-m-d', strtotime( */$mission->start/* )) */}}" required
+                @enderror" id="start" value="{{/* date('Y-m-d', strtotime( */$mission->starte/* )) */}}" required
                     name="start">
                 @error('start')
                 <div class="invalid-feedback">{{$errors->first('start')}}</div>
@@ -121,7 +121,7 @@ Edition de Mission
                 <label for="end" class="form-label">Date de fin</label>
                 <input {{-- type="date" --}} class="form-control shadow @error('end')is-invalid
                 @enderror" id="end" placeholder="Veuillez saisir la raison social"
-                    value="{{/* date('Y-m-d', strtotime( */$mission->end/* )) */}}" required name="end">
+                    value="{{/* date('Y-m-d', strtotime( */$mission->ende/* )) */}}" required name="end">
                 @error('end')
                 <div class="invalid-feedback">{{$errors->first('end')}}</div>
                 @enderror
@@ -258,8 +258,8 @@ Edition de Mission
         });
 
         jQuery.datetimepicker.setLocale('fr');
-        $('#start').datetimepicker();
-        $('#end').datetimepicker();
+        $('#start').datetimepicker({format:"d-m-Y H:i:s"});
+        $('#end').datetimepicker({format:"d-m-Y H:i:s"});
 
 
     })

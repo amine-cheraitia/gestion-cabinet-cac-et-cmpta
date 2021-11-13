@@ -31,7 +31,8 @@ Création de tache
                     @enderror" id="mission_id" required name="mission_id">
                 <option selected disabled value="{{null}}">...</option>
                 @foreach ($missions as $mission)
-                <option value="{{$mission->id}}">{{$mission->title}}</option>
+                <option value="{{$mission->id}}" {{(old('mission_id')==$mission->id)? "selected"
+                    :""}}>{{$mission->title}}</option>
                 @endforeach
             </select>
             @error('mission_id')
@@ -44,7 +45,8 @@ Création de tache
                     @enderror" id="user_id" required name="user_id">
                 <option selected disabled value="">...</option>
                 @foreach ($users as $user)
-                <option value="{{$user->id}}">{{ $user->role_f}}</option>
+                <option value="{{$user->id}}" {{(old('user_id')==$user->id)? "selected" :""}}>{{ $user->role_f}}
+                </option>
                 @endforeach
             </select>
             @error('user_id')
@@ -121,15 +123,15 @@ Création de tache
 <script>
     $(document).ready(function(){
 
-        $('#prestation_id').val(null).change();
+/*         $('#prestation_id').val(null).change();
         $('#entreprise_id').val(null).change();
         $('#devis_id').val(null).change();
         $('#total').val(null).change();
         if(($("#entreprise_id").val()==null ) || ($("#prestation_id").val()==null)  ){
             $('#total').val("");
-        }
+        } */
         // click entreprise
-        $('#entreprise_id').click(function (e) {
+/*         $('#entreprise_id').click(function (e) {
 
             if($("#devis_id").val()!==null){
                 $('#prestation_id').val(null).change();
@@ -156,9 +158,9 @@ Création de tache
                     }
                 })
             }
-        })
+        }) */
         // click prestation
-        $('#prestation_id').click(function (e) {
+/*         $('#prestation_id').click(function (e) {
 
             if($("#devis_id").val()!==null){
                 $('#modalContent').html("Vous ne pouvez pas modifier la Prestation");
@@ -188,10 +190,9 @@ Création de tache
                         }
                     })
                 }
-        });
+        }); */
         //change devis
-        $('#devis_id').change(function (e) {
-
+/*         $('#devis_id').change(function (e) {
             var devis_id = $('#devis_id').val();
             var _token = $('input[name="_token"]').val();
             $.ajax({
@@ -204,12 +205,12 @@ Création de tache
                     $('#entreprise_id').val(response.entreprise_id);
                     }
                 });
-        });
+        }); */
 
 
         jQuery.datetimepicker.setLocale('fr');
-        $('#start').datetimepicker({format:"Y-m-d H:i:s"});
-        $('#end').datetimepicker({format:"Y-m-d H:i:s"});
+        $('#start').datetimepicker({format:"d-m-Y H:i:s"});
+        $('#end').datetimepicker({format:"d-m-Y H:i:s"});
 
 
     })

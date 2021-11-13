@@ -248,7 +248,9 @@ namespace App\Models{
  * @property string $total
  * @property-read \App\Models\Convention|null $convention
  * @property-read \App\Models\Entreprise $entreprise
+ * @property-read mixed $ende
  * @property-read mixed $raison_social
+ * @property-read mixed $starte
  * @property-read mixed $status_int
  * @property-read mixed $statustxt
  * @property-read \App\Models\Mandat|null $mandat

@@ -81,14 +81,14 @@ class EntrepriseController extends Controller
 
     public function update($id)
     {
-
+        $rules = array('required', 'regex:/(0)([0-9]){8,9}/');
         $data = request()->validate([
             'raison_social' => 'required',
             'num_registre_commerce' => 'required',
             'num_art_imposition' => 'required',
             'num_id_fiscale' => 'required',
             'adresse' => 'required',
-            'num_tel' => 'required',
+            'num_tel' =>  $rules,
             'email' => 'required|email|',
             'fiscal_id' => 'required',
             'activite_id' => 'required',

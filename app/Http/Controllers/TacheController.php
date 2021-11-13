@@ -21,7 +21,7 @@ class TacheController extends Controller
 
     public function show($id)
     {
-        $tache = Tache::findOrFail($id)->with(['user', 'mission']);
+        $tache = Tache::whereId($id)->with(['user', 'mission'])->first();
 
         return view('taches.tacheShow', compact('tache'));
     }
@@ -96,7 +96,7 @@ class TacheController extends Controller
         $num_tache = Tache::whereId($id)->first('num_tache');
         $user = User::whereId(request()->user_id)->first();
         $titleMission = Mission::whereId(request()->mission_id)->with('entreprise', 'prestation')->first();
-        $title = $num_tache . "-" . $user->name . "-" . $titleMission->entreprise->raison_social . "-" . $titleMission->prestation->code_prestation;
+        $title = $num_tache->num_tache . "-" . $user->name . "-" . $titleMission->entreprise->raison_social . "-" . $titleMission->prestation->code_prestation;
 
         $start = Carbon::parse(request()->start)->format('Y-m-d H:i:s');
         $end = Carbon::parse(request()->end)->format('Y-m-d H:i:s');

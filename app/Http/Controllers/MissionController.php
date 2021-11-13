@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Devis;
-use App\Models\Entreprise;
 use App\Models\Mission;
+use App\Models\Entreprise;
 use App\Models\Prestation;
 use Illuminate\Http\Request;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MissionController extends Controller
 {
@@ -52,10 +54,15 @@ class MissionController extends Controller
             "total" => 'required'
         ]);
 
+
         $num_missions = IdGenerator::generate(['table' => 'missions', 'field' => 'num_missions', 'length' => 7, 'prefix' => 'M' . date('y') . '-', 'reset_on_prefix_change' => true]);
         $entreprise = Entreprise::whereId($request->entreprise_id)->first();
         $code = Prestation::whereId($request->prestation_id)->first();
         $title = $num_missions . "-" . $entreprise->raison_social . "-" . $code->code_prestation;
+
+
+        $start = Carbon::parse(request()->start)->format('Y-m-d H:i:s');
+        $end = Carbon::parse(request()->end)->format('Y-m-d H:i:s');
 
         Mission::create([
             "devis_id" => $request->devis_id,
@@ -65,12 +72,14 @@ class MissionController extends Controller
             "textColor" => $request->textColor,
             "allDay" => 1,
             "status" => 0,
-            "start" => $request->start,
-            "end" => $request->end,
+            "start" => $start,
+            "end" => $end,
             "title" => $title,
             'num_missions' => $num_missions,
             "total" => $request->total,
         ]);
+
+        alert()->success('Mission', 'Mission crée avec succée');
         return redirect()->route('mission.list');
     }
 
@@ -110,6 +119,7 @@ class MissionController extends Controller
 
     public function update($id)
     {
+
         $data = request()->validate([
             'start' => 'required|date|before:end',
             'end' => 'required|date|after:start',
@@ -127,16 +137,30 @@ class MissionController extends Controller
         $code = Prestation::whereId(request()->prestation_id)->first();
         $title = $num_missions->num_missions . "-" . $entreprise->raison_social . "-" . $code->code_prestation;
 
-        Mission::whereId($id)->update($data + [
+
+        $start = Carbon::parse(request()->start)->format('Y-m-d H:i:s');
+        $end = Carbon::parse(request()->end)->format('Y-m-d H:i:s');
+
+        Mission::whereId($id)->update([
+            "start" => $start,
+            "end" => $end,
+            "color" => request()->color,
+            "textColor" => request()->textColor,
+            "prestation_id" => request()->prestation_id,
+            "entreprise_id" => request()->entreprise_id,
+            "total" => request()->total,
+            "status" => request()->status,
             "title" => $title,
 
         ]);
+        alert()->success('Mission', 'Mission a bien été mise à jour');
         return redirect()->route('mission.list');
     }
 
     public function destroy($id)
     {
         Mission::whereId($id)->delete();
+        alert()->info('Mission', 'Mission a bien été supprimer');
         return redirect()->route('mission.list')->withMessage('la mission a été supprimé');;
     }
     public function planning()

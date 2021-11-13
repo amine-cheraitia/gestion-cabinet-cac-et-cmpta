@@ -67,7 +67,7 @@ Liste des missions
                 @foreach ($taches as $tache)
                 <tr>
                     <td class="text-center"><strong>{{$loop->iteration}}</strong></td>
-                    <td><strong><a href="{{route('mission.show',$tache->id)}}" class="link-dark"
+                    <td><strong><a href="{{route('tache.show',$tache->id)}}" class="link-dark"
                                 style="text-underline-position: none">{{$tache->num_tache}}</a></strong></td>
                     <td>{{ $tache->mission->num_missions }}</td>
                     <td>{{ $tache->user->name }}</td>

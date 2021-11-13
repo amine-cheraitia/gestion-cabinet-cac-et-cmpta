@@ -53,8 +53,8 @@ Carbon\Carbon::setLocale('fr');
 <div class="card mb-4 shadow">
 
     <div class="card-header d-flex justify-content-between align-items-center">
-        <div><i class="fas fa-file-alt"></i>
-            {{$mission->title}}</div>
+        <div><i class="fas fa-file-alt"></i> <strong>
+                {{$mission->title}}</strong></div>
 
 
 
@@ -76,7 +76,7 @@ Carbon\Carbon::setLocale('fr');
                 </blockquote>
                 <figcaption class="blockquote-footer text-center my-2">
                     Debut de la mission <cite
-                        title="Source Title"><strong>{{Carbon\Carbon::parse("2018-02-14")->isoFormat('LL')}}</strong></cite>
+                        title="Source Title"><strong>{{Carbon\Carbon::parse($mission->start)->isoFormat('LL')}}</strong></cite>
                     , Fin de la mission <cite
                         title="Source Title"><strong>{{Carbon\Carbon::parse($mission->end)->isoFormat('LL')/*
                             ->format('d-M-Y' )*/}}</strong></cite>
@@ -87,7 +87,7 @@ Carbon\Carbon::setLocale('fr');
         <hr>
         <div class="row my-3">
             <div class=" d-flex justify-content-between row my-2">
-                <div class="col-sm-12 col-md-6 text-left text-sm-center"><strong>Status:</strong>
+                <div class="col-sm-12 col-md-6 text-left text-sm-center"><strong>Statut:</strong>
                     {!!$mission->status_int!!}
                 </div>
                 <div class="col-sm-12 col-md-6 text-right text-sm-center col-xs-text-center">

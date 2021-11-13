@@ -71,8 +71,8 @@ Liste des missions
                                 style="text-underline-position: none">{{$mission->num_missions}}</a></strong></td>
                     <td>{{ $mission->entreprise->raison_social }}</td>
                     <td>{{ $mission->prestation->designation }}</td>
-                    <td>{{$mission->start}}</td>
-                    <td>{{$mission->end}} <i class="fas fa-presentation "></i></td>
+                    <td>{{$mission->starte}}</td>
+                    <td>{{$mission->ende}} <i class="fas fa-presentation "></i></td>
                     <td style="text-align: center">
                         {!!$mission->status_int!!}</span>
                     </td>

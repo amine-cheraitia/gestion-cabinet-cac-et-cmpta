@@ -145,16 +145,16 @@ Edition de tache
 </div>
 <script>
     $(document).ready(function(){
-
+/*
         $('#prestation_id').val(null).change();
         $('#entreprise_id').val(null).change();
         $('#devis_id').val(null).change();
         $('#total').val(null).change();
         if(($("#entreprise_id").val()==null ) || ($("#prestation_id").val()==null)  ){
             $('#total').val("");
-        }
+        } */
         // click entreprise
-        $('#entreprise_id').click(function (e) {
+/*         $('#entreprise_id').click(function (e) {
 
             if($("#devis_id").val()!==null){
                 $('#prestation_id').val(null).change();
@@ -181,9 +181,9 @@ Edition de tache
                     }
                 })
             }
-        })
+        }) */
         // click prestation
-        $('#prestation_id').click(function (e) {
+/*         $('#prestation_id').click(function (e) {
 
             if($("#devis_id").val()!==null){
                 $('#modalContent').html("Vous ne pouvez pas modifier la Prestation");
@@ -213,9 +213,9 @@ Edition de tache
                         }
                     })
                 }
-        });
+        }); */
         //change devis
-        $('#devis_id').change(function (e) {
+/*         $('#devis_id').change(function (e) {
 
             var devis_id = $('#devis_id').val();
             var _token = $('input[name="_token"]').val();
@@ -229,7 +229,7 @@ Edition de tache
                     $('#entreprise_id').val(response.entreprise_id);
                     }
                 });
-        });
+        }); */
 
 
         jQuery.datetimepicker.setLocale('fr');

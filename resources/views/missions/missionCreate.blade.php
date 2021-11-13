@@ -13,6 +13,7 @@ Création de Mission
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
 </script>
 </script>
+<link rel="stylesheet" href="{{asset('css/jquery.datetimepicker.min.css')}}">
 
 @endsection
 @section('content')
@@ -75,7 +76,7 @@ Création de Mission
         {{-- --}}
         <div class="col-md-3">
             <label for="start" class="form-label">Date de debut</label>
-            <input type="date" class="form-control shadow @error('start')is-invalid
+            <input class="form-control shadow @error('start')is-invalid
                 @enderror" id="start" placeholder="Veuillez saisir la raison social" value="{{old('start')}}" required
                 name="start">
             @error('start')
@@ -84,7 +85,7 @@ Création de Mission
         </div>
         <div class="col-md-3">
             <label for="end" class="form-label">Date de fin</label>
-            <input type="date" class="form-control shadow @error('end')is-invalid
+            <input class="form-control shadow @error('end')is-invalid
                 @enderror" id="end" placeholder="Veuillez saisir la raison social" value="{{old('end')}}" required
                 name="end">
             @error('end')
@@ -221,10 +222,14 @@ Création de Mission
 
 
 
-
+        jQuery.datetimepicker.setLocale('fr');
+        $('#start').datetimepicker({format:"d-m-Y H:i:s"});
+        $('#end').datetimepicker({format:"d-m-Y H:i:s"});
 
     })
     //end ready
 
 </script>
+<script src="{{asset('/js/jquery.datetimepicker.full.min.js')}}"></script>
+<script src="{{asset('/js/jquery.min.js')}}"></script>
 @endsection
