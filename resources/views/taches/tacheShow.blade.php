@@ -4,8 +4,9 @@ Tâche
 {{$tache->num_tache}}
 @endsection
 @section('style')
+{{--
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --}}
 <style>
     .dataTable-pagination li.active a {
         background-color: #212529 !important;
@@ -13,7 +14,7 @@ Tâche
         color: #fff !important;
     }
 
-    li a {
+    .dataTable-pagination li a {
         color: #212529 !important
     }
 
@@ -97,29 +98,6 @@ Carbon\Carbon::setLocale('fr');
 
         <div class="row my-3">
             <div id="btn" class="d-flex flex text-center justify-content-center">
-                {{--
-                @if ($mission->mandat)
-                <a target="_blank" href="{{route('mandat.pdf',$mission->id)}}" class="btn btn-outline-primary"><i
-                        style="font-size: 15px;" class="fas fa-print"></i> Imprimer le Mandat</a>&nbsp;
-                @else
-                <a href="{{route('mandat.generate',$mission->id)}}" class="btn btn-primary"><i
-                        class="fas fa-cogs"></i></i>
-                    Générer le
-                    Mandat</a> &nbsp;
-                @endif
-
-                @if ($mission->convention)
-
-                <a target="_blank" href="{{route('convention.pdf',$mission->id)}}" class="btn btn-outline-dark"><i
-                        style="font-size: 15px;" class="fas fa-print"></i> Imprimer la convention </a>
-                @else
-
-                <a href="{{route('convention.generate',$mission->id)}}" class="btn btn-dark"><i class="fas fa-cogs"></i>
-                    Générer la convention</a>
-                @endif
-                --}}
-
-
 
             </div>
 
@@ -127,4 +105,32 @@ Carbon\Carbon::setLocale('fr');
         </div>
     </div>
 
-    @endsection
+</div>
+
+{{-- commentaire --}}
+<div class="card mb-4 shadow">
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <div><i class="far fa-comment-dots"></i> <strong>Liste des commentaires</strong>
+
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row">
+
+        </div>
+        <hr>
+        <div class="row ">
+            <div class="form-group">
+                <label for="comment">Commentaire</label>
+                <textarea class="form-control" id="comment" rows="3"></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-dark"> Ajouter</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@endsection
