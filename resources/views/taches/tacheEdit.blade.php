@@ -88,8 +88,8 @@ Edition de tache
             <div class="col-md-3">
                 <label for="start" class="form-label">Date de debut</label>
                 <input class="form-control shadow @error('start')is-invalid
-                @enderror" id="start" placeholder="Veuillez choisir une date" value="{{old('start') ?? $tache->start}}"
-                    required name="start">
+                @enderror" id="start" placeholder="Veuillez choisir une date"
+                    value="{{old('start') ?? $tache->starte}}" required name="start">
                 @error('start')
                 <div class="invalid-feedback">{{$errors->first('start')}}</div>
                 @enderror
@@ -97,7 +97,7 @@ Edition de tache
             <div class="col-md-3">
                 <label for="end" class="form-label">Date de fin</label>
                 <input class="form-control shadow @error('end')is-invalid
-                @enderror" id="end" placeholder="Veuillez choisir une date" value="{{old('end') ?? $tache->end}}"
+                @enderror" id="end" placeholder="Veuillez choisir une date" value="{{old('end') ?? $tache->ende}}"
                     required name="end">
                 @error('end')
                 <div class="invalid-feedback">{{$errors->first('end')}}</div>

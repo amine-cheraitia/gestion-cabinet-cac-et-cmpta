@@ -71,8 +71,8 @@ Liste des missions
                                 style="text-underline-position: none">{{$tache->num_tache}}</a></strong></td>
                     <td>{{ $tache->mission->num_missions }}</td>
                     <td>{{ $tache->user->name }}</td>
-                    <td>{{$tache->start}}</td>
-                    <td>{{$tache->end}} <i class="fas fa-presentation "></i></td>
+                    <td>{{$tache->starte}}</td>
+                    <td>{{$tache->ende}} <i class="fas fa-presentation "></i></td>
                     <td style="text-align: center">
                         {!!$tache->status_int!!}</span>
                     </td>

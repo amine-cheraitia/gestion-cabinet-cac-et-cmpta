@@ -165,23 +165,11 @@ class MissionController extends Controller
     }
     public function planning()
     {
-        /*
-        $devisUsed = Mission::whereNotNull('devis_id')->get();
-        $entreprises = Entreprise::all();
-        $devis = Devis::whereNotIn("id", $devisUsed->pluck('devis_id'))->get(); ///wherenotin
-        $prestations = Prestation::all();
-        */
 
         $event = Mission::Latest()->get();
         return response()->json(
             $event
         );
-
-        /*
-        $missions = Mission::Latest()->get();
-        return response()->json($missions); */
-        /*         return view('missions.missionPlanning', compact('entreprises', 'devis', 'prestations'));
-        return view('missions.missionPlanning'); */
     }
 
     public function planningLayout()

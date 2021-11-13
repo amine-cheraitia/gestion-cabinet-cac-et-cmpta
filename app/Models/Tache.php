@@ -59,22 +59,22 @@ class Tache extends Model
             1 => 'Achevé'
         ][$this->status];
     }
-    public function setStartAttribute($value)
+    /*     public function setStartAttribute($value)
     {
-        $this->attributes['start'] = Carbon::parse($value)->format('Y-m-d H:i:s'); /* Carbon::createFromFormat('d-m-Y H:i:s', $value)->format('Y-m-d H:i:s') */;
-    }
+        $this->attributes['start'] = Carbon::parse($value)->format('Y-m-d H:i:s'); // Carbon::createFromFormat('d-m-Y H:i:s', $value)->format('Y-m-d H:i:s')
+    } */
 
-    public function getStartAttribute()
+    public function getStarteAttribute()
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['start'])->format('d-m-Y H:i:s');
     }
     //end a revoir
-    public function setEndAttribute($value)
+    /* public function setEndAttribute($value)
     {
-        $this->attributes['end'] = Carbon::parse($value)->format('Y-m-d H:i:s');/*  Carbon::createFromFormat('d-m-Y H:i:s', $value)->format('Y-m-d H:i:s'); */
-    }
+        $this->attributes['end'] = Carbon::parse($value)->format('Y-m-d H:i:s');  //Carbon::createFromFormat('d-m-Y H:i:s', $value)->format('Y-m-d H:i:s');
+    } */
 
-    public function getEndAttribute()
+    public function getEndeAttribute()
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['end'])->format('d-m-Y H:i:s');
     }

@@ -77,6 +77,10 @@ Route::get('/taches/edit/{id}', [TacheController::class, 'edit'])->name('tache.e
 Route::patch('/taches/{id}', [TacheController::class, 'update'])->name('tache.update');
 Route::get('/taches/{id}/delete', [TacheController::class, 'destroy'])->name('tache.destroy');
 //tache planning
+Route::get('/taches/planning/fetch', [TacheController::class, 'planning'])->name('tache.planning');
 Route::get('/taches/planning', [TacheController::class, 'planningLayout'])->name('tache.planningLayout');
+//--ajax tache planning store
+Route::post('/taches/planning/store', [TacheController::class, 'storeViaPlanning'])->name('tache.storeViaPlanning');
+Route::get('/taches/{id}/deleteViaPlanning', [TacheController::class, 'deleteViaPlanning'])->name('tache.deleteViaPlanning');
 /* Route::get('/missions', 'App\Http\Controllers\MissionController@index')->name('mission.list');
 [MissionController::class, 'index'] */
