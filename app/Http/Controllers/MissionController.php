@@ -13,6 +13,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class MissionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
         $missions = Mission::with(['entreprise', 'prestation'])->get();

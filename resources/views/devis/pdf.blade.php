@@ -217,7 +217,36 @@
                     DZD
                 </td>
             </tr>
+            <tr>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td colspan="6">Arrêté le présent devis à la somme de {{$montant_lettre}} Dinars
+                    Algérien.</td>
+            </tr>
         </table>
+
     </div>
 </body>
 

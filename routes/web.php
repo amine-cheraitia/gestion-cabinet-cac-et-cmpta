@@ -23,7 +23,7 @@ use App\Http\Controllers\CommentaireController;
 
 Route::get('/', function () {
     return view('main');
-})->name('/');
+})->name('/')->middleware("auth");
 
 //clients
 Route::get('/clients', [EntrepriseController::class, 'index'])->name('client.list');

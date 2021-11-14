@@ -12,6 +12,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class TacheController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
         $taches = Tache::with(['mission', 'user'])->get();

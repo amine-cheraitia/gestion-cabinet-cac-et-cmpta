@@ -12,6 +12,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class EntrepriseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
         $entreprises = Entreprise::with('RegimeFiscal')->get();

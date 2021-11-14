@@ -2,17 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
+use NumberFormatter;
 use App\Models\Devis;
+use App\Models\Mission;
 use App\Models\Exercice;
 use App\Models\Entreprise;
-use App\Models\Mission;
 use App\Models\Prestation;
 use Illuminate\Http\Request;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
-use PDF;
 
 class DevisController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $devis = Devis::with('entreprise')->get();
@@ -109,10 +115,16 @@ class DevisController extends Controller
     {
         $devis = Devis::findOrFail($id);
 
+        $f = new NumberFormatter("fr", NumberFormatter::SPELLOUT);
+
 
         $data['num_devis'] = $devis->num_devis;
         $data['date_devis'] = $devis->date_devis;
         $data['total'] = $devis->total;
+        $data['montant_lettre'] = ucfirst($f->format($devis->total));
+
+
+
         $data['prestation'] = $devis->prestation->designation;
         $data['entreprise'] = [
             /*             'raison_social' => $devis->entreprise->raison_social,
