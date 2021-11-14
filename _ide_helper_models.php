@@ -42,6 +42,8 @@ namespace App\Models{
  * @property int $tache_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Tache $tache
+ * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Commentaire newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Commentaire newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Commentaire query()
@@ -485,6 +487,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property int|null $role_id
+ * @property-read mixed $fullname
  * @property-read mixed $role_f
  * @property-read mixed $role_idd
  * @property-read mixed $role_option

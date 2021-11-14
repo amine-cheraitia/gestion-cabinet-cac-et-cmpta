@@ -2,11 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DevisController;
-use App\Http\Controllers\MissionController;
-use App\Http\Controllers\EntrepriseController;
-use App\Http\Controllers\MandatController;
-use App\Http\Controllers\ConventionController;
 use App\Http\Controllers\TacheController;
+use App\Http\Controllers\MandatController;
+use App\Http\Controllers\MissionController;
+use App\Http\Controllers\ConventionController;
+use App\Http\Controllers\EntrepriseController;
+use App\Http\Controllers\CommentaireController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +86,12 @@ Route::post('/taches/planning/store', [TacheController::class, 'storeViaPlanning
 Route::get('/taches/{id}/deleteViaPlanning', [TacheController::class, 'deleteViaPlanning'])->name('tache.deleteViaPlanning');
 /* Route::get('/missions', 'App\Http\Controllers\MissionController@index')->name('mission.list');
 [MissionController::class, 'index'] */
+
+//commentaire
+Route::post('commentaires/store/{tache}', [CommentaireController::class, 'store'])->name('commentaire.store');
+Route::get('/commentaires/{id}/delete', [CommentaireController::class, 'destroy'])->name('commentaire.destroy');
+Route::patch('/commentaires/{id}', [CommentaireController::class, 'update'])->name('commentaire.update');
+//auth
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

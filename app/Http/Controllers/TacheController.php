@@ -21,7 +21,7 @@ class TacheController extends Controller
 
     public function show($id)
     {
-        $tache = Tache::whereId($id)->with(['user', 'mission'])->first();
+        $tache = Tache::whereId($id)->with(['user', 'mission', 'commentaires'])->first();
 
         return view('taches.tacheShow', compact('tache'));
     }
