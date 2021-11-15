@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
+use PDF;
+use NumberFormatter;
 use App\Models\Facture;
 use App\Models\Mission;
 use App\Models\Exercice;
@@ -146,5 +149,41 @@ class FactureController extends Controller
             "designation" => $designation,
             "totalFacture" => $totalFacture
         ]);
+    }
+
+    public function pdf($id)
+    {
+        $facture = Facture::findOrFail($id);
+
+        $f = new NumberFormatter("fr", NumberFormatter::SPELLOUT);
+
+
+        $data['num_fact'] = $facture->num_fact;
+        $data['date_facturation'] = $facture->date_facturation;
+        $data['total'] = $facture->montant;
+        $data['montant_lettre'] = ucfirst($f->format($facture->montant));
+
+
+
+        $data['prestation'] = $facture->prestation->designation;
+        $data['entreprise'] = [
+            /*             'raison_social' => $devis->entreprise->raison_social,
+            'num_registre_commerce' => $devis->entreprise->num_registre_commerce,
+            'num_art_imposition' => $devis->entreprise->num_art_imposition,
+            'num_id_fiscale' => $devis->entreprise->num_id_fiscale,
+            'adresse' => $devis->entreprise->adresse,
+            'email' => $devis->entreprise->email, */];
+        $data['raison_social'] = $facture->mission->entreprise->raison_social;
+        $data['num_registre_commerce'] = $facture->mission->entreprise->num_registre_commerce;
+        $data['num_art_imposition'] = $facture->mission->entreprise->num_art_imposition;
+        $data['num_id_fiscale'] = $facture->mission->entreprise->num_id_fiscale;
+        $data['adresse'] = $facture->mission->entreprise->adresse;
+        $data['email'] = $facture->mission->entreprise->email;
+
+        $pdf = PDF::loadView('facture.pdf', $data);
+        return $pdf->stream($facture->num_fact . ".pdf");
+
+
+        /* return view('devis.pdf', compact('devis')); */
     }
 }
