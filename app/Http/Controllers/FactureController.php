@@ -85,9 +85,17 @@ class FactureController extends Controller
 
     public function update(Request $request)
     {
-        dd(request()->all());
 
-        return view("factures.facturesList", compact("factures"));
+
+        $data = request()->validate([
+            'date_facturation' => 'required|date',
+            'exercice_id' => 'required',
+            'mission_id' => 'required',
+            'montant' => 'required',
+        ]);
+        Facture::whereId(request()->id)->update($data);
+        alert()->success('Facture', 'Facture a bien été mise à jour');
+        return redirect()->route('facture.list');
     }
 
     public function destroy(Request $request)
@@ -102,6 +110,7 @@ class FactureController extends Controller
         $mission_id = $request->get('mission_id');
         $mission = Mission::whereId($mission_id)->first();
         $designation = $mission->prestation->designation;
+
         if ($request->edit) {
             $totalFacture = Facture::whereMissionId($mission_id)->whereTypeFactureId(1)->count() - 1;
         } else {
@@ -116,14 +125,18 @@ class FactureController extends Controller
             alert()->error('erreur', 'erreur');
         } */
         if ($totalFacture == 2) {
-            $tranche = 0;
+            $tranche = null;
+            return response()->json([
+                "total" => null,
+                "designation" => null,
+                "totalFacture" => null
+            ]);
         } elseif ($totalFacture == 1) {
             $tranche = $mission->total * 0.4;
         } else {
             $tranche = $mission->total * 0.3;
         }
         $total = number_format($tranche, 2, '.', '');
-
 
         /*         $reponse = $designation;
         $reponse = $total; */
