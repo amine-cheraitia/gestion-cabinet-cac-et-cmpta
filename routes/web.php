@@ -102,6 +102,8 @@ Route::patch('/factures/{id}', [FactureController::class, 'update'])->name('fact
 Route::get('/factures/{id}/delete', [FactureController::class, 'destroy'])->name('facture.destroy');
 //---ajax devis
 Route::post('/factures/fetch', [FactureController::class, 'calculPrix'])->name('facture.calculPrix');
+//---pdf
+Route::get('/factures/pdf/{id}', [FactureController::class, 'pdf'])->name('facture.pdf');
 
 //auth
 Auth::routes();
