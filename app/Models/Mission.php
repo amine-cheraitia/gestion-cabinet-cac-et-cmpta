@@ -50,6 +50,12 @@ class Mission extends Model
         return $this->hasOne(Convention::class, 'mission_id');
     }
 
+
+    public function factures()
+    {
+        return $this->hasMany(Facture::class, 'mission_id');
+    }
+
     public function getRaisonSocialAttribute($value)
     {
         return ucfirst($value);

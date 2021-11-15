@@ -189,6 +189,12 @@ namespace App\Models{
  * @property int|null $fact_avoir_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Exercice|null $exercice
+ * @property-read Facture|null $factureAvoir
+ * @property-read \App\Models\Mission|null $mission
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Paiement[] $paiements
+ * @property-read int|null $paiements_count
+ * @property-read \App\Models\TypeFacture|null $typefacture
  * @method static \Illuminate\Database\Eloquent\Builder|Facture newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Facture newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Facture query()
@@ -250,6 +256,8 @@ namespace App\Models{
  * @property string $total
  * @property-read \App\Models\Convention|null $convention
  * @property-read \App\Models\Entreprise $entreprise
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Facture[] $factures
+ * @property-read int|null $factures_count
  * @property-read mixed $ende
  * @property-read mixed $raison_social
  * @property-read mixed $starte

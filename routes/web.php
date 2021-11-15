@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DevisController;
 use App\Http\Controllers\TacheController;
 use App\Http\Controllers\MandatController;
+use App\Http\Controllers\FactureController;
 use App\Http\Controllers\MissionController;
 use App\Http\Controllers\ConventionController;
 use App\Http\Controllers\EntrepriseController;
@@ -91,6 +92,17 @@ Route::get('/taches/{id}/deleteViaPlanning', [TacheController::class, 'deleteVia
 Route::post('commentaires/store/{tache}', [CommentaireController::class, 'store'])->name('commentaire.store');
 Route::get('/commentaires/{id}/delete', [CommentaireController::class, 'destroy'])->name('commentaire.destroy');
 Route::patch('/commentaires/{id}', [CommentaireController::class, 'update'])->name('commentaire.update');
+
+//facture
+Route::get('/factures', [FactureController::class, 'index'])->name('facture.list');
+Route::get('/factures/create', [FactureController::class, 'create'])->name('facture.create');
+Route::post('/factures/store', [FactureController::class, 'store'])->name('facture.store');
+Route::get('/factures/edit/{id}', [FactureController::class, 'edit'])->name('facture.edit');
+Route::patch('/factures/{id}', [FactureController::class, 'update'])->name('facture.update');
+Route::get('/factures/{id}/delete', [FactureController::class, 'destroy'])->name('facture.destroy');
+//---ajax devis
+Route::post('/factures/fetch', [FactureController::class, 'calculPrix'])->name('facture.calculPrix');
+
 //auth
 Auth::routes();
 

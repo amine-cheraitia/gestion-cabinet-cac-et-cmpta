@@ -137,7 +137,7 @@
                         <div class="collapse" id="gDevis" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="#">Consulter</a>
+                                <a class="nav-link" href="{{route('devis.list')}}">Consulter</a>
 
                             </nav>
                         </div>
@@ -155,7 +155,7 @@
                         <div class="collapse" id="gMission" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="#">Consulter</a>
+                                <a class="nav-link" href="{{route('mission.list')}}">Consulter</a>
                                 <a class="nav-link" href="{{route('mission.planningLayout')}}">Consulter Planning</a>
 
                             </nav>
@@ -174,7 +174,7 @@
                         <div class="collapse" id="gTache" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="#">Consulter</a>
+                                <a class="nav-link" href="{{route('tache.list')}}">Consulter</a>
 
                             </nav>
                         </div>
