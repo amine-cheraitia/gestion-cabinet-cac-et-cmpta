@@ -25,7 +25,7 @@ class FactureController extends Controller
 
     public function index()
     {
-        $factures = Facture::with('mission')->get();
+        $factures = Facture::with(['mission', 'factureAvoir'])->get();
 
         return view("factures.facturesList", compact("factures"));
     }
@@ -39,14 +39,46 @@ class FactureController extends Controller
 
         return view("factures.factureCreate", compact("missions", "exercices"/* , "typefactures", "facturesavoir" */));
     }
+    public function createAvoir()
+    {
+        $factureAnnulee = Facture::whereNotNull('fact_avoir_id')->pluck('fact_avoir_id');
+        $factures = Facture::whereTypeFactureId(1)->whereNotIn('id', $factureAnnulee)->get();
+        $exercices = Exercice::all();
+        return view("factures.factureAvoirCreate", compact("factures", "exercices"/* , "typefactures", "facturesavoir" */));
+    }
 
     public function store(Request $request)
     {
 
+        /* dd($request); */
+        if ($request->fact_avoir_id) {
+
+            $request->validate([
+                'fact_avoir_id' => 'required',
+                'date_facturation' => 'required|date',
+                'exercice_id' => 'required',
+                'montant' => 'required',
+            ]);
+            $num_fact = IdGenerator::generate(['table' => 'factures', 'field' => 'num_fact', 'length' => 8, 'prefix' => 'FA' . date('y') . '-', 'reset_on_prefix_change' => true]);
+            $montant = number_format($request->montant, 2, '.', '');
+            $mission_id = Facture::whereId($request->fact_avoir_id)->first('mission_id')->mission_id;
+
+            Facture::create([
+                'num_fact' => $num_fact,
+                "date_facturation" => $request->date_facturation,
+                "montant" => $montant,
+                "mission_id" => $mission_id,
+                "exercice_id" => $request->exercice_id,
+                'type_facture_id' => 2,
+                'fact_avoir_id' => $request->fact_avoir_id
+            ]);
+            alert()->success('Facture d\'Avoir', 'Facture d\'Avoir crée avec succée');
+            return redirect()->route('facture.list');
+        }
 
         $request->validate([
             'mission_id' => 'required',
-            'date_facturation' => 'required',
+            'date_facturation' => 'required|date',
             'exercice_id' => 'required',
             'montant' => 'required',
         ]);
@@ -68,35 +100,61 @@ class FactureController extends Controller
     public function edit($id)
     {
 
-        /* dd(Facture::groupBy("mission_id")->selectRaw('mission_id,count(*) as totalfact')->get()); */
-        /* $factureFinal = Facture::whereNotIn("mission_id", $devisUsed->pluck('devis_id'))->get(); */
         /*
-        $missionfull = DB::table('factures')->select(['mission_id', DB::raw('count(*)')])
-            ->groupBy('mission_id')
-            ->having(DB::raw('count(*)'), '=', 3)->pluck('mission_id');
+        $devisUsed = Mission::whereNotNull('devis_id')->get();
+        $devisUsed = $devisUsed->pluck('devis_id');
+        $mission = Mission::whereId($id)->first();
+        $devisUsed = collect(array_diff($devisUsed->toArray(), array($mission->devis_id))); // pour récupéré une collection avec les devis non utilisé + le devis utilisé dans la mission actuel
+        */
 
-        $missionban =   $missionfull->push(Facture::whereId($id)->first(['mission_id'])->mission_id);
-        dd($missionban);
-        $missions = Mission::whereNotIn('id', $missionban)->get();*/
-        $missions = Mission::all();
-        /* dd(Facture::groupBy("mission_id")->selectRaw('mission_id,count(*) as totalfact')->having(DB::raw('count(mission_id)'), '<', 2)->get()); */
-        $exercices = Exercice::all();
         $facture = Facture::whereId($id)->first();
+        if (($facture->type_facture_id) == 2) {
+            $factureUtilise = Facture::whereNotNull('fact_avoir_id')->pluck('fact_avoir_id');
 
-        return view("factures.factureEdit", compact("facture", "missions", "exercices"));
+            $factureAnnulee = collect(array_diff($factureUtilise->toArray(), array($facture->fact_avoir_id))); // pour récupérer une collection des factures qui n'ont pas de facture d'avoir + la facture actuel
+            /* dd(array($factureAnnulee)); */
+
+            $factures = Facture::whereTypeFactureId(1)->whereNotIn('id', $factureAnnulee)->get();
+            $exercices = Exercice::all();
+            $factavoir = Facture::whereId($id)->first();
+            return view("factures.factureAvoirEdit", compact("factures", "factavoir", "exercices"));
+        } else {
+
+            $missions = Mission::all();
+            $exercices = Exercice::all();
+
+
+            return view("factures.factureEdit", compact("facture", "missions", "exercices"));
+        }
     }
 
     public function update(Request $request)
     {
 
+        if ($request->fact_avoir_id) {
 
-        $data = request()->validate([
-            'date_facturation' => 'required|date',
-            'exercice_id' => 'required',
-            'mission_id' => 'required',
-            'montant' => 'required',
-        ]);
-        Facture::whereId(request()->id)->update($data);
+            $data = request()->validate([
+                'fact_avoir_id' => 'required',
+                'date_facturation' => 'required|date',
+                'exercice_id' => 'required',
+                'montant' => 'required',
+            ]);
+            $mission_id = Facture::whereId($request->fact_avoir_id)->first()->mission_id;
+
+            Facture::whereId(request()->id)->update($data + [
+                "mission_id" => $mission_id
+            ]);
+        } else {
+
+            $data = request()->validate([
+                'date_facturation' => 'required|date',
+                'exercice_id' => 'required',
+                'mission_id' => 'required',
+                'montant' => 'required',
+            ]);
+            Facture::whereId(request()->id)->update($data);
+        }
+
         alert()->success('Facture', 'Facture a bien été mise à jour');
         return redirect()->route('facture.list');
     }
@@ -151,6 +209,21 @@ class FactureController extends Controller
         ]);
     }
 
+    public function factureInfo(Request $request)
+    {
+        $id = $request->get('facture_ref');
+        $facture = Facture::whereId($id)->with('mission')->first();
+        $prestation = $facture->mission->prestation->designation;
+        $montant = $facture->montant;
+        $exercice_d = $facture->exercice_id;
+
+        return response()->json([
+            "prestation" => $prestation,
+            "montant" => $montant,
+            "exercice_d" => $exercice_d
+        ]);
+    }
+
     public function pdf($id)
     {
         $facture = Facture::findOrFail($id);
@@ -165,7 +238,7 @@ class FactureController extends Controller
 
 
 
-        $data['prestation'] = $facture->prestation->designation;
+        $data['prestation'] = $facture->mission->prestation->designation;
         $data['entreprise'] = [
             /*             'raison_social' => $devis->entreprise->raison_social,
             'num_registre_commerce' => $devis->entreprise->num_registre_commerce,
@@ -180,7 +253,7 @@ class FactureController extends Controller
         $data['adresse'] = $facture->mission->entreprise->adresse;
         $data['email'] = $facture->mission->entreprise->email;
 
-        $pdf = PDF::loadView('facture.pdf', $data);
+        $pdf = PDF::loadView('factures.pdf', $data);
         return $pdf->stream($facture->num_fact . ".pdf");
 
 

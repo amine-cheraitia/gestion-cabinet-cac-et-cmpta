@@ -53,6 +53,7 @@ Liste des Factures
                     <th>Raison social</th>
                     <th>Mission Réf</th>
                     <th>Date de Facture</th>
+                    <th>Facture Réf</th>
                     <th>Montant</th>
                     <th>Action</th>
                 </tr>
@@ -64,6 +65,7 @@ Liste des Factures
                     <th>Raison social</th>
                     <th>Mission Réf</th>
                     <th>Date de Facture</th>
+                    <th>Facture Réf</th>
                     <th>Montant</th>
                     <th>Action</th>
                 </tr>
@@ -77,6 +79,7 @@ Liste des Factures
                     <td>{{$facture->mission->entreprise->raison_social}}</td>
                     <td>{{$facture->mission->title}}</td>
                     <td>{{Carbon\Carbon::parse($facture->date_facturation)->format('d-m-Y')}}</td>
+                    <td class="text-center">{{ $facture->fact_avoir_id ? $facture->factureAvoir->num_fact : "-"}}</td>
                     <td>{{ number_format($facture->montant, 2, ',', ' '); }} DA</td>
 
                     {{-- <td>{{$entreprise->num_registre_commerce}}</td>
