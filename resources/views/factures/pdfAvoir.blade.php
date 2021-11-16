@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Facture N° :{{$num_fact}}</title>
+    <title>Facture d'avoir N° :{{$num_fact}}</title>
 
     <style>
         @page {
@@ -118,7 +118,7 @@
                             </td>
 
                             <td style="text-align: left;width:40%">
-                                N° Facture #: <strong>{{$num_fact}}</strong><br />
+                                N° Facture d'avoir #: <strong>{{$num_fact}}</strong><br />
                                 Date de Facturation:
                                 <strong>{{Carbon\carbon::parse($date_facturation)->format('m-d-Y')}}</strong><br />
                                 Date d'impression: <strong>{{Carbon\carbon::now()->format('m-d-Y')}}</strong>
@@ -257,14 +257,13 @@
                 <td colspan="6"></td>
             </tr>
             <tr>
-                <td colspan="6"></td>
+                <td colspan="6">
+                    <strong><i>Facture d'Avoir en remboursement sur la Facture N° : {{$ref}} du
+                            {{Carbon\carbon::parse($refDate)->format('m-d-Y')}}</i></strong>
+                </td>
             </tr>
             <tr>
-                <td colspan="6"></td>
-            </tr>
-
-            <tr>
-                <td colspan="6">Arrêté la présente facture à la somme de {{$montant_lettre}} Dinars
+                <td colspan="6">Arrêté la présente facture d'avoir à la somme de {{$montant_lettre}} Dinars
                     Algérien.</td>
             </tr>
         </table>

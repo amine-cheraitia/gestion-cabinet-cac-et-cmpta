@@ -230,7 +230,6 @@ class FactureController extends Controller
 
         $f = new NumberFormatter("fr", NumberFormatter::SPELLOUT);
 
-
         $data['num_fact'] = $facture->num_fact;
         $data['date_facturation'] = $facture->date_facturation;
         $data['total'] = $facture->montant;
@@ -253,6 +252,13 @@ class FactureController extends Controller
         $data['adresse'] = $facture->mission->entreprise->adresse;
         $data['email'] = $facture->mission->entreprise->email;
 
+        if ($facture->fact_avoir_id) {
+            $fact = Facture::whereId($facture->fact_avoir_id)->first();
+            $data['ref'] = $fact->num_fact;
+            $data['refDate'] = $fact->date_facturation;
+            $pdf = PDF::loadView('factures.pdfAvoir', $data);
+            return $pdf->stream($facture->num_fact . ".pdf");
+        }
         $pdf = PDF::loadView('factures.pdf', $data);
         return $pdf->stream($facture->num_fact . ".pdf");
 
