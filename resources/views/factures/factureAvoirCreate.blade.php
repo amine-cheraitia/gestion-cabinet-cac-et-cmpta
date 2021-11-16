@@ -1,6 +1,6 @@
 @extends('main')
 @section('title')
-Création de Facture
+Création de Facture d'Avoir
 @endsection
 @section('style')
 {{--
@@ -16,7 +16,7 @@ Création de Facture
 
 @endsection
 @section('content')
-<h2 class="my-5 text-center">Création de Facture</h2>
+<h2 class="my-5 text-center">Création de Facture d'Avoir</h2>
 
 
 
@@ -24,7 +24,7 @@ Création de Facture
     <div class="col-10">
         <div class="card shadow">
             <div class="card-header">
-                <i class="fas fa-file-alt"></i> <strong>Creation de Facture</strong>
+                <i class="fas fa-file-alt"></i> <strong>Creation de Facture d'Avoir</strong>
             </div>
 
             <div class="card-body">
@@ -33,16 +33,16 @@ Création de Facture
                     <div class="row">
 
                         <div class="col-md-12 my-2">
-                            <label for="mission_id" class="form-label">Mission Réf</label>
-                            <select class="form-select shadow @error('mission_id')is-invalid
-                                @enderror" id="mission_id" required name="mission_id">
+                            <label for="fact_avoir_id" class="form-label">Facture Réf</label>
+                            <select class="form-select shadow @error('fact_avoir_id')is-invalid
+                                @enderror" id="fact_avoir_id" required name="fact_avoir_id">
                                 <option selected disabled value="">...</option>
-                                @foreach ($missions as $mission)
-                                <option value="{{$mission->id}}">{{$mission->title}}</option>
+                                @foreach ($factures as $facture)
+                                <option value="{{$facture->id}}">{{$facture->num_fact}}</option>
                                 @endforeach
                             </select>
-                            @error('mission_id')
-                            <div class="invalid-feedback">{{$errors->first('mission_id')}}</div>
+                            @error('fact_avoir_id')
+                            <div class="invalid-feedback">{{$errors->first('fact_avoir_id')}}</div>
                             @enderror
                         </div>
                         <div class="col-md-6 my-2">
@@ -57,11 +57,12 @@ Création de Facture
                         <div class="col-md-6  my-2">
                             <label for="validationCustom099" class="form-label">Exercice</label>
                             <select class="form-select shadow @error('exercice')is-invalid
-                                @enderror" id="validationCustom099" required name="exercice_id">
+                                @enderror" id="exercice_id" required name="exercice_id">
                                 <option selected disabled value="">...</option>
                                 @foreach ($exercices as $exercice)
-                                <option value="{{$exercice->id}}" {{($exercice->id == \Carbon\Carbon::now()->year) ?
-                                    'selected' : "" }}>{{$exercice->id}}</option>
+                                <option value="{{$exercice->id}}" {{($exercice->id == \Carbon\Carbon::now()->year)
+                                    ?
+                                    'selected' : "" }} >{{$exercice->id}}</option>
                                 @endforeach
 
                             </select>
@@ -139,29 +140,24 @@ Création de Facture
 {{ csrf_field() }}
 <script>
     $(document).ready(function(){
-/*         $('#prestation_id').val(null).change();
-        $('#entreprise_id').val(null).change();
-        if(($("#entreprise_id").val()==null ) || ($("#prestation_id").val()==null)){
-            $('#row_sub_total').val("");
-            $('#total').val("");
-        } */
-/*     console.log($('#entreprise_id').val()); */
-    $('#mission_id').click(function (e) {
 
-            var mission_id = $("#mission_id").val();
+    $('#fact_avoir_id').click(function (e) {
+
+            var facture_ref = $("#fact_avoir_id").val();
 
             var _token = $('input[name="_token"]').val();
             $.ajax({
-            url:"{{ route('facture.calculPrix') }}",
+            url:"{{ route('facture.factureInfo') }}",
             method:"POST",
-            data:{mission_id:mission_id, _token:_token },
+            data:{facture_ref:facture_ref, _token:_token },
             success:function(result)
                 {
                 console.log(result);
 
-                $('#montant').val(result.total);
-                $('#total').val(result.total);
-                $('#prestation').val(result.designation);
+                $('#montant').val(result.montant);
+                $('#total').val(result.montant);
+                $('#exercice_id').val(result.exercice_id);
+                $('#prestation').val(result.prestation);
 
                 }
 

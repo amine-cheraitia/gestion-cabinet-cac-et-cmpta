@@ -84,7 +84,7 @@ Liste des Factures
                     <td>{{$entreprise->num_art_imposition}}</td> --}}
 
                     <td class="d-flex">
-                        <a target="_blank" href="{{-- {{route('devis.pdf',$facture->id)}} --}}"
+                        <a target="_blank" href="{{route('facture.pdf',$facture->id)}}"
                             class="btn btn-outline-primary"><i style="font-size: 15px;"
                                 class="fas fa-print"></i></a>&nbsp;
                         <a href="{{route('facture.edit',$facture->id)}}" class="btn btn-outline-secondary">
@@ -113,7 +113,7 @@ Liste des Factures
             </div>
             <div class="modal-footer">
                 <a href="{{route('facture.create')}}" class="btn btn-dark">Facture régulière</a>
-                <a href="" class="btn btn-dark">Facture d'Avoir</a>
+                <a href="{{route('facture.createAvoir')}}" class="btn btn-dark">Facture d'Avoir</a>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
             </div>
 

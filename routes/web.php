@@ -96,12 +96,14 @@ Route::patch('/commentaires/{id}', [CommentaireController::class, 'update'])->na
 //facture
 Route::get('/factures', [FactureController::class, 'index'])->name('facture.list');
 Route::get('/factures/create', [FactureController::class, 'create'])->name('facture.create');
+Route::get('/factures/createAvoir', [FactureController::class, 'createAvoir'])->name('facture.createAvoir');
 Route::post('/factures/store', [FactureController::class, 'store'])->name('facture.store');
 Route::get('/factures/edit/{id}', [FactureController::class, 'edit'])->name('facture.edit');
 Route::patch('/factures/{id}', [FactureController::class, 'update'])->name('facture.update');
 Route::get('/factures/{id}/delete', [FactureController::class, 'destroy'])->name('facture.destroy');
 //---ajax devis
 Route::post('/factures/fetch', [FactureController::class, 'calculPrix'])->name('facture.calculPrix');
+Route::post('/factures/fetchinfo', [FactureController::class, 'factureInfo'])->name('facture.factureInfo');
 //---pdf
 Route::get('/factures/pdf/{id}', [FactureController::class, 'pdf'])->name('facture.pdf');
 
