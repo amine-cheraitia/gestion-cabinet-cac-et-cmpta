@@ -167,7 +167,7 @@ class MissionController extends Controller
     {
         Mission::whereId($id)->delete();
         alert()->info('Mission', 'Mission a bien été supprimer');
-        return redirect()->route('mission.list')->withMessage('la mission a été supprimé');;
+        return redirect()->route('mission.list')->withMessage('la mission a été supprimé');
     }
     public function planning()
     {

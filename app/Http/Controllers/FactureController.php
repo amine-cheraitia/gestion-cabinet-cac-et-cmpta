@@ -8,6 +8,7 @@ use NumberFormatter;
 use App\Models\Facture;
 use App\Models\Mission;
 use App\Models\Exercice;
+use App\Models\Paiement;
 use App\Models\TypeFacture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -159,11 +160,17 @@ class FactureController extends Controller
         return redirect()->route('facture.list');
     }
 
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $factures = Facture::with('mission');
 
-        return view("factures.facturesList", compact("factures"));
+        $paiement = Paiement::whereFactureId($id)->count();
+
+        if ($paiement) {
+            alert()->error('Facture', 'Un paiement est lié a la facture. Vous ne pouvez pas la supprimer');
+        }
+        Facture::whereId($id)->delete();
+        alert()->info('Facture', 'Facture a bien été supprimer');
+        return redirect()->route('facture.list')->withMessage('La Facture a été supprimé');
     }
 
     public function calculPrix(Request $request)
