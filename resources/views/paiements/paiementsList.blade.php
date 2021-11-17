@@ -75,7 +75,7 @@ Liste des Paiements
                     <td>{{$paiement->facture->mission->entreprise->raison_social}}</td>
                     <td>{{$paiement->facture->mission->num_missions}}</td>
                     <td>{{$paiement->num_piece_c}}</td>
-                    <td>{{Carbon\Carbon::parse($paiement->paiement)->format('d-m-Y')}}</td>
+                    <td>{{Carbon\Carbon::parse($paiement->date_paiement)->format('d-m-Y')}}</td>
                     {{-- <td class="text-center">{{ $paiement->fact_avoir_id ? $facture->factureAvoir->num_fact : "-"}}
                     </td> --}}
                     <td>{{ number_format($paiement->montant, 2, ',', ' '); }} DA</td>
@@ -88,7 +88,7 @@ Liste des Paiements
                         <a target="_blank" href="{{-- {{route('facture.pdf',$facture->id)}} --}}"
                             class="btn btn-outline-primary"><i style="font-size: 15px;"
                                 class="fas fa-print"></i></a>&nbsp;
-                        <a href="{{-- {{route('facture.edit',$facture->id)}} --}}" class="btn btn-outline-secondary">
+                        <a href="{{route('paiement.edit',$paiement->id)}}" class="btn btn-outline-secondary">
                             <i class="fas fa-minus"></i></a> &nbsp;
                         <a href="{{-- {{route('facture.destroy',$facture->id)}} --}}" class="btn btn-outline-danger"><i
                                 style="font-size: 20px" class="fas fa-times"></i></a>
