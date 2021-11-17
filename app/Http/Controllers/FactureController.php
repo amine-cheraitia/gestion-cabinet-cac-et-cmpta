@@ -259,6 +259,8 @@ class FactureController extends Controller
             $pdf = PDF::loadView('factures.pdfAvoir', $data);
             return $pdf->stream($facture->num_fact . ".pdf");
         }
+
+        $data['missionRef'] = $facture->mission->num_missions;
         $pdf = PDF::loadView('factures.pdf', $data);
         return $pdf->stream($facture->num_fact . ".pdf");
 

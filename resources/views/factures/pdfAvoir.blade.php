@@ -257,8 +257,11 @@
                 <td colspan="6"></td>
             </tr>
             <tr>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
                 <td colspan="6">
-                    <strong><i>Facture d'Avoir en remboursement sur la Facture N° : {{$ref}} du
+                    <strong><i>Facture d'Avoir en remboursement de la Facture N° : {{$ref}} du
                             {{Carbon\carbon::parse($refDate)->format('m-d-Y')}}</i></strong>
                 </td>
             </tr>

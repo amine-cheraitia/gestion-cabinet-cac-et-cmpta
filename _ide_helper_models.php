@@ -299,6 +299,8 @@ namespace App\Models{
  * @property int|null $facture_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Facture|null $facture
+ * @property-read \App\Models\TypePaiement|null $typepaiement
  * @method static \Illuminate\Database\Eloquent\Builder|Paiement newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Paiement newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Paiement query()
