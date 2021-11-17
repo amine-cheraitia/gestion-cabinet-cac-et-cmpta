@@ -9,7 +9,7 @@ use App\Http\Controllers\MissionController;
 use App\Http\Controllers\ConventionController;
 use App\Http\Controllers\EntrepriseController;
 use App\Http\Controllers\CommentaireController;
-
+use App\Http\Controllers\PaiementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,6 +106,16 @@ Route::post('/factures/fetch', [FactureController::class, 'calculPrix'])->name('
 Route::post('/factures/fetchinfo', [FactureController::class, 'factureInfo'])->name('facture.factureInfo');
 //---pdf
 Route::get('/factures/pdf/{id}', [FactureController::class, 'pdf'])->name('facture.pdf');
+
+//paiement
+Route::get('/paiements', [PaiementController::class, 'index'])->name('paiement.list');
+Route::get('/paiements/create', [PaiementController::class, 'create'])->name('paiement.create');
+Route::post('/paiements/store', [PaiementController::class, 'store'])->name('paiement.store');
+Route::get('/paiements/edit/{id}', [PaiementController::class, 'edit'])->name('paiement.edit');
+Route::patch('/paiements/{id}', [PaiementController::class, 'update'])->name('paiement.update');
+Route::get('/paiements/{id}/delete', [PaiementController::class, 'destroy'])->name('paiement.destroy');
+//---ajax paiement
+Route::post('/paiements/fetch', [PaiementController::class, 'fetch'])->name('paiement.fetch');
 
 //auth
 Auth::routes();
