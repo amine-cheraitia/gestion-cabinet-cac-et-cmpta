@@ -499,8 +499,8 @@ namespace App\Models{
  * @property int|null $role_id
  * @property-read mixed $fullname
  * @property-read mixed $role_f
- * @property-read mixed $role_idd
  * @property-read mixed $role_option
+ * @property-read mixed $role_title
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens

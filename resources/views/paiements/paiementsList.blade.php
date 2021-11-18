@@ -101,26 +101,7 @@ Liste des Paiements
         </table>
     </div>
 </div>
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Type de Facture</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
-            </div>
-            <div class="modal-body">
-                <p>Quel type de Facture vous voulez crée ?</p>
-            </div>
-            <div class="modal-footer">
-                <a href="{{-- {{route('facture.create')}} --}}" class="btn btn-dark">Facture régulière</a>
-                <a href="{{-- {{route('facture.createAvoir')}} --}}" class="btn btn-dark">Facture d'Avoir</a>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-            </div>
-
-        </div>
-    </div>
-</div>
 
 
 <script>

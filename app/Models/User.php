@@ -55,9 +55,9 @@ class User extends Authenticatable
         return $this->name . " " . $this->prenom . "-" . $this->getRoleOptionAttribute()[$this->role_id];
     }
 
-    public function getRoleIddAttribute($attributes)
+    public function getRoleTitleAttribute($attributes)
     {
-        return  $this->getRoleOptionAttribute()[$attributes];
+        return  $this->getRoleOptionAttribute()[$this->role_id];
     }
 
     public function getRoleOptionAttribute()
