@@ -10,6 +10,7 @@ use App\Http\Controllers\ConventionController;
 use App\Http\Controllers\EntrepriseController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\PaiementController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,6 +117,18 @@ Route::patch('/paiements/{id}', [PaiementController::class, 'update'])->name('pa
 Route::get('/paiements/{id}/delete', [PaiementController::class, 'destroy'])->name('paiement.destroy');
 //---ajax paiement
 Route::post('/paiements/fetch', [PaiementController::class, 'fetch'])->name('paiement.fetch');
+
+
+//utilisateurs
+Route::prefix('users')->name('users.')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('list');
+    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
+    Route::patch('/{id}', [UserController::class, 'update'])->name('update');
+    Route::get('/{id}/delete', [UserController::class, 'destroy'])->name('destroy');
+});
+
+
+
 
 //auth
 Auth::routes();
