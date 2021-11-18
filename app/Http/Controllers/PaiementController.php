@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class PaiementController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $paiements = Paiement::all();
@@ -67,7 +71,11 @@ class PaiementController extends Controller
         alert()->success('Paiement', 'Paiement a bien été mise à jour');
         return redirect()->route('paiement.list');
     }
-    public function destroy()
+    public function destroy($id)
     {
+        Paiement::whereId($id)->delete();
+
+        alert()->info('Paiement', 'Paiement a bien été supprimer');
+        return redirect()->route('paiement.list')->withMessage('la Paiement a été supprimé');
     }
 }
