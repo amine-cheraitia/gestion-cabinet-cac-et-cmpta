@@ -63,7 +63,7 @@ class User extends Authenticatable
     public function getRoleOptionAttribute()
     {
         return [
-            1 => "",
+            1 => "-",
             2 => "secrétaire",
             3 => "Comptable",
             4 => "Auditeur",
