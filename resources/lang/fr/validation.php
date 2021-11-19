@@ -156,6 +156,8 @@ return [
         'total' => 'montant total',
         'mission_id' => "Mission",
         'user_id' => "Collaborateur",
+        "password" => "mot de passe",
+        "Name" => 'nom'
 
     ]
 ];

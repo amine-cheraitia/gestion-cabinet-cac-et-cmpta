@@ -63,11 +63,11 @@ class User extends Authenticatable
     public function getRoleOptionAttribute()
     {
         return [
-            0 => "",
-            1 => "secrétaire",
-            2 => "Comptable",
-            3 => "Auditeur",
-            4 => "Commissaire aux comptes"
+            1 => "",
+            2 => "secrétaire",
+            3 => "Comptable",
+            4 => "Auditeur",
+            5 => "Commissaire aux comptes"
         ];
     }
 }
