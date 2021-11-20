@@ -69,8 +69,8 @@ Liste des Utilisateurs
 
                         <a href="{{route('users.edit',$user->id)}}" class="btn btn-outline-secondary">
                             <i class="fas fa-minus"></i></a> &nbsp;
-                        <a onclick="$('#editModal').modal('show')" class="btn btn-outline-danger"><i id="sup"
-                                style="font-size: 20px" class="fas fa-times"></i></a>
+                        <a id="{{$user->id}}" class="btn btn-outline-danger dlt"><i style="font-size: 20px"
+                                class="fas fa-times"></i></a>
 
                     </td>
                 </tr>
@@ -92,7 +92,7 @@ Liste des Utilisateurs
                 <p>Etes vous sur de vouloir Supprimer cet utilisateur ?</p>
             </div>
             <div class="modal-footer">
-                <a href="{{route('users.destroy',$user->id)}}" class="btn btn-dark">Oui</a>
+                <a id="confirm" href="" class="btn btn-dark">Oui</a>
 
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
             </div>
@@ -101,6 +101,19 @@ Liste des Utilisateurs
     </div>
 </div>
 
+<script>
+    $(document).ready(function(){
+        $(".dlt").click(function (e) {
+            e.preventDefault();
+            var url= "{{url('users/')}}"
+            var id=$(this).attr('id');
+            $("#confirm").attr('href',url+'/'+id+'/delete')
+            $('#editModal').modal('show')
+
+        });
+
+    })
+</script>
 
 
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Commentaire;
 use App\Models\Role;
+use App\Models\Tache;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -76,11 +77,16 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $commentaires = Commentaire::whereUserId($id)->count();
-        if ($commentaires) {
-            echo 'il ya des commentaires';
-        } else {
-            echo 'user sans commentaire';
+
+        $commentaires = Tache::where('user_id', $id)->count();
+        $taches = Tache::where('user_id', '=', $id)->count();
+
+        if ($taches || $commentaires) {
+            alert()->error('Utilisateur', 'Vous ne pouvez pas supprimer cette utilisateur');
+            return redirect()->back();
         }
+        alert()->info('Utilisateur', 'Utilisateur a bien été supprimer');
+        User::whereId($id)->delete();
+        return redirect()->route('users.list')->withMessage('Utilisateur a bien été supprimer');
     }
 }

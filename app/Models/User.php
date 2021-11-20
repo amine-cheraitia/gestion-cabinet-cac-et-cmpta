@@ -46,7 +46,7 @@ class User extends Authenticatable
 
     public function getFullnameAttribute()
     {
-        return $this->name . "-" . $this->prenom;;
+        return $this->name . " - " . $this->prenom;;
     }
 
     public function getRoleFAttribute()
