@@ -34,7 +34,7 @@
     @include('sweetalert::alert')
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Gestion Cabinet CAC</a>
+        <a class="navbar-brand ps-3" href="/">Gestion Cabinet CAC</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
             <i class="fas fa-bars"></i>
@@ -120,7 +120,7 @@
                         <div class="collapse" id="gUser" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="#">Consulter</a>
+                                <a class="nav-link" href="{{route('users.list')}}">Consulter</a>
 
                             </nav>
                         </div>
@@ -191,7 +191,7 @@
                         <div class="collapse" id="gfacture" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="#">Consulter</a>
+                                <a class="nav-link" href="{{route('facture.list')}}">Consulter</a>
 
                             </nav>
                         </div>
@@ -208,7 +208,7 @@
                         <div class="collapse" id="gPaiement" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="#">Consulter</a>
+                                <a class="nav-link" href="{{route('paiement.list')}}">Consulter</a>
 
                             </nav>
                         </div>
