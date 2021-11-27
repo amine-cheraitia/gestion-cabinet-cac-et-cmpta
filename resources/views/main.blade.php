@@ -91,17 +91,20 @@
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Interface</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gClients"
-                            aria-expanded="false" aria-controls="gClients">
+                        @can('admin')
+
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gEntreprises"
+                            aria-expanded="false" aria-controls="gEntreprises">
                             <div class="sb-nav-link-icon">
                                 <i class="far fa-address-card"></i>
                             </div>
-                            Gestions Clients
+                            Gestion des Entreprises
                             <div class="sb-sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
                             </div>
                         </a>
-                        <div class="collapse" id="gClients" aria-labelledby="headingOne"
+                        <div class="collapse" id="gEntreprises" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="{{route('client.list')}}">Consulter</a>
@@ -112,7 +115,7 @@
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-users"></i>
                             </div>
-                            Gestions Utilisateurs
+                            Gestion des Utilisateurs
                             <div class="sb-sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
                             </div>
@@ -129,7 +132,7 @@
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-file-alt"></i>
                             </div>
-                            Gestions des Devis
+                            Gestion des Devis
                             <div class="sb-sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
                             </div>
@@ -147,7 +150,7 @@
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-project-diagram"></i>
                             </div>
-                            Gestions des Missions
+                            Gestion des Missions
                             <div class="sb-sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
                             </div>
@@ -160,13 +163,17 @@
 
                             </nav>
                         </div>
+                        @endcan
                         {{-- tache --}}
+                        @can('cmp-adt-cac')
+
+
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gTache"
                             aria-expanded="false" aria-controls="gTache">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-tasks"></i>
                             </div>
-                            Gestions des Tâches
+                            Gestion des Tâches
                             <div class="sb-sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
                             </div>
@@ -178,12 +185,15 @@
 
                             </nav>
                         </div>
+                        @endcan
+                        @can('admin')
+
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gfacture"
                             aria-expanded="false" aria-controls="gfacture">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-file-invoice"></i>
                             </div>
-                            Gestions des Factures
+                            Gestion des Factures
                             <div class="sb-sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
                             </div>
@@ -200,7 +210,7 @@
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-file-invoice-dollar"></i>
                             </div>
-                            Gestions des Paiements
+                            Gestion des Paiements
                             <div class="sb-sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
                             </div>
@@ -229,6 +239,26 @@
                             </nav>
                         </div>
                         {{-- --}}
+                        @endcan
+                        @can('secretaire')
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gPaiement"
+                            aria-expanded="false" aria-controls="gPaiement">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                            </div>
+                            Gestion des Créances
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="gPaiement" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{route('paiement.list')}}">Consulter</a>
+
+                            </nav>
+                        </div>
+                        @endcan
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                             aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon">
@@ -299,7 +329,7 @@
             <div class="container-fluid px-4">
                 <div class="row">
                     <div {{-- class="col-lg-8 col-md-10 mx-auto" --}}>
-
+                        {{-- {{ Auth()->user()->isAdmin() ? "admin" : "non admin"}} --}}
                         @yield('content')
                         {{-- <p class="mt-4">random text</p> --}}
 

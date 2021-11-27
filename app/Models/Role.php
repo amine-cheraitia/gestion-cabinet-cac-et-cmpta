@@ -9,7 +9,7 @@ class Role extends Model
 {
     use HasFactory;
     protected $guarded;
-    protected $filliable = ['id', 'name', 'prenom', 'email', 'password', 'role_id'];
+    protected $filliable = ['id', 'role'];
 
     public function getRolenameAttribute()
     {
@@ -27,7 +27,6 @@ class Role extends Model
             4 => "Commissaire aux comptes"
         ][$attributes];
     } */
-
 
 
 

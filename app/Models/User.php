@@ -44,6 +44,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Get the user that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+
     public function getFullnameAttribute()
     {
         return $this->name . " - " . $this->prenom;;
@@ -69,5 +80,20 @@ class User extends Authenticatable
             4 => "Auditeur",
             5 => "Commissaire aux comptes"
         ];
+    }
+
+    public function isAdmin()
+    {
+        return $this->role()->where('role', 'Admin')->first();
+    }
+
+    public function hasAnyRole($array)
+    {
+        return $this->role()->whereIn('role', $array)->first();
+    }
+
+    public function isSecretaire()
+    {
+        return $this->role()->where('role', 'Secrétaire')->first();
     }
 }

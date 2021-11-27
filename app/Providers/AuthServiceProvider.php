@@ -25,6 +25,15 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('admin', function ($user) {
+            return $user->isAdmin();
+        });
+
+        Gate::define('cmp-adt-cac', function ($user) {
+            return $user->hasAnyRole(['Admin', 'Comptable', 'Auditeur']);
+        });
+        Gate::define('secretaire', function ($user) {
+            return $user->isSecretaire();
+        });
     }
 }
