@@ -182,7 +182,7 @@
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="{{route('tache.list')}}">Consulter</a>
-
+                                <a class="nav-link" href="{{route('tache.planningLayout')}}">Consulter Planning</a>
                             </nav>
                         </div>
                         @endcan
