@@ -15,15 +15,19 @@ class TacheController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('CheckAdmin')->except('show', 'index', 'updateStatut');
-        $this->middleware('CheckCmpAdt')->only('show', 'index', 'updateStatut');
+        $this->middleware('CheckAdmin')->except('show', 'index', 'updateStatut', 'planningLayout', 'planning');
+        $this->middleware('CheckCmpAdt')->only('show', 'index', 'updateStatut', 'planningLayout', 'planning');
     }
 
 
     public function index()
     {
-        $taches = Tache::with(['mission', 'user'])->get();
 
+        if (auth()->user()->role_id == 5) {
+            $taches = Tache::with(['mission', 'user'])->get();
+        } else {
+            $taches = Tache::whereUserId(auth()->user()->id)->with(['mission', 'user'])->get();
+        }
         return view('taches.tachesList', compact('taches'));
     }
 
@@ -36,7 +40,7 @@ class TacheController extends Controller
 
     public function create()
     {
-        $users = User::all();
+        $users = User::orderBy('role_id', 'asc')->get();
         $missions = Mission::all();
 
 
@@ -82,7 +86,7 @@ class TacheController extends Controller
 
     public function edit($id)
     {
-        $users = User::all();
+        $users = User::orderBy('role_id', 'asc')->get();
         $missions = Mission::all();
         $tache = Tache::whereId($id)->first();
 
@@ -157,7 +161,14 @@ class TacheController extends Controller
     public function planning()
     {
 
-        $event = Tache::Latest()->get();
+        if (auth()->user()->role_id == 5) {
+            /* $taches = Tache::with(['mission', 'user'])->get(); */
+            $event = Tache::Latest()->get();
+        } else {
+            $event = Tache::whereUserId(auth()->user()->id)->with(['mission', 'user'])->Latest()->get();
+        }
+
+        /* $event = Tache::Latest()->get(); */
         return response()->json(
             $event
         );
