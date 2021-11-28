@@ -107,6 +107,44 @@ Carbon\Carbon::setLocale('fr');
     </div>
 
 </div>
+{{-- edit tache --}}
+@can('cmp-adt')
+
+
+<div class="card shadow my-5 shadow">
+    <div class="card-header">
+        <h6><i class="fa fa-tasks" aria-hidden="true"></i><strong> Modification du statut de la tâche:
+                {{$tache->num_tache}}
+            </strong></h6>
+    </div>
+    <div class="card-body">
+
+
+        <form class="row g-3 needs-validation " novalidate method="POST"
+            action="{{route('tache.updateStatut',$tache->id)}}">
+            @csrf
+            @method('PATCH')
+
+
+            <div class="col-md-12">
+                <label for="status" class="form-label">Statut de la tâche</label>
+                <select class="form-select shadow @error('status')is-invalid
+            @enderror" id="status" required name="status">
+                    <option selected disabled value="{{null}}">...</option>
+                    <option value=1 {{( 1==$tache->status )? "selected" : ''}}>Achevé</option>
+                    <option value=0 {{( 0==$tache->status )? "selected" : ''}}>En cours</option>
+                </select>
+                @error('entreprise_id')
+                <div class="invalid-feedback">{{$errors->first('entreprise_id')}}</div>
+                @enderror
+            </div>
+            <div class="col-12 text-center mt-2">
+                <button class="btn btn-dark shadow mb-1 " type="submit">Enregistré</button>
+            </div>
+        </form>
+    </div>
+</div>
+@endcan
 
 {{-- commentaire --}}
 @can('cac-adt')

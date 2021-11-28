@@ -77,13 +77,15 @@ Liste des missions
                         {!!$tache->status_int!!}</span>
                     </td>
 
-                    <td class="d-flex">
+                    <td class="@can('admin')d-flex @endcan text-center">
                         {{-- TO do consulter les missions aprés le setup des taches --}}
                         <a href="{{route('tache.show',$tache->id)}}" class="btn btn-outline-primary"><i
-                                style="font-size: 15px" class="fas fa-sign-in-alt"></i></a> &nbsp;
+                                style="font-size: 15px" class="fas fa-sign-in-alt"></i></a>
+                        @can('admin')
+                        &nbsp;
                         <a href="{{route('tache.edit',$tache->id)}}" class="btn btn-outline-secondary">
                             <i class="fas fa-minus"></i></a>
-                        @can('admin')
+
                         &nbsp;
                         <a href="{{route('tache.destroy',$tache->id)}}" class="btn btn-outline-danger"><i
                                 style="font-size: 20px" class="fas fa-times"></i></a>

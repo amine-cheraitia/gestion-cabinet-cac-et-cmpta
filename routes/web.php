@@ -79,6 +79,7 @@ Route::get('/taches/create', [TacheController::class, 'create'])->name('tache.cr
 Route::post('/taches/store', [TacheController::class, 'store'])->name('tache.store');
 Route::get('/taches/edit/{id}', [TacheController::class, 'edit'])->name('tache.edit');
 Route::patch('/taches/{id}', [TacheController::class, 'update'])->name('tache.update');
+Route::patch('/taches/statut/{id}', [TacheController::class, 'updateStatut'])->name('tache.updateStatut');
 Route::get('/taches/{id}/delete', [TacheController::class, 'destroy'])->name('tache.destroy');
 //tache planning
 Route::get('/taches/planning/fetch', [TacheController::class, 'planning'])->name('tache.planning');

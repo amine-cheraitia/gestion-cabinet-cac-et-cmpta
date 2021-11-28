@@ -15,8 +15,8 @@ class TacheController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('CheckAdmin')->except('show', 'index');
-        $this->middleware('CheckCmpAdt')->only('show', 'index');
+        $this->middleware('CheckAdmin')->except('show', 'index', 'updateStatut');
+        $this->middleware('CheckCmpAdt')->only('show', 'index', 'updateStatut');
     }
 
 
@@ -129,6 +129,21 @@ class TacheController extends Controller
 
         alert()->success('Tâche', 'Tâche a bien été mise à jour');
         return redirect()->route('tache.list');
+    }
+
+    public function updateStatut($id)
+    {
+        $data = request()->validate([
+
+            'status' => 'required|integer'
+        ]);
+
+
+
+        Tache::whereId($id)->update($data);
+
+        alert()->success('Tâche', 'Tâche a bien été mise à jour');
+        return redirect()->route('tache.show', $id);
     }
 
     public function destroy($id)
