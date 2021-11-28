@@ -11,12 +11,12 @@ Planning de Tache
     integrity="sha512-okE4owXD0kfXzgVXBzCDIiSSlpXn3tJbNodngsTnIYPJWjuYhtJ+qMoc0+WUwLHeOwns0wm57Ka903FqQKM1sA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
 </script>
 
-</script>
+</script> --}}
 {{-- css fullcalendar --}}
 <link rel="stylesheet" href="{{asset('css/fullcalendar.css')}}">
 
@@ -28,11 +28,12 @@ Planning de Tache
 @section('content')
 
 <h2 class="mt-5 text-center">{{-- <i class="fas fa-project-diagram"> --}}Planning de taches</h2>
-
+@can('admin')
 <div class="mb-2">
     <button class="btn btn-dark" id="create" data-toggle="modal" data-target="#exampleModalCenter">Création de
         Tache</button>
 </div>
+@endcan
 <div id="calendar"></div>
 
 {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -212,6 +213,9 @@ Planning de Tache
                 },
                 events:"{{ route('tache.planning')}}"
                 ,
+                @can('admin')
+
+
                  eventClick:function(event){
                     $('#mission_id').val(event.mission_id)
                     $('#user_id').val(event.user_id)
@@ -271,7 +275,7 @@ Planning de Tache
                     $('#exampleModal2').modal('show')
 
                 },
-
+                @endcan
                 buttonText:{
                     today:    'aujourd\'hui',
                     month:    'mois',
@@ -282,6 +286,7 @@ Planning de Tache
 
 
             })
+
     })
     //calendart part
     $('#create').click(function (e) {
