@@ -32,6 +32,11 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('cmp-adt-cac', function ($user) {
             return $user->hasAnyRole(['Admin', 'Comptable', 'Auditeur']);
         });
+
+        Gate::define('cac-adt', function ($user) {
+            return $user->hasAnyRole(['Admin',  'Auditeur']);
+        });
+
         Gate::define('secretaire', function ($user) {
             return $user->isSecretaire();
         });
