@@ -15,6 +15,8 @@ class TacheController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('CheckAdmin')->except('show', 'index');
+        $this->middleware('CheckCmpAdt')->only('show', 'index');
     }
 
 
