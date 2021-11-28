@@ -6,6 +6,7 @@ use App\Models\Facture;
 use App\Models\Paiement;
 use App\Models\TypePaiement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PaiementController extends Controller
 {
@@ -77,5 +78,15 @@ class PaiementController extends Controller
 
         alert()->info('Paiement', 'Paiement a bien été supprimer');
         return redirect()->route('paiement.list')->withMessage('la Paiement a été supprimé');
+    }
+
+    public function creances()
+    {
+        $creances = DB::select("SELECT DISTINCT  num_missions, COUNT(f.id) nbr, SUM(montant) totalfacture, total totalmission , ( CASE WHEN ( total-SUM(montant)) IS NULL THEN total ELSE ( total-SUM(montant)) END ) dif,START,total*0.3 AS ApayePremiereTranche, DATE_ADD(start,INTERVAL + (durée/2) MONTH) AS deuxiemeTranche,total*0.3 AS ApayeDeuxiemeTranche, end AS derniéreTranche,total*0.4 AS ApayeDerniereTranche,durée
+        FROM  (SELECT ms.*,durée  from missions ms  JOIN prestations AS p ON p.id=ms.prestation_id) AS m LEFT JOIN (SELECT * FROM factures WHERE type_facture_id=1 ) f ON m.id=f.mission_id
+        GROUP BY num_missions
+        HAVING COUNT(f.id)<3");
+
+        return view("paiements.paiementCreance", compact("creances"));
     }
 }

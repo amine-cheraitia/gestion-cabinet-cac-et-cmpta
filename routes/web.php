@@ -116,6 +116,8 @@ Route::post('/paiements/store', [PaiementController::class, 'store'])->name('pai
 Route::get('/paiements/edit/{id}', [PaiementController::class, 'edit'])->name('paiement.edit');
 Route::patch('/paiements/{id}', [PaiementController::class, 'update'])->name('paiement.update');
 Route::get('/paiements/{id}/delete', [PaiementController::class, 'destroy'])->name('paiement.destroy');
+Route::get('/paiements/creances', [PaiementController::class, 'creances'])->name('paiement.creances');
+
 //---ajax paiement
 Route::post('/paiements/fetch', [PaiementController::class, 'fetch'])->name('paiement.fetch');
 

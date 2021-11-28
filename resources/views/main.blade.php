@@ -219,6 +219,7 @@
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="{{route('paiement.list')}}">Consulter</a>
+                                <a class="nav-link" href="{{route('paiement.creances')}}">Consulter les créances</a>
 
                             </nav>
                         </div>
@@ -254,7 +255,7 @@
                         <div class="collapse" id="gPaiement" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="{{route('paiement.list')}}">Consulter</a>
+                                <a class="nav-link" href="{{route('paiement.creances')}}">Consulter</a>
 
                             </nav>
                         </div>
