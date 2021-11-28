@@ -16,7 +16,7 @@ class DevisController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'CheckAdmin']);
     }
 
     public function index()
