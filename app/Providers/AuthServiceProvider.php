@@ -37,6 +37,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasAnyRole(['Admin',  'Auditeur']);
         });
 
+        Gate::define('cmp-adt', function ($user) {
+            return $user->hasAnyRole(['Comptable',  'Auditeur']);
+        });
+
         Gate::define('secretaire', function ($user) {
             return $user->isSecretaire();
         });
