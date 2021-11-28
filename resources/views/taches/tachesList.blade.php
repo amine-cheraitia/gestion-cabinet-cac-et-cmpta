@@ -82,10 +82,12 @@ Liste des missions
                         <a href="{{route('tache.show',$tache->id)}}" class="btn btn-outline-primary"><i
                                 style="font-size: 15px" class="fas fa-sign-in-alt"></i></a> &nbsp;
                         <a href="{{route('tache.edit',$tache->id)}}" class="btn btn-outline-secondary">
-                            <i class="fas fa-minus"></i></a> &nbsp;
+                            <i class="fas fa-minus"></i></a>
+                        @can('admin')
+                        &nbsp;
                         <a href="{{route('tache.destroy',$tache->id)}}" class="btn btn-outline-danger"><i
                                 style="font-size: 20px" class="fas fa-times"></i></a>
-
+                        @endcan
                     </td>
                 </tr>
                 @endforeach

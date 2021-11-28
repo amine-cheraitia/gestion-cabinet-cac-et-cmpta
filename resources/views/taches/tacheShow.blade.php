@@ -109,6 +109,9 @@ Carbon\Carbon::setLocale('fr');
 </div>
 
 {{-- commentaire --}}
+@can('cac-adt')
+
+
 <div class="card mb-4 shadow">
 
     <div class="card-header d-flex justify-content-between align-items-center">
@@ -200,7 +203,7 @@ Carbon\Carbon::setLocale('fr');
         </div>
     </div>
 </div>
-
+@endcan
 <script>
     $('.edit').click(function (e) {
          e.preventDefault();
