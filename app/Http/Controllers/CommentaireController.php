@@ -11,7 +11,7 @@ class CommentaireController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'CheckAdminAdt']);
     }
 
     public function store(Tache $tache)
