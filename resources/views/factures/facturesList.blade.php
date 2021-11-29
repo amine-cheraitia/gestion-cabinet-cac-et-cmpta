@@ -39,7 +39,7 @@ Liste des Factures
 
     <div class="card-header d-flex justify-content-between align-items-center">
         <div><i class="fas fa-file-alt"></i>
-            Liste des Devis</div>
+            Liste des Factures</div>
         {{-- //todo: boutton d'ajout --}}
         <a href="" id="cree" class="btn btn-dark ">Crée une Facture</a>
 
@@ -74,7 +74,7 @@ Liste des Factures
                 @foreach ($factures as $facture)
                 <tr>
                     <td class="text-center"><strong>{{$loop->iteration}}</strong></td>
-                    <td><strong><a href="{{route('devis.edit',$facture->id)}}" class="link-dark"
+                    <td><strong><a href="{{route('facture.edit',$facture->id)}}" class="link-dark"
                                 style="text-underline-position: none">{{$facture->num_fact}}</a></strong></td>
                     <td>{{$facture->mission->entreprise->raison_social}}</td>
                     <td>{{$facture->mission->title}}</td>
