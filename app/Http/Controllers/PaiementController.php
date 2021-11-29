@@ -82,12 +82,16 @@ class PaiementController extends Controller
 
     public function creances()
     {
-        $creances = DB::select("SELECT DISTINCT  num_missions, COUNT(f.id) nbr, SUM(montant) totalfacture, total totalmission , ( CASE WHEN ( total-SUM(montant)) IS NULL THEN total ELSE ( total-SUM(montant)) END ) dif,START,total*0.3 AS ApayePremiereTranche, DATE_ADD(start,INTERVAL + (durée/2) MONTH) AS deuxiemeTranche,total*0.3 AS ApayeDeuxiemeTranche, end AS derniéreTranche,total*0.4 AS ApayeDerniereTranche,durée
+        $factureWavoir = Facture::whereNotNull('fact_avoir_id')->pluck('fact_avoir_id');
+        $facturePaye = Paiement::pluck('facture_id');
+        $facts = Facture::whereNotIn('id', $factureWavoir)->where('type_facture_id', 1)->whereNotIn('id', $facturePaye)->get();
+
+        /*    $creances = DB::select("SELECT DISTINCT  num_missions, COUNT(f.id) nbr, SUM(montant) totalfacture, total totalmission , ( CASE WHEN ( total-SUM(montant)) IS NULL THEN total ELSE ( total-SUM(montant)) END ) dif,START,total*0.3 AS ApayePremiereTranche, DATE_ADD(start,INTERVAL + (durée/2) MONTH) AS deuxiemeTranche,total*0.3 AS ApayeDeuxiemeTranche, end AS derniéreTranche,total*0.4 AS ApayeDerniereTranche,durée
         FROM  (SELECT ms.*,durée  from missions ms  JOIN prestations AS p ON p.id=ms.prestation_id) AS m LEFT JOIN (SELECT * FROM factures WHERE type_facture_id=1 ) f ON m.id=f.mission_id
         GROUP BY num_missions
-        HAVING COUNT(f.id)<3");
+        HAVING COUNT(f.id)<3"); */
 
-        return view("paiements.paiementCreance", compact("creances"));
+        return view("paiements.paiementCreance", compact("facts"));
     }
 
     public function PlanningPaiement()

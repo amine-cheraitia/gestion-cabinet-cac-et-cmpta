@@ -1,6 +1,6 @@
 @extends('main')
 @section('title')
-Planning des Paiements
+Planning des Paiements et Facturation
 @endsection
 @section('style')
 
@@ -27,7 +27,7 @@ Planning des Paiements
 
 @endsection
 @section('content')
-<h2 class="my-4 text-center">Planning des Paiements</h2>
+<h2 class="my-4 text-center">Planning des Paiements et Facturation</h2>
 @if(session('errors'))
 <div class="col-lg-12">
     <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
@@ -43,7 +43,7 @@ Planning des Paiements
 
     <div class="card-header d-flex justify-content-between align-items-center">
         <div><i class="fas fa-file-invoice-dollar"></i>
-            Planning des Paiements</div>
+            Planning des Paiements et Facturation</div>
         {{-- //todo: boutton d'ajout --}}
         <a href="{{route('paiement.create')}}" id="cree" class="btn btn-dark ">Crée un Paiement</a>
 
@@ -95,7 +95,7 @@ Planning des Paiements
                     {{-- <td>{{$creance->nbr}}</td> --}}
                     <td>{{ number_format($paiement->totalfacture, 2, ',', ' '); }}</td>
                     <td>{{ number_format($paiement->totalmission, 2, ',', ' '); }}</td>
-                    <td>{{ number_format($paiement->dif, 2, ',', ' '); }}</td>
+                    <td>{{$paiement->nbr." ". number_format($paiement->dif, 2, ',', ' '); }}</td>
                     @if(($paiement->nbr == 0) AND ($paiement->start<Carbon\Carbon::now())) <td
                         class="rouge font-weight-bold">
                         {{Carbon\Carbon::parse($paiement->start)->format('d-m-Y')}} <i class="fas fa-presentation "></i>
@@ -110,56 +110,56 @@ Planning des Paiements
                         {{-- <td @if($paiement->nbr == 0) class="rouge" @endif>{{
                             number_format($paiement->ApayePremiereTranche, 2, ',',
                             ' '); }}</td> --}}
-                        @if( ($paiement->nbr == 1) AND ($paiement->deuxiemeTranche<Carbon\Carbon::now())) <td
-                            class="rouge font-weight-bold">
-                            {{Carbon\Carbon::parse($paiement->deuxiemeTranche)->format('d-m-Y')}} <i
-                                class="fas fa-presentation "></i></td>
-                            <td class="rouge">{{
-                                number_format($paiement->ApayeDeuxiemeTranche,
-                                2,
-                                ',', ' '); }}</td>
-                            @else
-                            <td>
-                                {{Carbon\Carbon::parse($paiement->deuxiemeTranche)->format('d-m-Y')}} <i
-                                    class="fas fa-check"></i></td>
-                            <td>{{
-                                number_format($paiement->ApayeDeuxiemeTranche,
-                                2,
-                                ',', ' '); }}</td>
-                            @endif
-                            {{-- --}}
-                            @if(/* ($paiement->nbr == 2) AND */($paiement->derniéreTranche<Carbon\Carbon::now())) <td
+                        @if( ($paiement->nbr < 2) AND ($paiement->deuxiemeTranche<Carbon\Carbon::now())) <td
                                 class="rouge font-weight-bold">
-                                {{Carbon\Carbon::parse($paiement->derniéreTranche)->format('d-m-Y')}} <i
+                                {{Carbon\Carbon::parse($paiement->deuxiemeTranche)->format('d-m-Y')}} <i
                                     class="fas fa-presentation "></i></td>
                                 <td class="rouge">{{
-                                    number_format($paiement->ApayeDerniereTranche,
+                                    number_format($paiement->ApayeDeuxiemeTranche,
                                     2,
                                     ',', ' '); }}</td>
                                 @else
                                 <td>
-                                    {{Carbon\Carbon::parse($paiement->derniéreTranche)->format('d-m-Y')}} <i
+                                    {{Carbon\Carbon::parse($paiement->deuxiemeTranche)->format('d-m-Y')}} <i
                                         class="fas fa-check"></i></td>
                                 <td>{{
-                                    number_format($paiement->ApayeDerniereTranche,
+                                    number_format($paiement->ApayeDeuxiemeTranche,
                                     2,
                                     ',', ' '); }}</td>
                                 @endif
-                                {{-- <td @if($paiement->nbr < 2) class="rouge" @endif>{{
-                                        number_format($paiement->ApayeDeuxiemeTranche,
-                                        2,
-                                        ',', ' '); }}</td> --}}
+                                {{-- --}}
+                                @if( ($paiement->nbr <=2) AND ($paiement->derniéreTranche<Carbon\Carbon::now())) <td
+                                        class="rouge font-weight-bold">
+                                        {{Carbon\Carbon::parse($paiement->derniéreTranche)->format('d-m-Y')}} <i
+                                            class="fas fa-presentation "></i></td>
+                                        <td class="rouge">{{
+                                            number_format($paiement->ApayeDerniereTranche,
+                                            2,
+                                            ',', ' '); }}</td>
+                                        @else
+                                        <td>
+                                            {{Carbon\Carbon::parse($paiement->derniéreTranche)->format('d-m-Y')}} <i
+                                                class="fas fa-check"></i></td>
+                                        <td>{{
+                                            number_format($paiement->ApayeDerniereTranche,
+                                            2,
+                                            ',', ' '); }}</td>
+                                        @endif
+                                        {{-- <td @if($paiement->nbr < 2) class="rouge" @endif>{{
+                                                number_format($paiement->ApayeDeuxiemeTranche,
+                                                2,
+                                                ',', ' '); }}</td> --}}
 
-                                {{-- <td class="text-center">{{ $paiement->fact_avoir_id ?
-                                    $facture->factureAvoir->num_fact
-                                    :
-                                    "-"}}
-                                </td> --}}
-                                {{-- <td>{{ number_format($paiement->montant, 2, ',', ' '); }} DA</td> --}}
+                                        {{-- <td class="text-center">{{ $paiement->fact_avoir_id ?
+                                            $facture->factureAvoir->num_fact
+                                            :
+                                            "-"}}
+                                        </td> --}}
+                                        {{-- <td>{{ number_format($paiement->montant, 2, ',', ' '); }} DA</td> --}}
 
-                                {{-- <td>{{$entreprise->num_registre_commerce}}</td>
-                                <td>{{$entreprise->num_id_fiscale}}</td>
-                                <td>{{$entreprise->num_art_imposition}}</td> --}}
+                                        {{-- <td>{{$entreprise->num_registre_commerce}}</td>
+                                        <td>{{$entreprise->num_id_fiscale}}</td>
+                                        <td>{{$entreprise->num_art_imposition}}</td> --}}
 
 
                 </tr>

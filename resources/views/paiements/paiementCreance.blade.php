@@ -1,6 +1,6 @@
 @extends('main')
 @section('title')
-Liste des Paiements
+Liste des Créances
 @endsection
 @section('style')
 
@@ -15,107 +15,80 @@ Liste des Paiements
         color: #212529 !important
     }
 
-    .rouge {
-        background: rgb(167, 112, 112) !important;
+    .red {
+        background: red !important;
+        font-weight: bold;
+    }
+
+    .orange {
+        background: orange !important;
+        font-weight: bold;
     }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 @endsection
 @section('content')
-<h2 class="my-4 text-center">Liste des Paiements</h2>
-@if(session('errors'))
-<div class="col-lg-12">
-    <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
-</div>
-@endif
-@if(session('message'))
-<div class="col-lg-12">
-    <div class="alert alert-success" role="alert">{{ session('message') }}</div>
-</div>
-@endif
+
+<h2 class="my-4 text-center">Liste des Créances</h2>
+
 
 <div class="card mb-4 shadow">
 
     <div class="card-header d-flex justify-content-between align-items-center">
         <div><i class="fas fa-file-invoice-dollar"></i>
-            Liste des Paiements</div>
-        {{-- //todo: boutton d'ajout --}}
-        <a href="{{route('paiement.create')}}" id="cree" class="btn btn-dark ">Crée un Paiement</a>
+            Liste des Créances</div>
+
+        {{-- <a href="{{route('paiement.create')}}" id="cree" class="btn btn-dark ">Crée un Paiement</a> --}}
 
     </div>
-    <div class="card-body text-center">
+    <div class="card-body">
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    {{-- <th>#</th> --}}
-                    <th>Mission Réf</th>
-                    {{-- <th>Nbr Facture</th> --}}
-                    <th>Total payée</th>
-                    <th>Total mission</th>
-
-                    <th>différence</th>
-
-                    <th>Date première tr</th>
-                    <th>Première tr</th>
-                    <th>Date Deuxieme tr</th>
-                    <th>Deuxième tr</th>
-                    <th>Date Troisième tr</th>
-                    <th>Troisième tr</th>
-
+                    <th>#</th>
+                    <th>N° de Facture</th>
+                    <th>Raison Social</th>
+                    <th>Mission Ref</th>
+                    <th>Montant</th>
+                    <th>Date de Facturation</th>
+                    <th>Retard en jours</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    {{-- <th>#</th> --}}
-                    <th>Mission Réf</th>
-                    {{-- <th>Nbr Facture</th> --}}
-                    <th>Total payée</th>
-                    <th>Total mission</th>
-                    <th>différence</th>
-                    <th>date premiére tranche</th>
-                    <th>Montant première tranche</th>
-                    <th>date prévu pour deuxieme tranche</th>
-                    <th>Montant deuxième tranche</th>
-                    <th>date prévu pour troisième tranche</th>
-                    <th>Montant troisième tranche</th>
+                    <th>#</th>
+                    <th>N° de Facture</th>
+                    <th>Raison Social</th>
+                    <th>Mission Ref</th>
+                    <th>Montant</th>
+                    <th>Date de Facturation</th>
+                    <th>Retard en jours</th>
                 </tr>
             </tfoot>
             <tbody>
 
-                @foreach ($creances as $creance)
+                @foreach ($facts as $facts)
+                @php
+                $diff=Carbon\Carbon::parse($facts->date_facturation)->diffInDays(Carbon\Carbon::now())
+                @endphp
                 <tr class="">
-                    {{-- <td class="text-center"><strong>{{$loop->iteration}}</strong></td> --}}
+                    <td class="text-center"><strong>{{$loop->iteration}}</strong></td>
                     <td><strong><a href="{{-- {{route('devis.edit',$facture->id)}} --}}" class="link-dark"
-                                style="text-underline-position: none">{{$creance->num_missions}}</a></strong></td>
-                    {{-- <td>{{$creance->nbr}}</td> --}}
-                    <td>{{ number_format($creance->totalfacture, 2, ',', ' '); }}</td>
-                    <td>{{ number_format($creance->totalmission, 2, ',', ' '); }}</td>
-                    <td>{{ number_format($creance->dif, 2, ',', ' '); }}</td>
-                    <td @if(($creance->nbr == 0) AND ($creance->start<Carbon\Carbon::now()))
-                            class="rouge font-weight-bold"><i class="fas fa-presentation "></i>@else > @endif
-                            {{Carbon\Carbon::parse($creance->start)->format('d-m-Y')}}</td>
-                    <td @if($creance->nbr == 0) class="rouge" @endif>{{
-                        number_format($creance->ApayePremiereTranche, 2, ',',
-                        ' '); }}</td>
-                    <td @if(($creance->nbr == 1) OR ($creance->deuxiemeTranche<Carbon\Carbon::now()))
-                            class="rouge font-weight-bold"><i class="fas fa-presentation "></i>@else > @endif
-                            {{Carbon\Carbon::parse($creance->deuxiemeTranche)->format('d-m-Y')}}</td>
-                    <td @if($creance->nbr < 2) class="rouge" @endif>{{ number_format($creance->ApayeDeuxiemeTranche, 2,
-                            ',', ' '); }}</td>
-                    <td @if(($creance->nbr == 2) OR ($creance->derniéreTranche<Carbon\Carbon::now()))
-                            class="rouge font-weight-bold"><i class="fas fa-presentation "></i> @else > @endif
-                            {{Carbon\Carbon::parse($creance->derniéreTranche)->format('d-m-Y')}}</td>
-                    <td @if($creance->nbr < 3) class="rouge" @endif>{{ number_format($creance->ApayeDerniereTranche, 2,
-                            ',', ' '); }}</td>
-                    {{-- <td class="text-center">{{ $paiement->fact_avoir_id ? $facture->factureAvoir->num_fact : "-"}}
-                    </td> --}}
-                    {{-- <td>{{ number_format($paiement->montant, 2, ',', ' '); }} DA</td> --}}
+                                style="text-underline-position: none">{{$facts->num_fact}}</a></strong>
+                    </td>
+                    <td>{{ $facts->mission->entreprise->raison_social }}</td>
+                    <td>{{ $facts->mission->num_missions }}</td>
+                    <td>{{ number_format($facts->montant, 2, ',', ' '); }} DA</td>
+                    <td>{{Carbon\Carbon::parse($facts->date_facturation)->format('d-m-Y')}}</td>
+                    <td class="@if($diff>30)
+                         red
+                         @elseif ($diff>15)
+                        orange
+                        @endif">{{$diff }}
+                        jour(s)
 
-                    {{-- <td>{{$entreprise->num_registre_commerce}}</td>
-                    <td>{{$entreprise->num_id_fiscale}}</td>
-                    <td>{{$entreprise->num_art_imposition}}</td> --}}
-
+                    </td>
 
                 </tr>
                 @endforeach
