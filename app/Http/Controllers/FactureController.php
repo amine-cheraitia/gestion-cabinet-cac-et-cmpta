@@ -26,7 +26,7 @@ class FactureController extends Controller
 
     public function index()
     {
-        $factures = Facture::with(['mission', 'factureAvoir'])->get();
+        $factures = Facture::with(['mission', 'factureAvoir'])->orderBy('num_fact')->get();
 
         return view("factures.facturesList", compact("factures"));
     }
