@@ -89,4 +89,14 @@ class PaiementController extends Controller
 
         return view("paiements.paiementCreance", compact("creances"));
     }
+
+    public function PlanningPaiement()
+    {
+        $planningPaiements = DB::select("SELECT DISTINCT  num_missions, COUNT(f.id) nbr, SUM(montant) totalfacture, total totalmission , ( CASE WHEN ( total-SUM(montant)) IS NULL THEN total ELSE ( total-SUM(montant)) END ) dif,START,total*0.3 AS ApayePremiereTranche, DATE_ADD(start,INTERVAL + (durée/2) MONTH) AS deuxiemeTranche,total*0.3 AS ApayeDeuxiemeTranche, end AS derniéreTranche,total*0.4 AS ApayeDerniereTranche,durée
+        FROM  (SELECT ms.*,durée  from missions ms  JOIN prestations AS p ON p.id=ms.prestation_id) AS m LEFT JOIN (SELECT * FROM factures f  WHERE  type_facture_id=1 and id NOT IN (SELECT fact_avoir_id FROM factures WHERE  fact_avoir_id IS not NULL) ) f ON m.id=f.mission_id
+        GROUP BY num_missions
+        HAVING COUNT(f.id)<3");
+
+        return view("paiements.paiementPlanning", compact("planningPaiements"));
+    }
 }
