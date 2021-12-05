@@ -47,7 +47,7 @@ Liste des missions
                     <th>Prestation</th>
                     <th>Date de debut</th>
                     <th>Date de fin</th>
-                    <th>Status</th>
+                    <th>Statut</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -59,7 +59,7 @@ Liste des missions
                     <th>Prestation</th>
                     <th>Date de Devis</th>
                     <th>Montal total</th>
-                    <th>Status</th>
+                    <th>Statut</th>
                     <th>action</th>
                 </tr>
             </tfoot>
