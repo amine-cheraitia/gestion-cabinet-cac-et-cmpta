@@ -65,11 +65,11 @@ Carbon\Carbon::setLocale('fr');
             <figure>
                 <blockquote class="blockquote">
                     <div class=" d-flex justify-content-between row">
-                        <div class="col-sm-12 col-md-6 text-left text-sm-center">Raison social du
+                        <div class="col-sm-12 col-md-6 text-left text-sm-center col-xs-text-left">Raison social du
                             Client:
                             <strong>{{$mission->entreprise->raison_social}}</strong>
                         </div>
-                        <div class="col-sm-12 col-md-6 text-right text-sm-center col-xs-text-center">
+                        <div class="col-sm-12 col-md-6 text-md-right text-sm-center col-xs-text-left">
                             Prestation:
                             <strong>{{$mission->prestation->designation}}</strong>
                         </div>

@@ -371,7 +371,8 @@ Planning de Missions
                     month:    'mois',
                     week:     'semaine',
                     day:      'jour',
-                    year:     'année'
+                    year:     'année',
+		
                     }
 
 
