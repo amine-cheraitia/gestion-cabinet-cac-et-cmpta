@@ -261,8 +261,8 @@
                             </nav>
                         </div>
                         @endcan
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
+                        {{-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-book-open"></i>
                             </div>
@@ -307,7 +307,7 @@
                                     </nav>
                                 </div>
                             </nav>
-                        </div>
+                        </div> --}}
                         {{-- <div class="sb-sidenav-menu-heading">Addons</div>
                         <a class="nav-link" href="charts.html">
                             <div class="sb-nav-link-icon">
@@ -347,7 +347,7 @@
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Gestion de Cabinet Meddahi 2021</div>
+                        <div class="text-muted">Copyright &copy; Cabinet Meddahi 2021</div>
                         <div>
                             <a href="#">Privacy Policy</a>
                             &middot;
