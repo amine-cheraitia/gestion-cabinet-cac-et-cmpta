@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <div class="container-fluid px-4">
     <h1 class="mt-4">Tableau de bord</h1>
     <ol class="breadcrumb mb-4">
@@ -139,7 +140,43 @@
         </div> --}}
     </div>
     <hr>
-    <div class="row"></div>
+    <div class="row">
+
+        <div class="card-body"><canvas id="myBarChart" width="50%" height="15%"></canvas></div>
+        {{-- <div class="card-body"><canvas id="myBarChart2" width="100%" height="40"></canvas></div> --}}
+    </div>
 
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    x_data= JSON.parse('{!! json_encode($xdata) !!}');
+    x_max = JSON.parse('{!! json_encode($x_max) !!}');
+
+    /*y_data=JSON.parse(); */
+
+/*     $('#year').change(function (e) {
+
+        var y = $('#year').val();
+        var _token = $('input[name="_token"]').val();
+        console.log(y);
+        $.ajax({
+            type: "post",
+            url: "{{route('fetchCA')}}",
+            data: {y:y,_token:_token },
+            dataType: "dataType",
+            success: function (response) {
+                console.log(response);
+                x_data= response.xdata,
+                x_max=response.x_max
+            }
+        });
+
+    }); */
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="{{asset('assets/chart-bar-Chiffre-dAffaire.js')}}"></script>
 @endsection
