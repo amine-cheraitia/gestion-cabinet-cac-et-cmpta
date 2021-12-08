@@ -9,6 +9,7 @@ use App\Http\Controllers\MissionController;
 use App\Http\Controllers\ConventionController;
 use App\Http\Controllers\EntrepriseController;
 use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\UserController;
 
@@ -23,9 +24,8 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-})->name('/')->middleware("auth");
+Route::get('/', [DashboardController::class, 'index'])->name('/')->middleware("auth");
+Route::post('/fetchCA', [DashboardController::class, 'fetchCA'])->name('fetchCA');
 
 //clients
 Route::get('/clients', [EntrepriseController::class, 'index'])->name('client.list');
