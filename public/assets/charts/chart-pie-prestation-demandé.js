@@ -4,25 +4,32 @@ Chart.defaults.global.defaultFontFamily =
 Chart.defaults.global.defaultFontColor = "#292b2c";
 
 // Pie Chart Example
-var ctx = document.getElementById("myPieChart");
+var ctx = document.getElementById("myPieChart2");
 var myPieChart = new Chart(ctx, {
-    type: "doughnut",
+    type: "pie",
     data: {
-        labels: [
-            "Mission Achevé " + missionAchevé,
-            "Mission En cours" + missionEncours,
-        ],
+        labels: prestationLabel,
         datasets: [
             {
-                data: [missionAchevé, missionEncours],
+                data: prestationNbr,
                 backgroundColor: [
-                    "#53c5a9",
-                    "#6f42c1",
-                    " rgb(255, 205, 86)",
+                    "#5eb5a9",
+                    "#9999ff",
+                    "#ffff99",
+                    "#990099",
+                    "FF3333",
                     "#dc3545",
                 ],
             },
         ],
     },
     hoverOffset: 4,
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: "Etat des missions",
+            },
+        },
+    },
 });

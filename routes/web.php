@@ -1,17 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KpiController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DevisController;
 use App\Http\Controllers\TacheController;
 use App\Http\Controllers\MandatController;
 use App\Http\Controllers\FactureController;
 use App\Http\Controllers\MissionController;
+use App\Http\Controllers\PaiementController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ConventionController;
 use App\Http\Controllers\EntrepriseController;
 use App\Http\Controllers\CommentaireController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PaiementController;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -130,7 +131,13 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{id}/delete', [UserController::class, 'destroy'])->name('destroy');
 });
 
-
+//kpi
+Route::prefix('kpi')->name('kpi.')->group(function () {
+    Route::get('/', [KpiController::class, 'index'])->name('basic');
+    /*     Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
+    Route::patch('/{id}', [UserController::class, 'update'])->name('update');
+    Route::get('/{id}/delete', [UserController::class, 'destroy'])->name('destroy'); */
+});
 
 
 //auth

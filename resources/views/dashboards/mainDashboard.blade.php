@@ -49,7 +49,7 @@
                     {{-- <i style="font-size: 35px" class="fas fa-file-invoice"></i> --}}
                     <i style="font-size: 35px" class="fas fa-file-invoice-dollar"></i>
                     <div>Chiffre d'Affaire <br>
-                        <div class="text-center fs-8 w-100">800.000,00 DA</div>
+                        <div class="text-center fs-8 w-100">387.000,00 DA</div>
                     </div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">

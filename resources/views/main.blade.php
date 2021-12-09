@@ -88,7 +88,7 @@
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-tachometer-alt"></i>
                             </div>
-                            Dashboard
+                            Tableau de bord
                         </a>
                         <div class="sb-sidenav-menu-heading">Interface</div>
                         @can('admin')
@@ -229,14 +229,14 @@
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-chart-pie"></i>
                             </div>
-                            Performance global du cabinet
+                            Performance globale du cabinet
                             <div class="sb-sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
                             </div>
                         </a>
                         <div class="collapse" id="gKpi" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="#">Consulter</a>
+                                <a class="nav-link" href="{{route('kpi.basic')}}">Consulter</a>
 
                             </nav>
                         </div>

@@ -14,12 +14,12 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $data = ($fact = Facture::selectRaw('
+        $data =  Facture::selectRaw('
         YEAR(date_Facturation) AS y, monthname(date_Facturation) AS m ,month(date_Facturation) AS ma,SUM(montant) montant
     ')
             ->groupBy('y', 'm', "ma")
             ->orderBy('y', 'asc')
-            ->get());
+            ->get();
         $montants = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 7 => 0, 8 => 0, 9 => 0, 10 => 0, 11 => 0, 12 => 0];
         $mois = [];
         foreach ($data as $d) {
