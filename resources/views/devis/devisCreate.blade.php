@@ -16,8 +16,13 @@ Création de Devis
 
 @endsection
 @section('content')
-<h2 class="my-5 text-center">Création de Devis</h2>
-
+{{-- <h2 class="my-5 text-center">Création de Devis</h2> --}}
+<h2 class="my-4 text-center">{{-- Liste des Entreprises --}}</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / <a
+            class="text-dark" href="{{route('devis.list')}}">Liste des
+            Devis</a> / Creation de Devis</li>
+</ol>
 
 
 <div class="row justify-content-center mt-2">

@@ -23,7 +23,12 @@ Liste des Devis
 </script>
 @endsection
 @section('content')
-<h2 class="my-4 text-center">Liste des Devis</h2>
+
+<h2 class="my-4 text-center">{{-- Liste des Entreprises --}}</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / Liste des
+        Devis</li>
+</ol>
 @if(session('errors'))
 <div class="col-lg-12">
     <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
@@ -39,7 +44,8 @@ Liste des Devis
 
     <div class="card-header d-flex justify-content-between align-items-center">
         <div><i class="fas fa-file-alt"></i>
-            Liste des Devis</div>
+            <strong>Liste des Devis</strong>
+        </div>
         {{-- //todo: boutton d'ajout --}}
         <a href="{{route('devis.create')}}" class="btn btn-dark ">Crée un Devis</a>
 
@@ -80,7 +86,7 @@ Liste des Devis
                     <td>{{$entreprise->num_id_fiscale}}</td>
                     <td>{{$entreprise->num_art_imposition}}</td> --}}
 
-                    <td class="d-flex">
+                    <td class="d-flex justify-content-center">
                         <a target="_blank" href="{{route('devis.pdf',$d->id)}}" class="btn btn-outline-primary"><i
                                 style="font-size: 15px;" class="fas fa-print"></i></a>&nbsp;
                         <a href="{{route('devis.edit',$d->id)}}" class="btn btn-outline-secondary">

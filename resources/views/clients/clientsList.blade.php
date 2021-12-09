@@ -17,7 +17,11 @@ Liste des clients
 </style>
 @endsection
 @section('content')
-<h2 class="my-4 text-center">Liste des Entreprises</h2>
+<h2 class="my-4 text-center">{{-- Liste des Entreprises --}}</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / Liste des
+        Entreprises</li>
+</ol>
 @if(session('errors'))
 <div class="col-lg-12">
     <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
@@ -33,7 +37,8 @@ Liste des clients
 
     <div class="card-header d-flex justify-content-between align-items-center">
         <div><i class="far fa-address-card"></i>
-            Liste des Entreprises</div>
+            <strong>Liste des Entreprises</strong>
+        </div>
         {{-- //todo: boutton d'ajout --}}
         <a href="{{route('client.index')}}" class="btn btn-dark {{-- my-2 --}}">Crée une fiche d'entreprise</a>
     </div>
