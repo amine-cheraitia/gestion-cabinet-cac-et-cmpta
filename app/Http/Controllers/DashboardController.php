@@ -6,6 +6,7 @@ use App\Models\Facture;
 /* use Illuminate\Http\Request; */
 use App\Http\Requests\StoreFactureRequest;
 use App\Http\Requests\UpdateFactureRequest;
+use App\Models\Mission;
 use GuzzleHttp\Psr7\Request;
 /* use Psy\Util\Json; */
 
@@ -32,12 +33,15 @@ class DashboardController extends Controller
             }
             $xdata[] = $m;
         }
+        /*  */
+        $missionEncours = Mission::whereStatus(0)->count();
+        $missionAchevé = Mission::whereStatus(1)->count();
 
 
-        return view('dashboards.mainDashboard', compact('xdata', 'x_max'));
+        return view('dashboards.mainDashboard', compact('xdata', 'x_max', 'missionEncours', 'missionAchevé'));
     }
 
-    public function fetchCA(Request $request)
+    /*     public function fetchCA(Request $request)
     {
         $data = ($fact = Facture::selectRaw('
         YEAR(date_Facturation) AS y, monthname(date_Facturation) AS m ,month(date_Facturation) AS ma,SUM(montant) montant
@@ -65,5 +69,5 @@ class DashboardController extends Controller
                 'x_max' => $x_max
             ]
         );
-    }
+    } */
 }

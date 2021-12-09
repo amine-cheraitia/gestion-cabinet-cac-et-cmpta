@@ -1,7 +1,11 @@
 @extends('main')
 
 @section('content')
-
+<style>
+    /*     div {
+        color: #e7bd31;
+    } */
+</style>
 
 <div class="container-fluid px-4">
     <h1 class="mt-4">Tableau de bord</h1>
@@ -14,8 +18,8 @@
             <div class="card text-white bg-dark mb-4">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <i style="font-size: 35px" class="fas fa-project-diagram"></i>
-                    <div>Mission En cours <br>
-                        <div class="text-center fs-8 w-100">8</div>
+                    <div>Mission(s) En cours <br>
+                        <div class="text-center fs-8 w-100">{{$missionEncours}}</div>
                     </div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
@@ -28,7 +32,7 @@
             <div class="card bg-primary text-white  mb-4">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <i style="font-size: 35px" class="fas fa-tasks"></i>
-                    <div>Tâche En cours <br>
+                    <div>Tâche(s) En cours <br>
                         <div class="text-center fs-8 w-100">8</div>
                     </div>
                 </div>
@@ -61,7 +65,7 @@
                 <div class="card-body d-flex justify-content-between align-items-center text-secondary">
                     <i style="font-size: 35px" class="fas fa-file-invoice text-secondary"></i>
 
-                    <div>Factures impayées<br>
+                    <div>Facture(s) impayée(s)<br>
                         <div class="text-center fs-8 w-100">3</div>
                     </div>
                 </div>
@@ -141,8 +145,32 @@
     </div>
     <hr>
     <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="card mb-4">
 
-        <div class="card-body"><canvas id="myBarChart" width="50%" height="15%"></canvas></div>
+                <div class="card-header">
+                    <i class="fas fa-chart-area me-1"></i>
+                    Chiffre d'Affaire par mois
+                </div>
+
+                <div class="card-body"><canvas id="myBarChart" width="50%" height="30%"></canvas></div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="card mb-4">
+
+                <div class="card-header">
+                    <i class="fas fa-chart-pie"></i>
+                    Etat des Missions
+                </div>
+
+                <div class="card-body"><canvas id="myPieChart" width="50%" height="30%"></canvas></div>
+            </div>
+        </div>
+
+        {{-- <div class="card-body col-6"><canvas id="myBarChart" width="50%" height="30%"></canvas></div> --}}
+        {{-- <div class="card-body col-md-6  col-sm-12"><canvas id="myPieChart" width="50%" height="30%"></canvas></div>
+        celui d'avant --}}
         {{-- <div class="card-body"><canvas id="myBarChart2" width="100%" height="40"></canvas></div> --}}
     </div>
 
@@ -153,7 +181,9 @@
 <script>
     x_data= JSON.parse('{!! json_encode($xdata) !!}');
     x_max = JSON.parse('{!! json_encode($x_max) !!}');
-
+    missionAchevé = JSON.parse('{!! json_encode($missionAchevé) !!}');
+    missionEncours = JSON.parse('{!! json_encode($missionEncours) !!}');
+    console.log(missionAchevé+" "+missionEncours);
     /*y_data=JSON.parse(); */
 
 /*     $('#year').change(function (e) {
@@ -178,5 +208,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="{{asset('assets/chart-bar-Chiffre-dAffaire.js')}}"></script>
+<script src="{{asset('assets/charts/chart-bar-Chiffre-dAffaire.js')}}"></script>
+<script src="{{asset('assets/charts/chart-pie-missions.js')}}"></script>
 @endsection
