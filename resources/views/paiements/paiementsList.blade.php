@@ -19,7 +19,13 @@ Liste des Paiements
 
 @endsection
 @section('content')
-<h2 class="my-4 text-center">Liste des Paiements</h2>
+
+<h2 class="my-4 text-center">{{-- Liste des tâches --}}</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / Liste des
+        Paiements
+    </li>
+</ol>
 @if(session('errors'))
 <div class="col-lg-12">
     <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
@@ -34,8 +40,8 @@ Liste des Paiements
 <div class="card mb-4 shadow">
 
     <div class="card-header d-flex justify-content-between align-items-center">
-        <div><i class="fas fa-file-invoice-dollar"></i>
-            Liste des Paiements</div>
+        <div><i class="fas fa-file-invoice-dollar"></i><strong>
+                Liste des Paiements</strong></div>
         {{-- //todo: boutton d'ajout --}}
         <a href="{{route('paiement.create')}}" id="cree" class="btn btn-dark ">Crée un Paiement</a>
 
@@ -85,9 +91,9 @@ Liste des Paiements
                     <td>{{$entreprise->num_art_imposition}}</td> --}}
 
                     <td class="d-flex">
-                        <a target="_blank" href="{{-- {{route('facture.pdf',$facture->id)}} --}}"
+                        {{-- <a target="_blank" href="{{-- {{route('facture.pdf',$facture->id)}} " --}} {{--
                             class="btn btn-outline-primary"><i style="font-size: 15px;"
-                                class="fas fa-print"></i></a>&nbsp;
+                                class="fas fa-print"></i></a>&nbsp; --}}
                         <a href="{{route('paiement.edit',$paiement->id)}}" class="btn btn-outline-secondary">
                             <i class="fas fa-minus"></i></a> &nbsp;
                         <a href="{{-- {{route('facture.destroy',$facture->id)}} --}}" class="btn btn-outline-danger"><i

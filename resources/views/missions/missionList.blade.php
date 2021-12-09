@@ -18,7 +18,12 @@ Liste des missions
 
 @endsection
 @section('content')
-<h2 class="my-4 text-center">Liste des Missions</h2>
+<h2 class="my-4 text-center">{{-- Liste des Missions --}}</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / Liste des
+        Missions</li>
+</ol>
+
 @if(session('errors'))
 <div class="col-lg-12">
     <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
@@ -33,7 +38,8 @@ Liste des missions
 <div class="card mb-4 shadow">
     <div class="card-header d-flex justify-content-between align-items-center">
         <div><i class="fas fa-project-diagram"></i>
-            Liste des Missions</div>
+            <strong>Liste des Missions</strong>
+        </div>
         {{-- //todo: boutton d'ajout --}}
         <a href="{{route('mission.create')}}" class="btn btn-dark {{-- my-2 --}} ">Crée une mission</a>
     </div>

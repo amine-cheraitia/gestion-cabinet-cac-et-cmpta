@@ -19,7 +19,7 @@ Liste des Utilisateurs
 
 @endsection
 @section('content')
-<h2 class="my-4 text-center">Liste des Utilisateurs</h2>
+<h2 class="my-4 text-center"></h2>
 @if(session('errors'))
 <div class="col-lg-12">
     <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
@@ -31,8 +31,17 @@ Liste des Utilisateurs
 </div>
 @endif
 
+<h2 class="my-4 text-center">{{-- Liste des Entreprises --}}</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / Liste des
+        Utilisateurs</li>
+</ol>
 <div class="card mb-4 shadow">
-
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <div><i class="fas fa-users"></i>
+            <strong>Liste des Utilisateurs</strong>
+        </div>
+    </div>
     <div class="card-body">
         <table id="datatablesSimple">
             <thead>

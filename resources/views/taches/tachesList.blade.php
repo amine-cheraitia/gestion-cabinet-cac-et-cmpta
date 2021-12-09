@@ -18,7 +18,11 @@ Liste des missions
 
 @endsection
 @section('content')
-<h2 class="my-4 text-center">Liste des tâches</h2>
+<h2 class="my-4 text-center">{{-- Liste des tâches --}}</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / Liste des tâches
+    </li>
+</ol>
 @if(session('errors'))
 <div class="col-lg-12">
     <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
@@ -32,8 +36,8 @@ Liste des missions
 
 <div class="card mb-4 shadow">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <div><i class="fas fa-project-diagram"></i>
-            Liste des tâches</div>
+        <div><i class="fas fa-tasks"></i><strong>
+                Liste des tâches</strong></div>
         {{-- //todo: boutton d'ajout --}}
         <a href="{{route('tache.create')}}" class="btn btn-dark {{-- my-2 --}} ">Crée une tâche</a>
     </div>
@@ -71,8 +75,8 @@ Liste des missions
                                 style="text-underline-position: none">{{$tache->num_tache}}</a></strong></td>
                     <td>{{ $tache->mission->num_missions }}</td>
                     <td>{{ $tache->user->name }}</td>
-                    <td>{{$tache->starte}}</td>
-                    <td>{{$tache->ende}} <i class="fas fa-presentation "></i></td>
+                    <td>{{$tache->starte }}</td>
+                    <td>{{$tache->ende}} </td>
                     <td style="text-align: center">
                         {!!$tache->status_int!!}</span>
                     </td>

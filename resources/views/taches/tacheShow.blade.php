@@ -37,7 +37,14 @@ Tâche
 @endsection
 @section('content')
 
-<h2 class="my-4 text-center">Détail de la tâche {{$tache->num_tache}}</h2>
+{{-- <h2 class="my-4 text-center">Détail de la tâche {{$tache->num_tache}}</h2> --}}
+<h2 class="my-4 text-center">{{-- Liste des tâches --}}</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / <a
+            class="text-dark" href="{{route('tache.list')}}">Liste des tâches</a> / Détail de la tâche
+        {{$tache->num_tache}}
+    </li>
+</ol>
 {{-- @if(session('errors'))
 <div class="col-lg-12">
     <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
@@ -173,8 +180,9 @@ Carbon\Carbon::setLocale('fr');
                             {{$commentaire->user->fullname}}</span>
                     </div>
                     <div>
-                        <a href="" class="edit" id="{{$commentaire->id}}">Modifier</a>
-                        <a href="{{route('commentaire.destroy',$commentaire->id)}}">Supprimer</a>
+                        <a href="" class="edit text-dark font-weight-bold" id="{{$commentaire->id}}">Modifier</a>
+                        <a href="{{route('commentaire.destroy',$commentaire->id)}}"
+                            class="font-weight-bold text-dark">Supprimer</a>
                     </div>
                 </div>
                 @endforeach

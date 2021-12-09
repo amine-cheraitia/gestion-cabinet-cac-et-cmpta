@@ -23,7 +23,13 @@ Liste des Factures
 </script> --}}
 @endsection
 @section('content')
-<h2 class="my-4 text-center">Liste des Factures</h2>
+{{-- <h2 class="my-4 text-center">Liste des Factures</h2> --}}
+<h2 class="my-4 text-center">{{-- Liste des tâches --}}</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / Liste des
+        Factures
+    </li>
+</ol>
 @if(session('errors'))
 <div class="col-lg-12">
     <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
@@ -38,8 +44,8 @@ Liste des Factures
 <div class="card mb-4 shadow">
 
     <div class="card-header d-flex justify-content-between align-items-center">
-        <div><i class="fas fa-file-alt"></i>
-            Liste des Factures</div>
+        <div><i class="fas fa-file-alt"></i><strong>
+                Liste des Factures</strong></div>
         {{-- //todo: boutton d'ajout --}}
         <a href="" id="cree" class="btn btn-dark ">Crée une Facture</a>
 

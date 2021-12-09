@@ -14,8 +14,13 @@ Modification de l'Utilisateur
 </style>
 @endsection
 @section('content')
-<h2 class="my-5 text-center">Modification de l'Utilisateur</h2>
 
+<h2 class="my-4 text-center">{{-- Liste des Entreprises --}}</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / <a
+            class="text-dark" href="{{route('users.list')}}">Liste des
+            Utilisateurs</a> / Modification de l'Utilisateur</li>
+</ol>
 
 
 <div class="row justify-content-center mt-2 mb-5">

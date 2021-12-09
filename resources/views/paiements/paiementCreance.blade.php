@@ -30,8 +30,13 @@ Liste des Créances
 @endsection
 @section('content')
 
-<h2 class="my-4 text-center">Liste des Créances</h2>
-
+{{-- <h2 class="my-4 text-center">Liste des Créances</h2> --}}
+<h2 class="my-4 text-center">{{-- Liste des tâches --}}</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / Liste des
+        Créances
+    </li>
+</ol>
 
 <div class="card mb-4 shadow">
 
@@ -82,9 +87,9 @@ Liste des Créances
                     <td>{{ number_format($facts->montant, 2, ',', ' '); }} DA</td>
                     <td>{{Carbon\Carbon::parse($facts->date_facturation)->format('d-m-Y')}}</td>
                     <td class="@if($diff>30)
-                         red
+                         red text-center
                          @elseif ($diff>15)
-                        orange
+                        orange text-center
                         @endif">{{$diff }}
                         jour(s)
 

@@ -27,9 +27,13 @@ Planning de Missions
 @endsection
 @section('content')
 
-<h2 class="mt-5 text-center">{{-- <i class="fas fa-project-diagram"> --}}Planning de Missions</h2>
 
-<div class="mb-2">
+<h2 class="my-4 text-center">{{-- Liste des Missions --}}</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / Planning de
+        Missions</li>
+</ol>
+<div class="mb-4">
     <button class="btn btn-dark" id="create" data-toggle="modal" data-target="#exampleModalCenter">Création de
         Mission</button>
 </div>
@@ -372,7 +376,7 @@ Planning de Missions
                     week:     'semaine',
                     day:      'jour',
                     year:     'année',
-		
+
                     }
 
 
