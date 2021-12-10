@@ -11,6 +11,11 @@ use PDF;
 
 class MandatController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'CheckAdmin']);
+    }
+
     public function generate($id)
     {
         $mandat = Mandat::whereMissionId($id)->count();

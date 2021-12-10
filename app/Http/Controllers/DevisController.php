@@ -11,6 +11,7 @@ use App\Models\Entreprise;
 use App\Models\Prestation;
 use Illuminate\Http\Request;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DevisController extends Controller
 {
@@ -72,6 +73,7 @@ class DevisController extends Controller
             "date_devis" => $request->date_devis,
             'num_devis' => $num_devis,
         ]);
+        alert()->success('Devis', "Le Devis a bien été créé");
         return redirect()->route('devis.list');
     }
 
@@ -97,12 +99,14 @@ class DevisController extends Controller
             'total' => 'required',
         ]);
         Devis::whereId($id)->update($data);
+        alert()->success('Devis', "les informations du devis se sont mis à jour");
         return redirect()->route('devis.list');
     }
 
     public function destroy($id)
     {
         if (Mission::whereDevisId($id)->count()) {
+            Alert::error('Suppression du Devis', "le Devis ne peut pas être supprimé");
             return redirect()->route('devis.list')->with('errors', "le Devis ne peut pas être supprimé");
         }
 
