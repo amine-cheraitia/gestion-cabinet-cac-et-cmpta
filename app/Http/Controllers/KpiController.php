@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class KpiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'CheckAdmin']);
+    }
+
     public function index()
     {
         $data =  Facture::selectRaw('

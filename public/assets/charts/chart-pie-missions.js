@@ -9,8 +9,8 @@ var myPieChart = new Chart(ctx, {
     type: "doughnut",
     data: {
         labels: [
-            "Mission Achevé " + missionAchevé,
-            "Mission En cours" + missionEncours,
+            "Mission Achevé " ,
+            "Mission En cours" ,
         ],
         datasets: [
             {

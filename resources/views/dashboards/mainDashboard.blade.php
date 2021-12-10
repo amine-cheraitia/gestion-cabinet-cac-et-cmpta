@@ -49,11 +49,11 @@
                     {{-- <i style="font-size: 35px" class="fas fa-file-invoice"></i> --}}
                     <i style="font-size: 35px" class="fas fa-file-invoice-dollar"></i>
                     <div>Chiffre d'Affaire <br>
-                        <div class="text-center fs-8 w-100">387.000,00 DA</div>
+                        <div class="text-center fs-8 w-100">{{number_format($chiffreDaffaire, 2, ',', ' ')}} DA</div>
                     </div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="{{route('mission.list')}}">Voir plus</a>
+                    <a class="small text-white stretched-link" href="{{route('facture.list')}}">Voir plus</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
