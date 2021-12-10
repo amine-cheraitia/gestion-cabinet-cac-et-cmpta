@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Convention;
 use Carbon\Carbon;
 use App\Models\Devis;
+use App\Models\Facture;
 use App\Models\Mission;
 use App\Models\Entreprise;
+use App\Models\Mandat;
 use App\Models\Prestation;
 use Illuminate\Http\Request;
-use Haruncpi\LaravelIdGenerator\IdGenerator;
 use RealRashid\SweetAlert\Facades\Alert;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class MissionController extends Controller
 {
@@ -165,6 +168,12 @@ class MissionController extends Controller
 
     public function destroy($id)
     {
+        if (Facture::where('mission_id', $id)->count()) {
+            Alert::error('Suppression de la mission', "la mission ne peut pas étre supprimé");
+            return redirect()->route('mission.list')->with('errors', "la mission ne peut pas étre supprimé");
+        }
+        Mandat::whereMissionId($id)->delete();
+        Convention::whereMissionId($id)->delete();
         Mission::whereId($id)->delete();
         alert()->info('Mission', 'Mission a bien été supprimer');
         return redirect()->route('mission.list')->withMessage('la mission a été supprimé');
@@ -255,6 +264,12 @@ class MissionController extends Controller
 
     public function deleteViaPlanning($id)
     {
+        if (Facture::where('mission_id', $id)->count()) {
+            Alert::error('Suppression de la mission', "la mission ne peut pas étre supprimé");
+            return redirect()->back();
+        }
+        Mandat::whereMissionId($id)->delete();
+        Convention::whereMissionId($id)->delete();
         Mission::whereId($id)->delete();
         alert()->success('Mission', 'Mission a bien été supprimer');
         return redirect()->back();
