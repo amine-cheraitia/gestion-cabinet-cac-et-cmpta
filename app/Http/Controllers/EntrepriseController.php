@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Devis;
 use App\Models\Categorie;
 use App\Models\Entreprise;
+use App\Models\Mission;
 use App\Models\RegimeFiscal;
 use App\Models\TypeActivite;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class EntrepriseController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'CheckAdmin']);
     }
 
 
@@ -112,6 +113,11 @@ class EntrepriseController extends Controller
             Alert::error('Suppression d\'entreprise', "l'Entreprise ne peut pas étre supprimé");
             return redirect()->route('client.list')->with('errors', "l'Entreprise ne peut pas étre supprimé");
         }
+        if (Mission::where('entreprise_id', $id)->count()) {
+            Alert::error('Suppression d\'entreprise', "l'Entreprise ne peut pas étre supprimé");
+            return redirect()->route('client.list')->with('errors', "l'Entreprise ne peut pas étre supprimé");
+        }
+
 
         Alert::info('Suppression d\'entreprise', 'L\'Entreprise a bien été supprimer');
         Entreprise::whereId($id)->delete();

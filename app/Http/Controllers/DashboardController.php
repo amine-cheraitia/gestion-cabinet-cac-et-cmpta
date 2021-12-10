@@ -12,6 +12,11 @@ use GuzzleHttp\Psr7\Request;
 
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $data =  Facture::selectRaw('
@@ -36,9 +41,12 @@ class DashboardController extends Controller
         /*  */
         $missionEncours = Mission::whereStatus(0)->count();
         $missionAchevé = Mission::whereStatus(1)->count();
+        $factAnnulé = Facture::whereNotNull('fact_avoir_id')->get('fact_avoir_id');
+
+        $chiffreDaffaire = Facture::whereTypeFactureId(1)->whereNotIn('id', $factAnnulé)->sum('montant');
 
 
-        return view('dashboards.mainDashboard', compact('xdata', 'x_max', 'missionEncours', 'missionAchevé'));
+        return view('dashboards.mainDashboard', compact('xdata', 'x_max', 'missionEncours', 'missionAchevé', 'chiffreDaffaire'));
     }
 
     /*     public function fetchCA(Request $request)
