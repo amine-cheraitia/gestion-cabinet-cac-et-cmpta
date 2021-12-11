@@ -72,6 +72,7 @@ class PaiementController extends Controller
         alert()->success('Paiement', 'Paiement a bien été mise à jour');
         return redirect()->route('paiement.list');
     }
+
     public function destroy($id)
     {
         Paiement::whereId($id)->delete();
