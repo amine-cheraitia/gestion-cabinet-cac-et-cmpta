@@ -34,7 +34,7 @@
     @include('sweetalert::alert')
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="/"><strong>C</strong>abinet <strong>M</strong>eddahi </a>
+        <a class="navbar-brand ps-3" href="/"><img src="{{asset('assets/img/LogoMain.png')}}" alt=""></a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
             <i class="fas fa-bars"></i>
