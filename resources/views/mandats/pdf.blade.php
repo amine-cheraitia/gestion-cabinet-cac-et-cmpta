@@ -220,7 +220,7 @@
             est sis à
             {{$adresse}} au titre des exercices du {{Carbon\carbon::parse($start)->format('Y')}} au
             {{Carbon\carbon::parse($end)->format('Y')}}<br><br>
-            Le commissaire aux comptes déclare n'ête frappé d'aucune incompatibilité par la législation et la
+            Le commissaire aux comptes déclare n'être frappé d'aucune incompatibilité par la législation et la
             réglementation en vigueur.
 
         </div>
