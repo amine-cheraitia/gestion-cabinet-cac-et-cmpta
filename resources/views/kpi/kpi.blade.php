@@ -113,5 +113,5 @@ Performance globale du cabinet
 <script src="{{asset('assets/charts/chart-bar-Chiffre-dAffaire.js')}}"></script>
 <script src="{{asset('assets/charts/chart-pie-prestation-demandé.js')}}"></script>
 <script src="{{asset('assets/charts/chart-pie-missions.js')}}"></script>
-<script src="{{asset('assets/charts/chart-pie-contribution-ca.js')}}"></script>
+<script src="{{asset('assets/charts/chart-bar-contribution-ca.js')}}"></script>
 @endsection
