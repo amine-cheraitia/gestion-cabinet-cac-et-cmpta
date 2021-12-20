@@ -67,5 +67,6 @@ var myLineChart = new Chart(ctx, {
         legend: {
             display: true,
         },
+        responsive: true,
     },
 });
