@@ -53,6 +53,9 @@ var myLineChart = new Chart(ctx, {
                         min: 0,
                         max: x_max * 1.5,
                         maxTicksLimit: 6,
+                        callback: function (value) {
+                            return value + " DA";
+                        },
                     },
                     gridLines: {
                         display: true,
