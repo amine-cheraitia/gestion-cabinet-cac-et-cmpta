@@ -36,11 +36,6 @@ Performance globale du cabinet
                 <div class="card-body"><canvas id="myPieChart" width="50%" height="30%"></canvas></div>
             </div>
         </div>
-
-        {{-- <div class="card-body col-6"><canvas id="myBarChart" width="50%" height="30%"></canvas></div> --}}
-        {{-- <div class="card-body col-md-6  col-sm-12"><canvas id="myPieChart" width="50%" height="30%"></canvas></div>
-        celui d'avant --}}
-        {{-- <div class="card-body"><canvas id="myBarChart2" width="100%" height="40"></canvas></div> --}}
     </div>
     <div class="row">
         <div class="col-md-6 col-sm-12">
@@ -109,9 +104,9 @@ Performance globale du cabinet
 </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="{{asset('assets/charts/chart-bar-Chiffre-dAffaire.js')}}"></script>
-<script src="{{asset('assets/charts/chart-pie-prestation-demandé.js')}}"></script>
-<script src="{{asset('assets/charts/chart-pie-missions.js')}}"></script>
-<script src="{{asset('assets/charts/chart-bar-contribution-ca.js')}}"></script>
+
+<script src="{{asset('assets/charts/chart-bar-Chiffre-dAffaire.js')}}" defer></script>
+<script src="{{asset('assets/charts/chart-pie-prestation-demandé.js')}}" defer></script>
+<script src="{{asset('assets/charts/chart-pie-missions.js')}}" defer></script>
+<script src="{{asset('assets/charts/chart-bar-contribution-ca.js')}}" defer></script>
 @endsection

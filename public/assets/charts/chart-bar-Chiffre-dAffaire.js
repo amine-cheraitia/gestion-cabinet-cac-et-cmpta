@@ -33,6 +33,10 @@ var myLineChart = new Chart(ctx, {
         ],
     },
     options: {
+        animation: {
+            duration: 1000 * 1.5,
+            easing: "linear",
+        },
         scales: {
             xAxes: [
                 {

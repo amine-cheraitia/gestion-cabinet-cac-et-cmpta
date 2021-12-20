@@ -32,5 +32,9 @@ var myPieChart = new Chart(ctx, {
             },
         },
         responsive: true,
+        animation: {
+            duration: 1000 * 1.5,
+            easing: "linear",
+        },
     },
 });

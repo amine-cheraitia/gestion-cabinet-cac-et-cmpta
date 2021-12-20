@@ -68,5 +68,9 @@ var myLineChart = new Chart(ctx, {
             display: true,
         },
         responsive: true,
+        animation: {
+            duration: 1000 * 1.5,
+            easing: "linear",
+        },
     },
 });

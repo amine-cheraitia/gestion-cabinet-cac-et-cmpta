@@ -8,10 +8,7 @@ var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
     type: "doughnut",
     data: {
-        labels: [
-            "Mission Achevé " ,
-            "Mission En cours" ,
-        ],
+        labels: ["Mission Achevé ", "Mission En cours"],
         datasets: [
             {
                 data: [missionAchevé, missionEncours],
@@ -23,6 +20,12 @@ var myPieChart = new Chart(ctx, {
                 ],
             },
         ],
+    },
+    options: {
+        animation: {
+            duration: 1000 * 1.5,
+            easing: "linear",
+        },
     },
     hoverOffset: 4,
 });
