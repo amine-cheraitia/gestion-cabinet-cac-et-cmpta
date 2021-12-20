@@ -31,5 +31,6 @@ var myPieChart = new Chart(ctx, {
                 text: "Etat des missions",
             },
         },
+        responsive: true,
     },
 });
