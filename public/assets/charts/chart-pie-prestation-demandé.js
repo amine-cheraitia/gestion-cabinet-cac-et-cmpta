@@ -4,7 +4,7 @@ Chart.defaults.global.defaultFontFamily =
 Chart.defaults.global.defaultFontColor = "#292b2c";
 
 // Pie Chart Example
-var ctx = document.getElementById("myPieChart2");
+var ctx = document.getElementById("myPieChart2").getContext("2d");
 var myPieChart = new Chart(ctx, {
     type: "pie",
     data: {
@@ -23,7 +23,7 @@ var myPieChart = new Chart(ctx, {
             },
         ],
     },
-    hoverOffset: 4,
+
     options: {
         plugins: {
             title: {
@@ -31,10 +31,11 @@ var myPieChart = new Chart(ctx, {
                 text: "Etat des missions",
             },
         },
-        responsive: true,
+
         animation: {
             duration: 1000 * 1.5,
             easing: "linear",
         },
     },
+    hoverOffset: 4,
 });

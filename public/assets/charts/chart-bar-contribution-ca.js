@@ -4,7 +4,7 @@ Chart.defaults.global.defaultFontFamily =
 Chart.defaults.global.defaultFontColor = "#292b2c";
 
 // Bar Chart Example
-var ctx = document.getElementById("myBarChart2");
+var ctx = document.getElementById("myBarChart2").getContext("2d");
 var myLineChart = new Chart(ctx, {
     type: "bar",
 
@@ -67,7 +67,7 @@ var myLineChart = new Chart(ctx, {
         legend: {
             display: true,
         },
-        responsive: true,
+
         animation: {
             duration: 1000 * 1.5,
             easing: "linear",

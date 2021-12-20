@@ -18,25 +18,31 @@ Performance globale du cabinet
             <div class="card mb-4">
 
                 <div class="card-header">
-                    <i class="fas fa-chart-area me-1"></i>
-                    Chiffre d'Affaire par mois
+                    <i class="fas fa-chart-pie"></i>
+                    Etat des Missions
                 </div>
 
-                <div class="card-body"><canvas id="myBarChart" width="50%" height="30%"></canvas></div>
+                <div class="card-body  position-relative"><canvas id="myPieChart" style="width: 100% !important;"
+                        width="50%" height="30%"></canvas>
+                </div>
             </div>
         </div>
         <div class="col-md-6 col-sm-12">
             <div class="card mb-4">
 
                 <div class="card-header">
-                    <i class="fas fa-chart-pie"></i>
-                    Etat des Missions
+                    <i class="fas fa-chart-area me-1"></i>
+                    Chiffre d'Affaire par mois
                 </div>
 
-                <div class="card-body"><canvas id="myPieChart" width="50%" height="30%"></canvas></div>
+                <div class="card-body position-relative"><canvas id="myBarChart" style="width: 100% !important;"
+                        width="50%" height="30%"></canvas>
+                </div>
             </div>
         </div>
+
     </div>
+    <hr>
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="card mb-4">
@@ -46,7 +52,9 @@ Performance globale du cabinet
                     Prestations les plus demandées
                 </div>
 
-                <div class="card-body"><canvas id="myPieChart2" width="50%" height="30%"></canvas></div>
+                <div class="card-body  position-relative"><canvas style="width: 100% !important;" id="myPieChart2"
+                        width="50%" height="30%"></canvas>
+                </div>
             </div>
         </div>
         <div class="col-md-6 col-sm-12">
@@ -57,7 +65,9 @@ Performance globale du cabinet
                     Contribution des Prestations dans le Chiffre d'Affaire
                 </div>
 
-                <div class="card-body"><canvas id="myBarChart2" width="50%" height="30%"></canvas></div>
+                <div class="card-body  position-relative"><canvas style="width: 100% !important;" id="myBarChart2"
+                        width="50%" height="30%"></canvas>
+                </div>
             </div>
         </div>
 
@@ -80,7 +90,7 @@ Performance globale du cabinet
     prestationCaMontant= JSON.parse('{!! json_encode($prestationCaMontant) !!}');
     max_montant= JSON.parse('{!! json_encode($max_montant) !!}');
 
-    console.log(prestationLabel+" "+prestationNbr);
+    /* console.log(prestationLabel+" "+prestationNbr); */
     /*y_data=JSON.parse(); */
 
 /*     $('#year').change(function (e) {
