@@ -153,7 +153,8 @@
                     Chiffre d'Affaire par mois
                 </div>
 
-                <div class="card-body"><canvas id="myBarChart" width="50%" height="30%"></canvas></div>
+                <div class="card-body"><canvas id="myBarChart" style="width: 100% !important;" width="50%"
+                        height="30%"></canvas></div>
             </div>
         </div>
         <div class="col-md-6 col-sm-12">
@@ -164,7 +165,8 @@
                     Etat des Missions
                 </div>
 
-                <div class="card-body"><canvas id="myPieChart" width="50%" height="30%"></canvas></div>
+                <div class="card-body"><canvas id="myPieChart" style="width: 100% !important;" width="50%"
+                        height="30%"></canvas></div>
             </div>
         </div>
 
