@@ -98,8 +98,8 @@ Liste des Factures
                                 class="fas fa-print"></i></a>&nbsp;
                         <a href="{{route('facture.edit',$facture->id)}}" class="btn btn-outline-secondary">
                             <i class="fas fa-minus"></i></a> &nbsp;
-                        <a href="{{route('facture.destroy',$facture->id)}}" class="btn btn-outline-danger"><i
-                                style="font-size: 20px" class="fas fa-times"></i></a>
+                        <a id="{{$facture->id}}" class="btn btn-outline-danger dlt"><i style="font-size: 20px"
+                                class="fas fa-times"></i></a>
 
                     </td>
                 </tr>
@@ -129,8 +129,54 @@ Liste des Factures
         </div>
     </div>
 </div>
+<div class="modal fade" id="editModalD" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Suppression de Facture</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+            <div class="modal-body">
+                <p>Etes vous sur de vouloir Supprimer cette facture ?</p>
+            </div>
+            <div class="modal-footer">
+                <a id="confirm" href="" class="btn btn-dark">Oui</a>
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <script>
+    $(document).ready(function(){
+
+        $(".dlt").click(function (e) {
+            e.preventDefault();
+            var url= "{{url('factures/')}}"
+            var id=$(this).attr('id');
+            $("#confirm").attr('href',url+'/'+id+'/delete')
+            $('#editModalD').modal('show')
+
+        });
+
+        $("#datatablesSimple").bind("DOMSubtreeModified", function() {
+            $(".dlt").click(function (e) {
+            e.preventDefault();
+            var url= "{{url('factures/')}}"
+            var id=$(this).attr('id');
+            $("#confirm").attr('href',url+'/'+id+'/delete')
+            $('#editModalD').modal('show')
+
+            });
+        });
+
+        /*  */
+
+    })
+
     $('#cree').click(function (e) {
          e.preventDefault();
 
