@@ -88,8 +88,10 @@ Liste des clients
                     <td>{{$entreprise->RegimeFiscal->designation}}</td>
                     <td class="d-flex"><a href="{{route('client.edit',$entreprise->id)}}"
                             class="btn btn-outline-secondary"> <i class="fas fa-minus"></i></a> &nbsp;
-                        <a href="{{route('client.destroy',$entreprise->id)}}" class="btn btn-outline-danger"><i
-                                style="font-size: 20px" class="fas fa-times"></i></a>
+                        {{-- <a href="{{route('client.destroy',$entreprise->id)}}" class="btn btn-outline-danger"><i
+                                style="font-size: 20px" class="fas fa-times"></i></a> --}}
+                        <a id="{{$entreprise->id}}" class="btn btn-outline-danger dlt"><i style="font-size: 20px"
+                                class="fas fa-times"></i></a>
                     </td>
                 </tr>
                 @endforeach
@@ -98,5 +100,54 @@ Liste des clients
         </table>
     </div>
 </div>
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Suppression d'Entreprise</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+            <div class="modal-body">
+                <p>Etes vous sur de vouloir Supprimer cette entreprise ?</p>
+            </div>
+            <div class="modal-footer">
+                <a id="confirm" href="" class="btn btn-dark">Oui</a>
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script defer>
+    $(document).ready(function(){
+        $(".dlt").click(function (e) {
+            e.preventDefault();
+            console.log('click');
+            var url= "{{url('clients/')}}"
+            var id=$(this).attr('id');
+            $("#confirm").attr('href',url+'/'+id+'/delete')
+            $('#editModal').modal('show')
+
+        });
+        window.addEventListener("DOMContentLoaded", (event) => {
+    console.log("DOM entièrement chargé et analysé");
+  });
+
+  $("#datatablesSimple").bind("DOMSubtreeModified", function() {
+        $(".dlt").click(function (e) {
+        e.preventDefault();
+        console.log('click');
+        var url= "{{url('clients/')}}"
+        var id=$(this).attr('id');
+        $("#confirm").attr('href',url+'/'+id+'/delete')
+        $('#editModal').modal('show')
+
+        });
+    });
+
+    })
+</script>
 
 @endsection
