@@ -75,7 +75,7 @@ Liste des Paiements
             <tbody>
                 @foreach ($paiements as $paiement)
                 <tr>
-                    <td class="text-center"><strong>{{$loop->iteration}}</strong></td>
+                    <td class="text-center"><strong>{{$paiement->id}}</strong></td>
                     <td><strong><a href="{{-- {{route('devis.edit',$facture->id)}} --}}" class="link-dark"
                                 style="text-underline-position: none">{{$paiement->facture->num_fact}}</a></strong></td>
                     <td>{{$paiement->facture->mission->entreprise->raison_social}}</td>
@@ -96,8 +96,8 @@ Liste des Paiements
                                 class="fas fa-print"></i></a>&nbsp; --}}
                         <a href="{{route('paiement.edit',$paiement->id)}}" class="btn btn-outline-secondary">
                             <i class="fas fa-minus"></i></a> &nbsp;
-                        <a href="{{-- {{route('facture.destroy',$facture->id)}} --}}" class="btn btn-outline-danger"><i
-                                style="font-size: 20px" class="fas fa-times"></i></a>
+                        <a id="{{$paiement->id}}" class="btn btn-outline-danger dlt"><i style="font-size: 20px"
+                                class="fas fa-times"></i></a>
 
                     </td>
                 </tr>
@@ -107,14 +107,52 @@ Liste des Paiements
         </table>
     </div>
 </div>
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Suppression de paiement</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
+            </div>
+            <div class="modal-body">
+                <p>Etes vous sur de vouloir Supprimer ce paiement ?</p>
+            </div>
+            <div class="modal-footer">
+                <a id="confirm" href="" class="btn btn-dark">Oui</a>
 
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <script>
-    /*     $('#cree').click(function (e) {
-         e.preventDefault();
+    $(document).ready(function(){
 
-        $('#editModal').modal('show')
-    }); */
+        $(".dlt").click(function (e) {
+            e.preventDefault();
+            var url= "{{url('paiements/')}}"
+            var id=$(this).attr('id');
+            $("#confirm").attr('href',url+'/'+id+'/delete')
+            $('#editModal').modal('show')
+
+        });
+
+        $("#datatablesSimple").bind("DOMSubtreeModified", function() {
+            $(".dlt").click(function (e) {
+            e.preventDefault();
+            var url= "{{url('paiements/')}}"
+            var id=$(this).attr('id');
+            $("#confirm").attr('href',url+'/'+id+'/delete')
+            $('#editModal').modal('show')
+
+            });
+        });
+
+        /*  */
+
+    })
 </script>
 @endsection
