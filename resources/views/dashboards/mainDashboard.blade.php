@@ -153,8 +153,8 @@
                     Chiffre d'Affaire par mois
                 </div>
 
-                <div class="card-body"><canvas id="myBarChart" style="width: 100% !important;" width="50%"
-                        height="30%"></canvas></div>
+                <div class="card-body position-relative"><canvas id="myBarChart" style="width: 100% !important;"
+                        width="50%" height="30%"></canvas></div>
             </div>
         </div>
         <div class="col-md-6 col-sm-12">
@@ -165,8 +165,8 @@
                     Etat des Missions
                 </div>
 
-                <div class="card-body"><canvas id="myPieChart" style="width: 100% !important;" width="50%"
-                        height="30%"></canvas></div>
+                <div class="card-body position-relative "><canvas id="myPieChart" style="width: 100% !important;"
+                        width="50%" height="30%"></canvas></div>
             </div>
         </div>
 
@@ -210,6 +210,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="{{asset('assets/charts/chart-bar-Chiffre-dAffaire.js')}}"></script>
-<script src="{{asset('assets/charts/chart-pie-missions.js')}}"></script>
+<script src="{{asset('assets/charts/chart-bar-Chiffre-dAffaire.js')}}" defer></script>
+<script src="{{asset('assets/charts/chart-pie-missions.js')}}" defer></script>
 @endsection
