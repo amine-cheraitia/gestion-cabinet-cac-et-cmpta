@@ -86,10 +86,10 @@ Liste des Créances
                     <td>{{ $facts->mission->num_missions }}</td>
                     <td>{{ number_format($facts->montant, 2, ',', ' '); }} DA</td>
                     <td>{{Carbon\Carbon::parse($facts->date_facturation)->format('d-m-Y')}}</td>
-                    <td class="@if($diff>30)
-                         red text-center
+                    <td class="text-center @if($diff>30)
+                         red
                          @elseif ($diff>15)
-                        orange text-center
+                        orange
                         @endif">{{$diff }}
                         jour(s)
 
