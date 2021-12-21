@@ -112,6 +112,7 @@ Liste des Utilisateurs
 
 <script>
     $(document).ready(function(){
+
         $(".dlt").click(function (e) {
             e.preventDefault();
             var url= "{{url('users/')}}"
@@ -120,6 +121,19 @@ Liste des Utilisateurs
             $('#editModal').modal('show')
 
         });
+
+        $("#datatablesSimple").bind("DOMSubtreeModified", function() {
+            $(".dlt").click(function (e) {
+            e.preventDefault();
+            var url= "{{url('users/')}}"
+            var id=$(this).attr('id');
+            $("#confirm").attr('href',url+'/'+id+'/delete')
+            $('#editModal').modal('show')
+
+            });
+        });
+
+        /*  */
 
     })
 </script>
