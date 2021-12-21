@@ -163,11 +163,21 @@ class FactureController extends Controller
     public function destroy($id)
     {
 
-        $paiement = Paiement::whereFactureId($id)->count();
+        if (Paiement::whereFactureId($id)->count()) {
+            Alert::error("Suppression de la tâche", "La Facture ne peut pas étre supprimé");
+            return redirect()->route('facture.list')->with('errors', "la Facture ne peut pas étre supprimé");
+        }
+        if (Facture::whereFactAvoirId($id)->count()) {
+            Alert::error('Suppression de la tâche', "La Facture ne peut pas étre supprimé");
+            return redirect()->route('facture.list')->with('errors', "la Facture ne peut pas étre supprimé");
+        }
+
+        /*         $paiement = Paiement::whereFactureId($id)->count();
 
         if ($paiement) {
             alert()->error('Facture', 'Un paiement est lié a la facture. Vous ne pouvez pas la supprimer');
-        }
+        } */
+
         Facture::whereId($id)->delete();
         alert()->info('Facture', 'Facture a bien été supprimer');
         return redirect()->route('facture.list')->withMessage('La Facture a été supprimé');

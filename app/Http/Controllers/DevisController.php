@@ -112,6 +112,7 @@ class DevisController extends Controller
 
 
         Devis::whereId($id)->delete();
+        Alert::info('Suppression du Devis', "le Devis a bien été supprimé");
         return redirect()->route('devis.list')->withMessage('le Devis a été supprimé');;
     }
 

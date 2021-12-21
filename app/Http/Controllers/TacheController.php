@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commentaire;
 use App\Models\Mission;
 use App\Models\Tache;
 use App\Models\User;
@@ -152,6 +153,11 @@ class TacheController extends Controller
 
     public function destroy($id)
     {
+        if (Commentaire::where('tache_id', $id)->count()) {
+            Alert::error('Suppression de la tâche', "la tâche ne peut pas étre supprimé");
+            return redirect()->route('tache.list')->with('errors', "la tâche ne peut pas étre supprimé");
+        }
+
         Tache::whereId($id)->delete();
 
         alert()->info('Tâche', 'Tâche a bien été supprimer');
