@@ -33,7 +33,7 @@
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <i style="font-size: 35px" class="fas fa-tasks"></i>
                     <div>Tâche(s) En cours <br>
-                        <div class="text-center fs-8 w-100">8</div>
+                        <div class="text-center fs-8 w-100">{{$tachesEncours}}</div>
                     </div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
