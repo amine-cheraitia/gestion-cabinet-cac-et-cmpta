@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tache;
+use Carbon\Carbon;
 /* use Illuminate\Http\Request; */
+use App\Models\Tache;
 use App\Models\Facture;
 use App\Models\Mission;
+use App\Models\Paiement;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreFactureRequest;
@@ -52,14 +54,29 @@ class DashboardController extends Controller
             $missionEncours = Mission::whereStatus(0)->count();
             $missionAchevé = Mission::whereStatus(1)->count();
             $factAnnulé = Facture::whereNotNull('fact_avoir_id')->get('fact_avoir_id');
-
             $chiffreDaffaire = Facture::whereTypeFactureId(1)->whereNotIn('id', $factAnnulé)->sum('montant');
-
-
-            return view('dashboards.mainDashboard', compact('xdata', 'x_max', 'missionEncours', 'missionAchevé', 'chiffreDaffaire'));
+            $tachesEncours = Tache::whereStatus(0)->count();
+            return view('dashboards.mainDashboard', compact('xdata', 'x_max', 'missionEncours', 'missionAchevé', 'chiffreDaffaire', 'tachesEncours'));
         } elseif (Auth::user()->isSecretaire()) {
-            # code...
+
+            $factureWavoir = Facture::whereNotNull('fact_avoir_id')->pluck('fact_avoir_id');
+            $facturePaye = Paiement::pluck('facture_id');
+            $factsNP = Facture::whereNotIn('id', $factureWavoir)->where('type_facture_id', 1)->whereNotIn('id', $facturePaye)->get();
+            $facts = $factsNP->count();
+            $factEnAttentePaiement = 0;
+            $factRetard = 0;
+            foreach ($factsNP as $f) {
+                $diff = Carbon::parse($f->date_facturation)->diffInDays(Carbon::now());
+                if ($diff > 30) {
+                    $factRetard++;
+                } elseif ($diff > 15) {
+                    $factEnAttentePaiement++;
+                }
+            }
+
+            return view('dashboards.SecretaireDashboard', compact('facts', 'factEnAttentePaiement', 'factRetard'));
         } elseif (Auth::user()->hasAnyRole(['Comptable', 'Auditeur'])) {
+
             $tachesEncours = Tache::whereUserId(Auth::user()->id)->whereStatus(0)->count();
             $tachesAchevé = Tache::whereUserId(Auth::user()->id)->whereStatus(1)->count();
             return view('dashboards.Auditeur&ComptableDashboard', compact('tachesEncours', 'tachesAchevé'));
