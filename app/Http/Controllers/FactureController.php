@@ -26,7 +26,8 @@ class FactureController extends Controller
 
     public function index()
     {
-        $factures = Facture::with(['mission', 'factureAvoir'])->orderBy('num_fact')->get();
+        $factures = Facture::with(['mission', 'factureAvoir'])->orderBy('num_fact')->orderBy('type_facture_id', 'desc')->get();
+        /* $factures = Facture::with(['mission', 'factureAvoir'])->whereTypeFactureId(1)->orderBy('num_fact')->get(); */
 
         return view("factures.facturesList", compact("factures"));
     }
@@ -188,13 +189,15 @@ class FactureController extends Controller
         $mission_id = $request->get('mission_id');
         $mission = Mission::whereId($mission_id)->first();
         $designation = $mission->prestation->designation;
-
+        /*  */
+        $factureUtilise = Facture::whereNotNull('fact_avoir_id')->pluck('fact_avoir_id');
+        /*  */
         if ($request->edit) {
-            $totalFacture = Facture::whereMissionId($mission_id)->whereTypeFactureId(1)->count() - 1;
+            $totalFacture = Facture::whereMissionId($mission_id)->whereTypeFactureId(1)->whereNotIn('id', $factureUtilise)->count() /* - 1 */;
         } else {
-            $totalFacture = Facture::whereMissionId($mission_id)->whereTypeFactureId(1)->count();
+            $totalFacture = Facture::whereMissionId($mission_id)->whereTypeFactureId(1)->whereNotIn('id', $factureUtilise)->count();
         }
-
+        $zyada = $totalFacture;
         /*         if (($totalFacture == 0) or ($totalFacture == 1) or ($totalFacture == -1)) {
             $tranche = $mission->total * 0.3;
         } elseif (($totalFacture > 1)) {
@@ -202,17 +205,19 @@ class FactureController extends Controller
         } else {
             alert()->error('erreur', 'erreur');
         } */
-        if ($totalFacture == 2) {
+        if ($totalFacture > 2) {
             $tranche = null;
+            $zyada = $totalFacture;
             return response()->json([
                 "total" => null,
                 "designation" => null,
-                "totalFacture" => null
+                "totalFacture" => null,
+                "zyada" => $zyada,
             ]);
-        } elseif ($totalFacture == 1) {
-            $tranche = $mission->total * 0.4;
-        } else {
+        } elseif (($totalFacture == 1) or ($totalFacture == 0)) {
             $tranche = $mission->total * 0.3;
+        } else {
+            $tranche = $mission->total * 0.4;
         }
         $total = number_format($tranche, 2, '.', '');
 
@@ -222,7 +227,8 @@ class FactureController extends Controller
         return response()->json([
             "total" => $total,
             "designation" => $designation,
-            "totalFacture" => $totalFacture
+            "totalFacture" => $totalFacture,
+            "zyada" => $zyada,
         ]);
     }
 

@@ -110,7 +110,7 @@ Création de Facture
                                     </td>
                                     <td>
                                         <input type="text" {{-- step="0.01" name="sub_total" --}} id="montant"
-                                            name="montant" class="row_sub_total form-control shadow" readonly>
+                                            name="montant" class="row_sub_total form-control shadow" {{-- readonly --}}>
                                         @error('montant')<span class="help-block text-danger">{{ $message
                                             }}</span>@enderror
                                     </td>
@@ -157,16 +157,20 @@ Création de Facture
             data:{mission_id:mission_id, _token:_token },
             success:function(result)
                 {
-                console.log(result);
+
 
                 $('#montant').val(result.total);
                 $('#total').val(result.total);
                 $('#prestation').val(result.designation);
+                console.log(result.zyada);
 
                 }
 
             })
 
+    })
+    $('#montant').keydown(function(){
+        $('#total').val($('#montant').val());
     })
 
 
