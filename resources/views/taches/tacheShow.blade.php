@@ -37,7 +37,7 @@ Tâche
 @endsection
 @section('content')
 
-{{-- <h2 class="my-4 text-center">Détail de la tâche {{$tache->num_tache}}</h2> --}}
+
 <h2 class="my-4 text-center">{{-- Liste des tâches --}}</h2>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / <a
@@ -45,20 +45,7 @@ Tâche
         {{$tache->num_tache}}
     </li>
 </ol>
-{{-- @if(session('errors'))
-<div class="col-lg-12">
-    <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
-</div>
-@endif
-@if(session('message'))
-<div class="col-lg-12">
-    <div class="alert alert-success" role="alert">{{ session('message') }}</div>
-</div>
-@endif --}}
 
-{{-- @php
-Carbon\Carbon::setLocale('fr');
-@endphp --}}
 <div class="card mb-4 shadow">
 
     <div class="card-header d-flex justify-content-between align-items-center">
