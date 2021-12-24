@@ -16,11 +16,7 @@ Liste des Factures
     }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
-</script>
-</script> --}}
+
 @endsection
 @section('content')
 {{-- <h2 class="my-4 text-center">Liste des Factures</h2> --}}
@@ -87,11 +83,6 @@ Liste des Factures
                     <td>{{Carbon\Carbon::parse($facture->date_facturation)->format('d-m-Y')}}</td>
                     <td class="text-center">{{ $facture->fact_avoir_id ? $facture->factureAvoir->num_fact : "-"}}</td>
                     <td>{{ number_format($facture->montant, 2, ',', ' '); }} DA</td>
-
-                    {{-- <td>{{$entreprise->num_registre_commerce}}</td>
-                    <td>{{$entreprise->num_id_fiscale}}</td>
-                    <td>{{$entreprise->num_art_imposition}}</td> --}}
-
                     <td class="d-flex">
                         <a target="_blank" href="{{route('facture.pdf',$facture->id)}}"
                             class="btn btn-outline-primary"><i style="font-size: 15px;"
