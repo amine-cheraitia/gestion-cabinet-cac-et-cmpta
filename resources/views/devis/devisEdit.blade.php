@@ -1,23 +1,19 @@
 @extends('main')
 @section('title')
-Modification de Devis
+Modification de Devis N° {{$devis->num_devis}}
 @endsection
 @section('style')
-{{--
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/css/bootstrap.min.css"
-    integrity="sha512-oc9+XSs1H243/FRN9Rw62Fn8EtxjEYWHXRvjS43YtueEewbS6ObfXcJNyohjHqVKFPoXXUxwc+q1K7Dee6vv9g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
-</script>
-</script> --}}
-
 @endsection
-@section('content')
-<h2 class="my-5 text-center">Modification de Devis N° {{$devis->num_devis}}</h2>
 
+@section('content')
+<h2 class="my-4 text-center">{{-- Modification de Devis N° {{$devis->num_devis}} --}}</h2>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / <a
+            class="text-dark" href="{{route('devis.list')}}">Liste des
+            Devis</a> / Creation de Devis</li>
+</ol>
 
 
 <div class="row justify-content-center mt-2">
