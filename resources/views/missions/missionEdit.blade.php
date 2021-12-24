@@ -4,21 +4,17 @@ Modification de la mission:
 {{$mission->num_missions}}
 @endsection
 @section('style')
-{{--
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/css/bootstrap.min.css"
-    integrity="sha512-oc9+XSs1H243/FRN9Rw62Fn8EtxjEYWHXRvjS43YtueEewbS6ObfXcJNyohjHqVKFPoXXUxwc+q1K7Dee6vv9g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 
 <link rel="stylesheet" href="{{asset('css/jquery.datetimepicker.min.css')}}">
 
-{{-- a supprimer --}}
+
 
 @endsection
 @section('content')
-{{-- <h2 class="mt-5 text-center">{{-- <i class="fas fa-project-diagram">Modification de la mission:
-        {{$mission->num_missions}} </h2> --}}
+
 
 <h2 class="my-4 text-center"></h2>
 <ol class="breadcrumb mb-4">

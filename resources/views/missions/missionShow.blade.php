@@ -4,9 +4,7 @@ Missions
 {{$mission->num_missions}}
 @endsection
 @section('style')
-{{--
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --}}
+
 <style>
     .dataTable-pagination li.active a {
         background-color: #212529 !important;
@@ -36,7 +34,14 @@ Missions
 @endsection
 @section('content')
 
-<h2 class="my-4 text-center">Détail de la mission {{$mission->num_missions}}</h2>
+<h2 class="my-4 text-center">{{-- Détail de la mission {{$mission->num_missions}} --}}</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / <a
+            class="text-dark" href="{{route('mission.list')}}">Liste des
+            missions</a> / Détail de la mission {{$mission->num_missions}}</li>
+</ol>
+
+
 @if(session('errors'))
 <div class="col-lg-12">
     <div class="alert alert-danger" role="alert">{{ session('errors') }}</div>
@@ -121,9 +126,6 @@ Carbon\Carbon::setLocale('fr');
                 <a href="{{route('convention.generate',$mission->id)}}" class="btn btn-dark"><i class="fas fa-cogs"></i>
                     Générer la convention</a>
                 @endif
-
-
-
 
             </div>
 
