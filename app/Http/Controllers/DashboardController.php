@@ -81,6 +81,7 @@ class DashboardController extends Controller
             $tachesAchevé = Tache::whereUserId(Auth::user()->id)->whereStatus(1)->count();
             return view('dashboards.Auditeur&ComptableDashboard', compact('tachesEncours', 'tachesAchevé'));
         } else {
+            return view('dashboards.NoRole');
         }
     }
 
