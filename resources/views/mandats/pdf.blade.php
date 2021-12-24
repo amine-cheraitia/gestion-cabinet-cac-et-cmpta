@@ -119,8 +119,7 @@
                         <tr class="text-center">
 
                             <td class="title" style="text-align: center">
-                                <img src="https://www.sparksuite.com/images/logo.png"
-                                    style="width: 100%; max-width: 300px" />
+                                <img src="assets/img/LogoImp.png" style=" max-width: 300px" />
                             </td>
 
                         </tr>
