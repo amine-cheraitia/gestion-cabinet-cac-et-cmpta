@@ -14,12 +14,18 @@ Enregistrement de Paiement
 </style>
 @endsection
 @section('content')
-<h2 class="my-5 text-center">Enregistrement de Paiement</h2>
 
+<h2 class="my-4 text-center">{{-- Liste des tâches --}}</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / <a
+            class="text-dark" href="{{route('paiement.list')}}">Liste des
+            Paiements</a> / Enregistrement de Paiement
+    </li>
+</ol>
 
 
 <div class="row justify-content-center mt-2 mb-5">
-    <div class="col-10">
+    <div class="col-12">
         <div class="card shadow">
             <div class="card-header">
                 <i class="fas fa-file-alt"></i> <strong>Enregistrement de Paiement</strong>
