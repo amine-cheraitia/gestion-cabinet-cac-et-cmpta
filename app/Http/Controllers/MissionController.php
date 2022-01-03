@@ -24,7 +24,7 @@ class MissionController extends Controller
 
     public function index()
     {
-        $missions = Mission::with(['entreprise', 'prestation'])->get();
+        $missions = Mission::orderByDesc('title')->with(['entreprise', 'prestation'])->get();
 
         /* dd($missions); */
         return view('missions.missionList', compact('missions'));
@@ -178,6 +178,7 @@ class MissionController extends Controller
         alert()->info('Mission', 'Mission a bien été supprimer');
         return redirect()->route('mission.list')->withMessage('la mission a été supprimé');
     }
+
     public function planning()
     {
 
