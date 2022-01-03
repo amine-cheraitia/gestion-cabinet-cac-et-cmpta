@@ -26,7 +26,7 @@ class FactureController extends Controller
 
     public function index()
     {
-        $factures = Facture::with(['mission', 'factureAvoir'])->orderBy('num_fact')->orderBy('type_facture_id', 'desc')->get();
+        $factures = Facture::orderByDesc('exercice_id')->with(['mission', 'factureAvoir'])->orderBy('num_fact')->orderBy('type_facture_id', 'desc')->get();
         /* $factures = Facture::with(['mission', 'factureAvoir'])->whereTypeFactureId(1)->orderBy('num_fact')->get(); */
 
         return view("factures.facturesList", compact("factures"));
@@ -61,7 +61,7 @@ class FactureController extends Controller
                 'exercice_id' => 'required',
                 'montant' => 'required',
             ]);
-            $num_fact = IdGenerator::generate(['table' => 'factures', 'field' => 'num_fact', 'length' => 8, 'prefix' => 'FA' . date('y') . '-', 'reset_on_prefix_change' => true]);
+            $num_fact = IdGenerator::generate(['table' => 'factures', 'field' => 'num_fact', 'length' => 8, 'prefix' => 'FA' . substr($request->exercice_id, -2) /* date('y') */ . '-', 'reset_on_prefix_change' => true]);
             $montant = number_format($request->montant, 2, '.', '');
             $mission_id = Facture::whereId($request->fact_avoir_id)->first('mission_id')->mission_id;
 
@@ -84,7 +84,7 @@ class FactureController extends Controller
             'exercice_id' => 'required',
             'montant' => 'required',
         ]);
-        $num_fact = IdGenerator::generate(['table' => 'factures', 'field' => 'num_fact', 'length' => 8, 'prefix' => 'FF' . date('y') . '-', 'reset_on_prefix_change' => true]);
+        $num_fact = IdGenerator::generate(['table' => 'factures', 'field' => 'num_fact', 'length' => 8, 'prefix' => 'FF' . substr($request->exercice_id, -2)/* date('y') */ . '-', 'reset_on_prefix_change' => true]);
         $montant = number_format($request->montant, 2, '.', '');
 
         Facture::create(/* request()->all() + */[
