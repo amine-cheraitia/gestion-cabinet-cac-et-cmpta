@@ -38,6 +38,7 @@ Route::get('/clients/{id}/delete', [EntrepriseController::class, 'destroy'])->na
 /* Route::resource('/clients', EntrepriseController::class); */
 //devis
 Route::get('/devis', [DevisController::class, 'index'])->name('devis.list');
+Route::get('/devis/ex/{id}', [DevisController::class, 'showExercice'])->name('devis.showExercice');
 Route::get('/devis/create', [DevisController::class, 'create'])->name('devis.create');
 Route::post('/devis/store', [DevisController::class, 'store'])->name('devis.store');
 Route::get('/devis/{id}', [DevisController::class, 'edit'])->name('devis.edit');

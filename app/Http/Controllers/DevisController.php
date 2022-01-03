@@ -23,7 +23,16 @@ class DevisController extends Controller
     public function index()
     {
         $devis = Devis::with('entreprise')->get();
-        return view('devis.devisList', compact('devis'));
+        $exercices = Exercice::all();
+        return view('devis.devisList', compact('devis', 'exercices'));
+    }
+
+    public function showExercice($id)
+    {
+        $devis = Devis::whereExerciceId($id)->with('entreprise')->get();
+
+        $exercices = Exercice::all();
+        return view('devis.devisList', compact('devis', 'exercices'));
     }
 
     public function create()

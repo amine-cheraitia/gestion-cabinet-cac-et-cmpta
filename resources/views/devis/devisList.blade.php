@@ -43,11 +43,24 @@ Liste des Devis
 <div class="card mb-4 shadow">
 
     <div class="card-header d-flex justify-content-between align-items-center">
-        <div><i class="fas fa-file-alt"></i>
+        <div class=""><i class="fas fa-file-alt"></i>
             <strong>Liste des Devis</strong>
         </div>
         {{-- //todo: boutton d'ajout --}}
-        <a href="{{route('devis.create')}}" class="btn btn-dark ">Crée un Devis</a>
+        <div class="d-flex justify-content-center align-items-center">
+            <span style="line-height: 50%;" class="mr-2">Exercice</span>
+            <form id="formExercice" action="{{-- {{route('devis.store')}} --}}" method="get" class="mr-2">
+                <select id="selectExercice" class="form-control form-select shadow" style="width: 100px">
+                    <option selected>...</option>
+                    @foreach ($exercices as $exercice)
+                    <option id="{{$exercice->id}}" value="{{$exercice->id}}">{{$exercice->id}}</option>
+                    @endforeach
+                </select>
+            </form>
+
+            <a href="{{route('devis.create')}}" class="btn btn-dark">Crée un Devis</a>
+        </div>
+
 
     </div>
     <div class="card-body">
@@ -138,8 +151,9 @@ Liste des Devis
         $("#datatablesSimple").bind("DOMSubtreeModified", function() {
             $(".dlt").click(function (e) {
             e.preventDefault();
-            var url= "{{url('devis/')}}"
-            var id=$(this).attr('id');
+            let url= "{{url('devis/')}}"
+            console.log($(this));
+            let id=$(this).attr('id');
             $("#confirm").attr('href',url+'/'+id+'/delete')
             $('#editModal').modal('show')
 
@@ -147,6 +161,14 @@ Liste des Devis
         });
 
         /*  */
+        $('#selectExercice').change(function (e) {
+            e.preventDefault();
+            let url ="{{url('devis/ex/')}}"
+            let id=$(this).val();
+
+            $('#formExercice').attr('action',url+'/'+id);
+            $('#formExercice').submit();
+        });
 
     })
 </script>
