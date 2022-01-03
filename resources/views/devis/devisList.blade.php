@@ -51,9 +51,10 @@ Liste des Devis
             <span style="line-height: 50%;" class="mr-2">Exercice</span>
             <form id="formExercice" action="{{-- {{route('devis.store')}} --}}" method="get" class="mr-2">
                 <select id="selectExercice" class="form-control form-select shadow" style="width: 100px">
-                    <option selected>...</option>
+                    <option>...</option>
                     @foreach ($exercices as $exercice)
-                    <option id="{{$exercice->id}}" value="{{$exercice->id}}">{{$exercice->id}}</option>
+                    <option id="{{$exercice->id}}" value="{{$exercice->id}}" {{$exercice->id == request()->id?
+                        "selected" : "" }}>{{$exercice->id}}</option>
                     @endforeach
                 </select>
             </form>

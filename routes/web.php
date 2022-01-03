@@ -99,6 +99,7 @@ Route::patch('/commentaires/{id}', [CommentaireController::class, 'update'])->na
 
 //facture
 Route::get('/factures', [FactureController::class, 'index'])->name('facture.list');
+Route::get('/factures/ex/{id}', [FactureController::class, 'showExercice'])->name('facture.showExercice');
 Route::get('/factures/create', [FactureController::class, 'create'])->name('facture.create');
 Route::get('/factures/createAvoir', [FactureController::class, 'createAvoir'])->name('facture.createAvoir');
 Route::post('/factures/store', [FactureController::class, 'store'])->name('facture.store');

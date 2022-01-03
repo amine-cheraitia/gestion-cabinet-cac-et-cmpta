@@ -29,6 +29,10 @@ class DevisController extends Controller
 
     public function showExercice($id)
     {
+        if ($id == "...") {
+            return redirect()->route('devis.list');
+        }
+
         $devis = Devis::whereExerciceId($id)->with('entreprise')->get();
 
         $exercices = Exercice::all();

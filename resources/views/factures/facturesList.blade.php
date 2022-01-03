@@ -43,7 +43,19 @@ Liste des Factures
         <div><i class="fas fa-file-alt"></i><strong>
                 Liste des Factures</strong></div>
         {{-- //todo: boutton d'ajout --}}
-        <a href="" id="cree" class="btn btn-dark ">Crée une Facture</a>
+        <div class="d-flex justify-content-center align-items-center">
+            <span style="line-height: 50%;" class="mr-2">Exercice</span>
+            <form id="formExercice" action="{{-- {{route('devis.store')}} --}}" method="get" class="mr-2">
+                <select id="selectExercice" class="form-control form-select shadow" style="width: 100px">
+                    <option>...</option>
+                    @foreach ($exercices as $exercice)
+                    <option id="{{$exercice->id}}" value="{{$exercice->id}}" {{$exercice->id == request()->id?
+                        "selected" : "" }}>{{$exercice->id}}</option>
+                    @endforeach
+                </select>
+            </form>
+            <a href="" id="cree" class="btn btn-dark ">Crée une Facture</a>
+        </div>
 
     </div>
     <div class="card-body">
@@ -165,6 +177,14 @@ Liste des Factures
         });
 
         /*  */
+        $('#selectExercice').change(function (e) {
+            e.preventDefault();
+            let url ="{{url('factures/ex/')}}"
+            let id=$(this).val();
+
+            $('#formExercice').attr('action',url+'/'+id);
+            $('#formExercice').submit();
+        });
 
     })
 

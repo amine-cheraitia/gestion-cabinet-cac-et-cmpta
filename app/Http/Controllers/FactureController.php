@@ -28,8 +28,20 @@ class FactureController extends Controller
     {
         $factures = Facture::orderByDesc('exercice_id')->with(['mission', 'factureAvoir'])->orderBy('num_fact')/* ->orderBy('type_facture_id', 'desc') */->get();
         /* $factures = Facture::with(['mission', 'factureAvoir'])->whereTypeFactureId(1)->orderBy('num_fact')->get(); */
+        $exercices = Exercice::all();
+        return view("factures.facturesList", compact("factures", 'exercices'));
+    }
 
-        return view("factures.facturesList", compact("factures"));
+    public function showExercice($id)
+    {
+        if ($id == "...") {
+            return redirect()->route('facture.list');
+        }
+
+        $factures = Facture::whereExerciceId($id)->orderBy('num_fact')->with(['mission', 'factureAvoir'])->get();
+
+        $exercices = Exercice::all();
+        return view('factures.facturesList', compact('factures', 'exercices'));
     }
 
     public function create()
@@ -165,11 +177,11 @@ class FactureController extends Controller
     {
 
         if (Paiement::whereFactureId($id)->count()) {
-            Alert::error("Suppression de la tâche", "La Facture ne peut pas étre supprimé");
+            Alert::error("Suppression de la facture", "La Facture ne peut pas étre supprimé");
             return redirect()->route('facture.list')->with('errors', "la Facture ne peut pas étre supprimé");
         }
         if (Facture::whereFactAvoirId($id)->count()) {
-            Alert::error('Suppression de la tâche', "La Facture ne peut pas étre supprimé");
+            Alert::error('Suppression de la facture', "La Facture ne peut pas étre supprimé");
             return redirect()->route('facture.list')->with('errors', "la Facture ne peut pas étre supprimé");
         }
 
