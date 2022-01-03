@@ -25,9 +25,9 @@ class TacheController extends Controller
     {
 
         if (auth()->user()->role_id == 5) {
-            $taches = Tache::with(['mission', 'user'])->get();
+            $taches = Tache::orderByDesc('num_tache')->with(['mission', 'user'])->get();
         } else {
-            $taches = Tache::whereUserId(auth()->user()->id)->with(['mission', 'user'])->get();
+            $taches = Tache::orderByDesc('num_tache')->whereUserId(auth()->user()->id)->with(['mission', 'user'])->get();
         }
         return view('taches.tachesList', compact('taches'));
     }
