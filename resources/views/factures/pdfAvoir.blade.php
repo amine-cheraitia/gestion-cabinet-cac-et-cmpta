@@ -120,8 +120,8 @@
                             <td style="text-align: left;width:40%">
                                 N° Facture d'avoir #: <strong>{{$num_fact}}</strong><br />
                                 Date de Facturation:
-                                <strong>{{Carbon\carbon::parse($date_facturation)->format('m-d-Y')}}</strong><br />
-                                Date d'impression: <strong>{{Carbon\carbon::now()->format('m-d-Y')}}</strong>
+                                <strong>{{Carbon\carbon::parse($date_facturation)->format('d-m-Y')}}</strong><br />
+                                Date d'impression: <strong>{{Carbon\carbon::now()->format('d-m-Y')}}</strong>
                             </td>
                         </tr>
                     </table>
@@ -262,7 +262,7 @@
             <tr>
                 <td colspan="6">
                     <strong><i>Facture d'Avoir en remboursement de la Facture N° : {{$ref}} du
-                            {{Carbon\carbon::parse($refDate)->format('m-d-Y')}}</i></strong>
+                            {{Carbon\carbon::parse($refDate)->format('d-m-Y')}}</i></strong>
                 </td>
             </tr>
             <tr>
