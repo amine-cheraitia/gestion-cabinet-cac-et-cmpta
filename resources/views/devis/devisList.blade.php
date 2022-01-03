@@ -92,7 +92,7 @@ Liste des Devis
                     <td><strong><a href="{{route('devis.edit',$d->id)}}" class="link-dark"
                                 style="text-underline-position: none">{{$d->num_devis}}</a></strong></td>
                     <td>{{$d->entreprise->raison_social}}</td>
-                    <td>{{$d->date_devis}}</td>
+                    <td>{{Carbon\Carbon::parse($d->date_devis)->format('d-m-Y')}}</td>
                     <td>{{ number_format($d->total, 2, ',', ' '); }} DA</td>
 
                     {{-- <td>{{$entreprise->num_registre_commerce}}</td>

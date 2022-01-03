@@ -120,8 +120,8 @@
                             <td style="text-align: left;width:40%">
                                 N° Devis #: <strong>{{$num_devis}}</strong><br />
                                 Date du Devis:
-                                <strong>{{Carbon\carbon::parse($date_devis)->format('m-d-Y')}}</strong><br />
-                                Date d'impression: <strong>{{Carbon\carbon::now()->format('m-d-Y')}}</strong>
+                                <strong>{{Carbon\carbon::parse($date_devis)->format('d-m-Y')}}</strong><br />
+                                Date d'impression: <strong>{{Carbon\carbon::now()->format('d-m-Y')}}</strong>
                             </td>
                         </tr>
                     </table>
