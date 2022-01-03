@@ -55,7 +55,7 @@ Création de Devis
                                 @enderror" id="validationCustom099" required name="exercice_id">
                         <option selected disabled value="">...</option>
                         @foreach ($exercices as $exercice)
-                        <option value="{{$exercice->id}}" {{($exercice->id == 2021) ?
+                        <option value="{{$exercice->id}}" {{($exercice->id == 2022) ?
                             'selected' : "" }}>{{$exercice->id}}</option>
                         @endforeach
 
