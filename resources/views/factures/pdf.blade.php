@@ -120,8 +120,8 @@
                             <td style="text-align: left;width:40%">
                                 N° Facture #: <strong>{{$num_fact}}</strong><br />
                                 Date de Facturation:
-                                <strong>{{Carbon\carbon::parse($date_facturation)->format('m-d-Y')}}</strong><br />
-                                Date d'impression: <strong>{{Carbon\carbon::now()->format('m-d-Y')}}</strong>
+                                <strong>{{Carbon\carbon::parse($date_facturation)->format('d-m-Y')}}</strong><br />
+                                Date d'impression: <strong>{{Carbon\carbon::now()->format('d-m-Y')}}</strong>
                             </td>
                         </tr>
                     </table>
