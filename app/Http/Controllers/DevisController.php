@@ -71,7 +71,9 @@ class DevisController extends Controller
             'prestation_id' => 'required',
             'total' => 'required',
         ]);
-        $num_devis = IdGenerator::generate(['table' => 'devis', 'field' => 'num_devis', 'length' => 8, 'prefix' => 'DV' . date('y') . '-', 'reset_on_prefix_change' => true]);
+
+        $num_devis = IdGenerator::generate(['table' => 'devis', 'field' => 'num_devis', 'length' => 8, 'prefix' => 'DV' .  substr($request->exercice_id, -2) . '-', 'reset_on_prefix_change' => true]);
+
         $total = number_format($request->total, 2, '.', '');
 
         Devis::create(/* request()->all() + */[
