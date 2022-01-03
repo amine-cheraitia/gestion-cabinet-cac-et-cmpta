@@ -75,7 +75,7 @@ Liste des Paiements
             <tbody>
                 @foreach ($paiements as $paiement)
                 <tr>
-                    <td class="text-center"><strong>{{$paiement->id}}</strong></td>
+                    <td class="text-center"><strong>{{$loop->index+1}}</strong></td>
                     <td><strong><a href="{{-- {{route('devis.edit',$facture->id)}} --}}" class="link-dark"
                                 style="text-underline-position: none">{{$paiement->facture->num_fact}}</a></strong></td>
                     <td>{{$paiement->facture->mission->entreprise->raison_social}}</td>

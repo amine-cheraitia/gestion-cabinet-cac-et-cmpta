@@ -16,7 +16,7 @@ class PaiementController extends Controller
     }
     public function index()
     {
-        $paiements = Paiement::all();
+        $paiements = Paiement::orderByDesc('date_paiement')->get();
         return view('paiements.paiementsList', compact('paiements'));
     }
 
