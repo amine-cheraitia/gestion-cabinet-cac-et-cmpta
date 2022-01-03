@@ -22,7 +22,7 @@ class DevisController extends Controller
 
     public function index()
     {
-        $devis = Devis::with('entreprise')->get();
+        $devis = Devis::orderByDesc('exercice_id')->with('entreprise')->get();
         $exercices = Exercice::all();
         return view('devis.devisList', compact('devis', 'exercices'));
     }
