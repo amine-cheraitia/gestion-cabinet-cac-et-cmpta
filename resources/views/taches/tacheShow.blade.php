@@ -176,7 +176,7 @@ Tâche
 
             </div>
             <div class="d-flex justify-content-center mt-2">
-                page 1 page 2
+                {{-- page 1 page 2 --}}
             </div>
         </div>
         <hr>
