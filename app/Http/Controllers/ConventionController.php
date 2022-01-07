@@ -41,6 +41,10 @@ class ConventionController extends Controller
         $data['prestation'] = $mission->prestation->designation;
         $data['start'] = $mission->start;
         $data['end'] = $mission->end;
+        $data['montant'] = $mission->total;
+        $data['rc'] = $mission->entreprise->num_registre_commerce;
+        $data['art'] = $mission->entreprise->num_art_imposition;
+        $data["nif"] = $mission->entreprise->num_id_fiscale;
 
         $pdf = PDF::loadView('convention.pdf', $data);
         return $pdf->stream($convention->num_devis . ".pdf");
