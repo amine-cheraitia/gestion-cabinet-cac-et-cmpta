@@ -49,7 +49,7 @@
                     Etat des Missions
                 </div>
 
-                <div class="card-body position-relative "><canvas id="myPieChart" style="width: 100% !important;"
+                <div class="card-body position-relative "><canvas id="myPieCharttask" style="width: 100% !important;"
                         width="50%" height="30%"></canvas></div>
             </div>
         </div>
