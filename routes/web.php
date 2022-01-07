@@ -136,6 +136,7 @@ Route::prefix('users')->name('users.')->group(function () {
 //kpi
 Route::prefix('kpi')->name('kpi.')->group(function () {
     Route::get('/', [KpiController::class, 'index'])->name('basic');
+    Route::post('/usr', [KpiController::class, 'showUser'])->name('showUser');
     /*     Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
     Route::patch('/{id}', [UserController::class, 'update'])->name('update');
     Route::get('/{id}/delete', [UserController::class, 'destroy'])->name('destroy'); */

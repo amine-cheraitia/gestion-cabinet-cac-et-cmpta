@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Tache;
 use App\Models\Facture;
 use App\Models\Mission;
 use App\Models\Prestation;
@@ -68,7 +70,27 @@ class KpiController extends Controller
             $prestationCALabel[] = $pCA->designation;
             $prestationCaMontant[] = $pCA->montant;
         }
+        $users = User::where('role_id', '>', 2)->get();
 
-        return view('kpi.kpi', compact('xdata', 'years', 'x_max', 'missionEncours', 'missionAchevé', 'prestationDemande', 'prestationDemandeeNbr', "prestationCALabel", "prestationCaMontant", "max_montant"));
+        return view('kpi.kpi', compact('users', 'xdata', 'years', 'x_max', 'missionEncours', 'missionAchevé', 'prestationDemande', 'prestationDemandeeNbr', "prestationCALabel", "prestationCaMontant", "max_montant"));
+    }
+
+    public function showUser(Request $request)
+    {
+        /*         if ($request->id == "...") {
+            return redirect()->route('kpi.kpi');
+        } */
+        $tachesEncours = Tache::whereUserId($request->id)->whereStatus(0)->count();
+        $tachesAchevé = Tache::whereUserId($request->id)->whereStatus(1)->count();
+
+
+        /* $users = User::all(); */
+
+        return response()->json([
+            "tachesEncours" => $tachesEncours,
+            "tachesAchevé" => $tachesAchevé,
+
+        ]);
+        /* return view('kpi.kpi', compact('users', 'tachesEncours', 'tachesAchevé')); */
     }
 }

@@ -5,7 +5,7 @@ Chart.defaults.global.defaultFontColor = "#292b2c";
 
 // Pie Chart Example
 var ctx = document.getElementById("myPieCharttask").getContext("2d");
-var myPieChart = new Chart(ctx, {
+var chart = new Chart(ctx, {
     type: "pie",
     data: {
         labels: ["Tâche(s) Achevée(s) ", "Tâche(s) En cours"],

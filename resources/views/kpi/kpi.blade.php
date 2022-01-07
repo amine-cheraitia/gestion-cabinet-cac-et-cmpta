@@ -72,6 +72,37 @@ Performance globale du cabinet
         </div>
 
     </div>
+    <hr>
+    <div class="row">
+        <div class="d-flex justify-content-center align-items-center mb-4">
+            <span style="line-height: 50%;" class="mr-2">Employé</span>
+            <form id="formExercice" action="{{-- {{route('devis.store')}} --}}" method="get" class="mr-2">
+                @csrf
+                <select id="selectExercice" class="form-control form-select shadow" style="width: 250px">
+                    <option>...</option>
+                    @foreach ($users as $user)
+                    <option id="{{$user->id}}" value="{{$user->id}}" {{$user->id == request()->id?
+                        "selected" : "" }}>{{$user->fullname}}</option>
+                    @endforeach
+                </select>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="card mb-4">
+
+                <div class="card-header">
+                    <i class="fas fa-tasks"></i>
+                    Tâche(s) En cours
+                </div>
+
+                <div class="card-body  position-relative"><canvas id="myPieCharttask" style="width: 100% !important;"
+                        width="50%" height="30%"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
@@ -81,6 +112,10 @@ Performance globale du cabinet
     x_data= JSON.parse('{!! json_encode($xdata) !!}');
     years= JSON.parse('{!! json_encode($years) !!}');
     x_max = JSON.parse('{!! json_encode($x_max) !!}');
+
+    tachesAchevé = null;
+    tachesEncours = null;
+
     missionAchevé = JSON.parse('{!! json_encode($missionAchevé) !!}');
     missionEncours = JSON.parse('{!! json_encode($missionEncours) !!}');
 
@@ -90,6 +125,8 @@ Performance globale du cabinet
     prestationCaLabel= JSON.parse('{!! json_encode($prestationCALabel) !!}');
     prestationCaMontant= JSON.parse('{!! json_encode($prestationCaMontant) !!}');
     max_montant= JSON.parse('{!! json_encode($max_montant) !!}');
+    tachesAchevé = null;
+        tachesEncours = null
 
     /* console.log(prestationLabel+" "+prestationNbr); */
     /*y_data=JSON.parse(); */
@@ -112,6 +149,9 @@ Performance globale du cabinet
         });
 
     }); */
+
+
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -120,4 +160,40 @@ Performance globale du cabinet
 <script src="{{asset('assets/charts/chart-pie-prestation-demandé.js')}}" defer></script>
 <script src="{{asset('assets/charts/chart-pie-missions.js')}}" defer></script>
 <script src="{{asset('assets/charts/chart-bar-contribution-ca.js')}}" defer></script>
+<script src="{{asset('assets/charts/chart-pie-tacheIndividuel.js')}}" defer></script>
+<script defer>
+    $('#selectExercice').change(function (e) {
+/*             e.preventDefault();
+            let url ="{{url('kpi/usr/')}}"
+            let id=$(this).val();
+
+            $('#formExercice').attr('action',url+'/'+id);
+            $('#formExercice').submit(); */
+
+console.log($("#selectExercice").val());
+        var id = $("#selectExercice").val();
+
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+        url:"{{ route('kpi.showUser') }}",
+        method:"POST",
+        data:{id:id, _token:_token },
+        success:function(result)
+            {
+console.log(chart);
+chart.data.datasets[0].data= [result.tachesAchevé,result.tachesEncours]
+
+                console.log(chart.data.datasets.data);
+                chart.update();
+
+/*             $('#montant').val(result.total);
+            $('#total').val(result.total);
+            $('#prestation').val(result.designation);
+            console.log(result.zyada); */
+
+            }
+
+        })
+    });
+</script>
 @endsection
