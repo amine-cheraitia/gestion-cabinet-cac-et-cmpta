@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Mandat N° :{{$num_convention}}</title>
+    <title>Convention N° :{{$num_convention}}</title>
 
     <style>
         @page {
@@ -254,7 +254,7 @@
     <header class="invoice-box " style="font-weight: bold; text-decoration: underline; text-align: center;color: black">
         République Algérienne Démocratique et Populaire <br>
         Conseil National de l’Organisation Nationale des Comptables Agréés <br>
-        Organisation Nationale des Comptables Agréés <br>
+        Chambre Nationale des Commissaires aux Comptes <br>
 
     </header>
     <br><br><br>
@@ -300,9 +300,8 @@
         <br>
         Adresse professionnelle : 554 Cité el djawhara, BT11 N°01 Les Halles, Alger.
         <br>
-        Agrément n° : 129521 Du 01/02/2013
-        <br>
-        N° d’inscription à l’ordre de l’organisation : -----------------------------------------------------------------
+        Agrément n° : 1366 Du 01/02/2013
+
         <br>
         Ci-après dénommé « Le Cabinet » / Meddahi
         <br>
