@@ -17,16 +17,23 @@ class KpiController extends Controller
 
     public function index()
     {
+
+        $factureUtilise = Facture::whereNotNull('fact_avoir_id')->where('exercice_id', '=', date('Y'))->pluck('fact_avoir_id');
+
+        /* $dataDel= Facture::where
+ */
         $data =  Facture::selectRaw('
-        YEAR(date_Facturation) AS y, monthname(date_Facturation) AS m ,month(date_Facturation) AS ma,SUM(montant) montant
-    ')
-            ->groupBy('y', 'm', "ma")
-            ->orderBy('y', 'asc')
+        YEAR(date_Facturation) AS y,SUM(montant) montant
+    ')->whereNotIn('id', $factureUtilise)
+            ->groupBy('y')
+            /*         ->orderBy('y', 'asc') */
             ->get();
-        $montants = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 7 => 0, 8 => 0, 9 => 0, 10 => 0, 11 => 0, 12 => 0];
-        $mois = [];
+        $montants = [];
+        $years = [];
+
         foreach ($data as $d) {
-            $montants[($d->ma)] = $d->montant;
+            $montants[] = $d->montant;
+            $years[] = $d->y;
         }
         $x_max = 0;
         $xdata = [];
@@ -62,6 +69,6 @@ class KpiController extends Controller
             $prestationCaMontant[] = $pCA->montant;
         }
 
-        return view('kpi.kpi', compact('xdata', 'x_max', 'missionEncours', 'missionAchevé', 'prestationDemande', 'prestationDemandeeNbr', "prestationCALabel", "prestationCaMontant", "max_montant"));
+        return view('kpi.kpi', compact('xdata', 'years', 'x_max', 'missionEncours', 'missionAchevé', 'prestationDemande', 'prestationDemandeeNbr', "prestationCALabel", "prestationCaMontant", "max_montant"));
     }
 }

@@ -23,7 +23,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-
+        $factureUtilise = Facture::whereNotNull('fact_avoir_id')->where('exercice_id', '=', date('Y'))->pluck('fact_avoir_id');
 
         /*         dd(Auth::user()->isSecretaire() ? "yes" : "no");
         dd(Auth::user()->hasAnyRole(['Comptable', 'Auditeur']) ? "yes" : "no");  legall.charlotte@example.net cmp@cabinetmeddahi.com
@@ -33,7 +33,7 @@ class DashboardController extends Controller
         if (Auth::user()->isAdmin()) {
             $data =  Facture::selectRaw('
             YEAR(date_Facturation) AS y, monthname(date_Facturation) AS m ,month(date_Facturation) AS ma,SUM(montant) montant
-        ')
+        ')->where('exercice_id', date('Y'))->whereNotIn('id', $factureUtilise)
                 ->groupBy('y', 'm', "ma")
                 ->orderBy('y', 'asc')
                 ->get();
@@ -50,7 +50,9 @@ class DashboardController extends Controller
                 }
                 $xdata[] = $m;
             }
-            /*  */
+            /*
+            $missionEncours = Mission::whereStatus(0)->whereBetween('start', [date('Y') . '-01-01', date('Y') . '-12-31'])->orWhereBetween('end', ['2022-01-01', '2022-12-31'])->count();
+            $missionAchevé = Mission::whereStatus(1)->whereBetween('start', ['2022-01-01', '2022-12-31'])->orWhereBetween('end', ['2022-01-01', '2022-12-31'])->count();*/
             $missionEncours = Mission::whereStatus(0)->count();
             $missionAchevé = Mission::whereStatus(1)->count();
             $factAnnulé = Facture::whereNotNull('fact_avoir_id')->get('fact_avoir_id');

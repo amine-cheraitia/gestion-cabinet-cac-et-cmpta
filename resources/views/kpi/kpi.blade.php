@@ -32,10 +32,10 @@ Performance globale du cabinet
 
                 <div class="card-header">
                     <i class="fas fa-chart-area me-1"></i>
-                    Chiffre d'Affaire par mois
+                    Chiffre d'Affaire par années
                 </div>
 
-                <div class="card-body position-relative"><canvas id="myBarChart" style="width: 100% !important;"
+                <div class="card-body position-relative"><canvas id="myAreaChart" style="width: 100% !important;"
                         width="50%" height="30%"></canvas>
                 </div>
             </div>
@@ -79,6 +79,7 @@ Performance globale du cabinet
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     x_data= JSON.parse('{!! json_encode($xdata) !!}');
+    years= JSON.parse('{!! json_encode($years) !!}');
     x_max = JSON.parse('{!! json_encode($x_max) !!}');
     missionAchevé = JSON.parse('{!! json_encode($missionAchevé) !!}');
     missionEncours = JSON.parse('{!! json_encode($missionEncours) !!}');
@@ -114,8 +115,8 @@ Performance globale du cabinet
 </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
-<script src="{{asset('assets/charts/chart-bar-Chiffre-dAffaire.js')}}" defer></script>
+<script src="{{asset('assets/charts/chart-area-Chiffre-Affaire-parAnnée.js')}}" defer></script>
+{{-- <script src="{{asset('assets/charts/chart-bar-Chiffre-dAffaire.js')}}" defer></script> --}}
 <script src="{{asset('assets/charts/chart-pie-prestation-demandé.js')}}" defer></script>
 <script src="{{asset('assets/charts/chart-pie-missions.js')}}" defer></script>
 <script src="{{asset('assets/charts/chart-bar-contribution-ca.js')}}" defer></script>
