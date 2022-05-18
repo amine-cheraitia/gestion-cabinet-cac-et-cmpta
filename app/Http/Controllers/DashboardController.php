@@ -53,12 +53,17 @@ class DashboardController extends Controller
             /*
             $missionEncours = Mission::whereStatus(0)->whereBetween('start', [date('Y') . '-01-01', date('Y') . '-12-31'])->orWhereBetween('end', ['2022-01-01', '2022-12-31'])->count();
             $missionAchevé = Mission::whereStatus(1)->whereBetween('start', ['2022-01-01', '2022-12-31'])->orWhereBetween('end', ['2022-01-01', '2022-12-31'])->count();*/
+
             $missionEncours = Mission::whereStatus(0)->count();
             $missionAchevé = Mission::whereStatus(1)->count();
             $factAnnulé = Facture::whereNotNull('fact_avoir_id')->get('fact_avoir_id');
-            $chiffreDaffaire = Facture::whereTypeFactureId(1)->whereNotIn('id', $factAnnulé)->sum('montant');
+            $chiffreDaffaire = Facture::whereTypeFactureId(1)->whereNotIn('id', $factAnnulé)->where('exercice_id', date('Y'))->sum('montant');
             $tachesEncours = Tache::whereStatus(0)->count();
-            return view('dashboards.mainDashboard', compact('xdata', 'x_max', 'missionEncours', 'missionAchevé', 'chiffreDaffaire', 'tachesEncours'));
+            /* facture impayé */
+            $factureWavoir = Facture::whereNotNull('fact_avoir_id')->pluck('fact_avoir_id');
+            $facturePaye = Paiement::pluck('facture_id');
+            $factImpayé = Facture::whereNotIn('id', $factureWavoir)->where('type_facture_id', 1)->whereNotIn('id', $facturePaye)->count();
+            return view('dashboards.mainDashboard', compact('factImpayé', 'xdata', 'x_max', 'missionEncours', 'missionAchevé', 'chiffreDaffaire', 'tachesEncours'));
         } elseif (Auth::user()->isSecretaire()) {
 
             $factureWavoir = Facture::whereNotNull('fact_avoir_id')->pluck('fact_avoir_id');

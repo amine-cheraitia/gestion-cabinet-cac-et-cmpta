@@ -28,7 +28,7 @@ class KpiController extends Controller
         YEAR(date_Facturation) AS y,SUM(montant) montant
     ')->whereNotIn('id', $factureUtilise)
             ->groupBy('y')
-            /*         ->orderBy('y', 'asc') */
+            ->orderBy('y', 'asc')
             ->get();
         $montants = [];
         $years = [];

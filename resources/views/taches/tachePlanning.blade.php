@@ -26,10 +26,15 @@ Planning de Tache
 
 @endsection
 @section('content')
+<h2 class="my-4 text-center">{{-- Liste des tâches --}}</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a class="text-dark" href="{{route('/')}}">Tableau de bord</a> / Planning des tâches
+    </li>
+</ol>
 
-<h2 class="mt-5 text-center">{{-- <i class="fas fa-project-diagram"> --}}Planning de taches</h2>
+
 @can('admin')
-<div class="mb-2">
+<div class="mb-4">
     <button class="btn btn-dark" id="create" data-toggle="modal" data-target="#exampleModalCenter">Création de
         Tache</button>
 </div>

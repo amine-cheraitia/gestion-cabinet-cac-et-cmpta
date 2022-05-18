@@ -66,7 +66,7 @@
                     <i style="font-size: 35px" class="fas fa-file-invoice text-secondary"></i>
 
                     <div>Facture(s) impayée(s)<br>
-                        <div class="text-center fs-8 w-100">3</div>
+                        <div class="text-center fs-8 w-100">{{$factImpayé}}</div>
                     </div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">

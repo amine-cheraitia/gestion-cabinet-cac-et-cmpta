@@ -220,8 +220,8 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="{{route('paiement.list')}}">Consulter</a>
                                 <a class="nav-link" href="{{route('paiement.creances')}}">Consulter les créances</a>
-                                <a class="nav-link" href="{{route('paiement.PlanningPaiement')}}">Consulter le Planning
-                                    de paiement</a>
+                                {{-- <a class="nav-link" href="{{route('paiement.PlanningPaiement')}}">Consulter le Planning
+                                    de paiement</a> --}}
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gKpi"
