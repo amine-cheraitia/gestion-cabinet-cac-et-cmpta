@@ -76,7 +76,8 @@
 
                                 <a href="{{ route('users.edit', $user->id) }}"
                                     class="btn btn-outline-secondary rounded-circle">
-                                    <i class="fas fa-minus"></i></a> &nbsp;
+                                    <i class="fas fa-minus"></i></a> 
+
                                 <a id="{{ $user->id }}" class="btn btn-outline-danger dlt rounded-circle"><i
                                         {{-- style="font-size: 20px" --}} class="fas fa-times"></i></a>
 
