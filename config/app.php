@@ -166,7 +166,8 @@ return [
         /*
          * Package Service Providers...
          */
-        Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class,
+
+        Mccarlosen\LaravelMpdf\LaravelMpdfServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -229,7 +230,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'PDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class,
+        'PDF' => Mccarlosen\LaravelMpdf\Facades\LaravelMpdf::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
     ],
