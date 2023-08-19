@@ -64,7 +64,7 @@
                         <th>Date de Devis</th>
                         <th>Montal total</th>
                         <th>Statut</th>
-                        <th>action</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -86,12 +86,14 @@
                                 {{-- TO do consulter les missions aprés le setup des taches --}}
                                 <a href="{{ route('mission.show', $mission->id) }}"
                                     class="btn btn-outline-primary  rounded-circle"><i {{-- style="font-size: 15px" --}}
-                                        class="fas fa-sign-in-alt"></i></a> &nbsp;
+                                        class="fas fa-sign-in-alt"></i></a> <span style="color: white"> </span>
                                 <a href="{{ route('mission.edit', $mission->id) }}"
                                     class="btn btn-outline-secondary  rounded-circle">
-                                    <i class="fas fa-minus"></i></a> &nbsp;
+                                    <i class="fas fa-minus"></i></a><span style="color: white"> </span>
                                 <a id="{{ $mission->id }}" class="btn btn-outline-danger  rounded-circle dlt"><i
                                         {{-- style="font-size: 20px" --}} class="fas fa-times"></i></a>
+<span style="color: white">.</span>
+
 
                             </td>
                         </tr>

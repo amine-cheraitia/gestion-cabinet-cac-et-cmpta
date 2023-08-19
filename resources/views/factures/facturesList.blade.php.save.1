@@ -1,6 +1,6 @@
 @extends('main')
 @section('title')
-    Liste des Devis
+    Liste des Factures
 @endsection
 @section('style')
     <style>
@@ -15,17 +15,14 @@
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
-</script>
-</script> --}}
 @endsection
 @section('content')
-    <h2 class="my-4 text-center">{{-- Liste des Entreprises --}}</h2>
+    {{-- <h2 class="my-4 text-center">Liste des Factures</h2> --}}
+    <h2 class="my-4 text-center">{{-- Liste des tâches --}}</h2>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active"><a class="text-dark" href="{{ route('/') }}">Tableau de bord</a> / Liste des
-            Devis</li>
+            Factures
+        </li>
     </ol>
     @if (session('errors'))
         <div class="col-lg-12">
@@ -41,11 +38,11 @@
     <div class="card mb-4 shadow">
 
         <div class="card-header d-flex justify-content-between align-items-center">
-            <div class=""><i class="fas fa-file-alt"></i>
-                <strong>Liste des Devis</strong>
-            </div>
+            <div><i class="fas fa-file-alt"></i><strong>
+                    Liste des Factures</strong></div>
             {{-- //todo: boutton d'ajout --}}
             <div class="d-flex justify-content-center align-items-center">
+		<div class="d-flex justify-content-center">
                 <span style="line-height: 50%;" class="mr-2">Exercice</span>
                 <form id="formExercice" action="{{-- {{route('devis.store')}} --}}" method="get" class="mr-2">
                     <select id="selectExercice" class="form-control form-select shadow" style="width: 100px">
@@ -57,10 +54,8 @@
                         @endforeach
                     </select>
                 </form>
-
-                <a href="{{ route('devis.create') }}" class="btn btn-dark">Crée un Devis</a>
+                <a href="" id="cree" class="btn btn-dark ">Crée une Facture</a>
             </div>
-
 
         </div>
         <div class="card-body">
@@ -68,46 +63,52 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>N° de Devis</th>
+                        <th>N° de Facture</th>
                         <th>Raison social</th>
-                        <th>Date de Devis</th>
-                        <th>Montal total</th>
+                        <th>Mission Réf</th>
+                        <th>Date de Facture</th>
+                        <th>Facture Réf</th>
+                        <th>Montant</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>#</th>
-                        <th>N° de Devis</th>
+                        <th>N° de Facture</th>
                         <th>Raison social</th>
-                        <th>Date de Devis</th>
-                        <th>Montal total</th>
-                        <th>action</th>
+                        <th>Mission Réf</th>
+                        <th>Date de Facture</th>
+                        <th>Facture Réf</th>
+                        <th>Montant</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
-                    @foreach ($devis as $d)
+                    @foreach ($factures as $facture)
                         <tr>
                             <td class="text-center"><strong>{{ $loop->iteration }}</strong></td>
-                            <td><strong><a href="{{ route('devis.edit', $d->id) }}" class="link-dark"
-                                        style="text-underline-position: none">{{ $d->num_devis }}</a></strong></td>
-                            <td>{{ $d->entreprise->raison_social }}</td>
-                            <td>{{ Carbon\Carbon::parse($d->date_devis)->format('d-m-Y') }}</td>
-                            <td>{{ number_format($d->total, 2, ',', ' ') }} DA</td>
-
-                            {{-- <td>{{$entreprise->num_registre_commerce}}</td>
-                    <td>{{$entreprise->num_id_fiscale}}</td>
-                    <td>{{$entreprise->num_art_imposition}}</td> --}}
-
+                            <td><strong><a href="{{ route('facture.edit', $facture->id) }}" class="link-dark"
+                                        style="text-underline-position: none">{{ $facture->num_fact }}</a></strong></td>
+                            <td>{{ $facture->mission->entreprise->raison_social }}</td>
+                            <td>{{ $facture->mission->title }}</td>
+                            <td>{{ Carbon\Carbon::parse($facture->date_facturation)->format('d-m-Y') }}</td>
+                            <td class="text-center">{{ $facture->fact_avoir_id ? $facture->factureAvoir->num_fact : '-' }}
+                            </td>
+                            <td>{{ number_format($facture->montant, 2, ',', ' ') }} DA</td>
                             <td class="d-flex justify-content-center">
-                                <a target="_blank" href="{{ route('devis.pdf', $d->id) }}"
-                                    class="btn btn-outline-primary  rounded-circle"><i {{-- style="font-size: 15px;" --}}
-                                        class="fas fa-print"></i></a>
-                                <a href="{{ route('devis.edit', $d->id) }}"
+                                <a target="_blank" href="{{ route('facture.pdf', $facture->id) }}"
+                                    class="btn btn-outline-primary rounded-circle"><i {{-- style="font-size: 15px;" --}}
+                                        class="fas fa-print"></i></a> <span style="color: white"> </span>
+
+                                <a href="{{ route('facture.edit', $facture->id) }}"
                                     class="btn btn-outline-secondary  rounded-circle">
-                                    <i class="fas fa-minus"></i></a> 
-                                <a id="{{ $d->id }}" class="btn btn-outline-danger  rounded-circle dlt"><i
+                                    <i class="fas fa-minus"></i></a> <span style="color: white"> </span>
+
+                                <a id="{{ $facture->id }}" class="btn btn-outline-danger  rounded-circle dlt"><i
                                         {{-- style="font-size: 20px" --}} class="fas fa-times"></i></a>
+<span style="color: white">,</span>
+
 
                             </td>
                         </tr>
@@ -121,12 +122,32 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Suppression de Devis</h5>
+                    <h5 class="modal-title" id="editModalLabel">Type de Facture</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                 </div>
                 <div class="modal-body">
-                    <p>Etes vous sur de vouloir Supprimer ce Devis ?</p>
+                    <p>Quel type de Facture vous voulez crée ?</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ route('facture.create') }}" class="btn btn-dark">Facture régulière</a>
+                    <a href="{{ route('facture.createAvoir') }}" class="btn btn-dark">Facture d'Avoir</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editModalD" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Suppression de Facture</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+                <div class="modal-body">
+                    <p>Etes vous sur de vouloir Supprimer cette facture ?</p>
                 </div>
                 <div class="modal-footer">
                     <a id="confirm" href="" class="btn btn-dark">Oui</a>
@@ -143,21 +164,20 @@
 
             $(".dlt").click(function(e) {
                 e.preventDefault();
-                var url = "{{ url('devis/') }}"
+                var url = "{{ url('factures/') }}"
                 var id = $(this).attr('id');
                 $("#confirm").attr('href', url + '/' + id + '/delete')
-                $('#editModal').modal('show')
+                $('#editModalD').modal('show')
 
             });
 
             $("#datatablesSimple").bind("DOMSubtreeModified", function() {
                 $(".dlt").click(function(e) {
                     e.preventDefault();
-                    let url = "{{ url('devis/') }}"
-                    console.log($(this));
-                    let id = $(this).attr('id');
+                    var url = "{{ url('factures/') }}"
+                    var id = $(this).attr('id');
                     $("#confirm").attr('href', url + '/' + id + '/delete')
-                    $('#editModal').modal('show')
+                    $('#editModalD').modal('show')
 
                 });
             });
@@ -165,7 +185,7 @@
             /*  */
             $('#selectExercice').change(function(e) {
                 e.preventDefault();
-                let url = "{{ url('devis/ex/') }}"
+                let url = "{{ url('factures/ex/') }}"
                 let id = $(this).val();
 
                 $('#formExercice').attr('action', url + '/' + id);
@@ -173,5 +193,11 @@
             });
 
         })
+
+        $('#cree').click(function(e) {
+            e.preventDefault();
+
+            $('#editModal').modal('show')
+        });
     </script>
 @endsection

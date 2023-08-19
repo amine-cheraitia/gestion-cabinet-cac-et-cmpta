@@ -86,12 +86,12 @@
                                     class="btn btn-outline-primary  rounded-circle"><i {{-- style="font-size: 15px" --}}
                                         class="fas fa-sign-in-alt"></i></a>
                                 @can('admin')
-                                    &nbsp;
+                                    <span style="color: white"> </span>
                                     <a href="{{ route('tache.edit', $tache->id) }}"
                                         class="btn btn-outline-secondary  rounded-circle">
                                         <i class="fas fa-minus"></i></a>
 
-                                    &nbsp;
+                                    <span style="color: white"> </span>
                                     <a id="{{ $tache->id }}" class="btn btn-outline-danger dlt  rounded-circle"><i
                                             {{-- style="font-size: 20px" --}} class="fas fa-times"></i></a>
                                 @endcan

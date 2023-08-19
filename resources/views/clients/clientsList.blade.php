@@ -50,9 +50,7 @@
                         <th>Adresse</th>
                         <th>N° Tel</th>
                         <th>Email</th>
-                        {{-- <th>N° Registre de Commerce</th>
-                    <th>N° Identifiant fiscal</th>
-                    <th>N° Article d'imposition</th> --}}
+                        
                         <th>Régime fiscal</th>
                         <th>Action</th>
                     </tr>
@@ -64,9 +62,8 @@
                         <th>Adresse</th>
                         <th>N° de télephone</th>
                         <th>Email</th>
-                        {{-- <th>N° Registre de Commerce</th>
-                    <th>N° Identifiant fiscal</th>
-                    <th>N° Article d'imposition</th> --}}
+            
+               
                         <th>Régime fiscal</th>
                         <th>Action</th>
                     </tr>
@@ -86,15 +83,16 @@
                     <td>{{$entreprise->num_id_fiscale}}</td>
                     <td>{{$entreprise->num_art_imposition}}</td> --}}
                             <td>{{ $entreprise->RegimeFiscal->designation }}</td>
-                            <td class="d-flex justify-content-center">
-                                <a href="{{ route('client.edit', $entreprise->id) }}"
+                            <td class="d-flex justify-content-center align-items-center">
+                               <div class="d-flex justify-content-center">
+				 <a href="{{ route('client.edit', $entreprise->id) }}"
                                     class="btn btn-outline-secondary  rounded-circle"> <i class="fas fa-minus"></i></a>
-                                &nbsp;
-                                {{-- <a href="{{route('client.destroy',$entreprise->id)}}" class="btn btn-outline-danger"><i
-                                style="font-size: 20px" class="fas fa-times"></i></a> --}}
+				<span style="color: white">-</span>				
                                 <a id="{{ $entreprise->id }}" class="btn btn-outline-danger  rounded-circle dlt"><i
                                         {{-- style="font-size: 20px" --}} class="fas fa-times"></i></a>
-                            </td>
+                        	</div>
+    
+			</td>
                         </tr>
                     @endforeach
 
@@ -106,6 +104,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
+c rien
                     <h5 class="modal-title" id="editModalLabel">Suppression d'Entreprise</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 

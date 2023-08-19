@@ -96,14 +96,19 @@
                             </td>
                             <td>{{ number_format($facture->montant, 2, ',', ' ') }} DA</td>
                             <td class="d-flex justify-content-center">
+				<div class="d-flex justify-content-center">
                                 <a target="_blank" href="{{ route('facture.pdf', $facture->id) }}"
                                     class="btn btn-outline-primary rounded-circle"><i {{-- style="font-size: 15px;" --}}
-                                        class="fas fa-print"></i></a>&nbsp;
+                                        class="fas fa-print"></i></a> <span style="color: white">.</span>
+
                                 <a href="{{ route('facture.edit', $facture->id) }}"
                                     class="btn btn-outline-secondary  rounded-circle">
-                                    <i class="fas fa-minus"></i></a> &nbsp;
+                                    <i class="fas fa-minus"></i></a> <span style="color: white">.</span>
+
                                 <a id="{{ $facture->id }}" class="btn btn-outline-danger  rounded-circle dlt"><i
                                         {{-- style="font-size: 20px" --}} class="fas fa-times"></i></a>
+
+</div>
 
                             </td>
                         </tr>

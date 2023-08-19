@@ -62,6 +62,7 @@
                         <th>Action</th>
                     </tr>
                 </tfoot>
+
                 <tbody>
                     @foreach ($users as $user)
                         <tr>
